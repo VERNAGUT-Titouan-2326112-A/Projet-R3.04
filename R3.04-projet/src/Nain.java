@@ -8,4 +8,11 @@ public class Nain extends Creature{
         // Démoraliser les autres créatures
     }
 
+    @Override
+    protected void contaminer() {
+
+    }
+    public void VIP(){
+
+    }
 }

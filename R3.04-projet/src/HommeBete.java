@@ -12,4 +12,7 @@ public class HommeBete extends Creature{
     protected void contaminer() {
 
     }
+    public void Triage(){
+
+    }
 }

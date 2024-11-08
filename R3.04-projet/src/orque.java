@@ -13,4 +13,7 @@ public class orque extends Creature {
     protected void contaminer() {
 
     }
+    public void Triage(){
+
+    }
 }

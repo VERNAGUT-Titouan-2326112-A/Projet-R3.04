@@ -12,4 +12,8 @@ public class Reptilien extends Creature{
     protected void contaminer() {
 
     }
+
+    public void VIP(){
+
+    }
 }

@@ -19,4 +19,7 @@ public class Zombie extends Creature implements Regenerable {
         this.setMoral(50);
         System.out.println(getNom() + " se régénère après sa mort !");
     }
+    public void Triage(){
+
+    }
 }

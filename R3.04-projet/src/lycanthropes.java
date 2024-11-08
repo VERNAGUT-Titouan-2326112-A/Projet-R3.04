@@ -12,4 +12,7 @@ public class lycanthropes extends Creature{
     protected void contaminer() {
 
     }
+    public void Triage(){
+
+    }
 }
