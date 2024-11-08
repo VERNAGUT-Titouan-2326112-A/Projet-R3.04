@@ -24,4 +24,7 @@ public class Elfe extends Creature implements Demoralisant {
             System.out.println(creature.getNom() + " est démoralisé par la mort de " + getNom());
         }
     }
+    public void VIP(){
+
+    }
 }

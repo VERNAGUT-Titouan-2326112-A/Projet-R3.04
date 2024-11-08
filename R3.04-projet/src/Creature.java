@@ -58,7 +58,13 @@ public abstract class Creature {
     public void trepasser() {
         System.out.println(nom + " est mort...");
     }
+    public void Triage(){
+        System.out.println(nom + " patiente");
 
+    }
+    public void VIP(){
+        System.out.println(nom + " patiente mais ne va pas tarder à perdre sa patiente");
+    }
     // Méthode abstraite pour spécialiser le comportement de contamination dans les sous-classes
     protected abstract void contaminer();
 
