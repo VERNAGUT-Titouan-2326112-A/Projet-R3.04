@@ -9,12 +9,12 @@ public class Elfe extends Creature implements Demoralisant {
     @Override
     public void trepasser() {
         super.trepasser();
-        // Démoraliser les autres créatures
+        demoraliser(ServiceMedecin.getServiceCreatures());
     }
 
     @Override
     protected void contaminer() {
-        // Les elfes ne contaminent pas d'autres créatures
+        //les elfes ne contaminent pas
     }
 
     @Override
