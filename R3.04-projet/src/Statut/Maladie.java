@@ -1,3 +1,5 @@
+package Statut;
+
 public class Maladie {
     private String nomComplet;
     private String nomAbrege;

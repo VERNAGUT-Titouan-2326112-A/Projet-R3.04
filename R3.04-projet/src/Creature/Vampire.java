@@ -1,5 +1,8 @@
 package Creature;
 
+import Medecin.ServiceMedecin;
+import Statut.Demoralisant;
+
 import java.util.List;
 
 public class Vampire extends Creature implements Demoralisant {

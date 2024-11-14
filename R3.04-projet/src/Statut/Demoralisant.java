@@ -1,3 +1,5 @@
+package Statut;
+
 import Creature.Creature;
 
 import java.util.List;

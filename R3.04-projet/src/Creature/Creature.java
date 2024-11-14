@@ -2,6 +2,7 @@ package Creature;
 
 import java.util.ArrayList;
 import java.util.List;
+import Statut.Maladie;
 
 public abstract class Creature {
     private String nom;

@@ -1,3 +1,5 @@
+package Medecin;
+
 import Creature.Creature;
 
 import java.util.Scanner;
