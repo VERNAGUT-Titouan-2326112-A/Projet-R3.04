@@ -38,13 +38,13 @@ public class ServiceMedical {
         this.nombreCreatures = 0;
     }
 
-    /* public void afficherDetails() {
+    public void afficherDetails() {
         System.out.println("Nom: " + nom);
         System.out.println("Superficie: " + superficie + " m²");
         System.out.println("Capacité maximale: " + capaciteMax + " créatures");
         System.out.println("Nombre de créatures: " + nombreCreatures);
         System.out.println("Budget: " + budget);
-    }*/
+    }
 
     public void ajouterCreature(Creature creature) {
         if (nombreCreatures < capaciteMax) {
