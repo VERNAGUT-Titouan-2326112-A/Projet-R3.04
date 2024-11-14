@@ -1,3 +1,5 @@
+import Creature.Creature;
+
 import java.util.Scanner;
 
 public class Medecin {

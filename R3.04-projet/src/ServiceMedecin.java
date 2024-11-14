@@ -1,3 +1,5 @@
+import Creature.Creature;
+
 import java.util.ArrayList;
 import java.util.List;
 

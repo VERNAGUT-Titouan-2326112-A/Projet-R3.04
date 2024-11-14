@@ -1,3 +1,5 @@
+package Creature;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,7 +128,7 @@ public abstract class Creature {
 
     @Override
     public String toString() {
-        return "Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
+        return "Creature.Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + "]";
     }
 }
