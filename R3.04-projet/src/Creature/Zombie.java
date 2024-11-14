@@ -1,3 +1,5 @@
+package Creature;
+
 public class Zombie extends Creature implements Regenerable {
 
     public Zombie(String nom, String sexe, double poids, double taille, int age) {

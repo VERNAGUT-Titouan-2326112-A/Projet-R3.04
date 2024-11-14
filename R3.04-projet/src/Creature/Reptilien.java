@@ -1,5 +1,7 @@
-public class Nain extends Creature{
-    public Nain(String nom, String sexe, double poids, double taille, int age) {
+package Creature;
+
+public class Reptilien extends Creature{
+    public Reptilien(String nom, String sexe, double poids, double taille, int age) {
         super(nom, sexe, poids, taille, age,false,false);
     }
     @Override
@@ -12,6 +14,7 @@ public class Nain extends Creature{
     protected void contaminer() {
 
     }
+
     public void VIP(){
 
     }
