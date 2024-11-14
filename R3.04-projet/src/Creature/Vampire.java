@@ -1,8 +1,10 @@
+package Creature;
+
 import java.util.List;
 
-public class Elfe extends Creature implements Demoralisant {
+public class Vampire extends Creature implements Demoralisant {
 
-    public Elfe(String nom, String sexe, double poids, double taille, int age) {
+    public Vampire(String nom, String sexe, double poids, double taille, int age) {
         super(nom, sexe, poids, taille, age);
     }
 
@@ -14,7 +16,7 @@ public class Elfe extends Creature implements Demoralisant {
 
     @Override
     protected void contaminer() {
-        //les elfes ne contaminent pas
+        //les vampires ne contaminent pas
     }
 
     @Override
