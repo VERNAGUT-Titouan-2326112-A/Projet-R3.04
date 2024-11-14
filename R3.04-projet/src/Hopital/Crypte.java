@@ -27,4 +27,20 @@ public class Crypte extends ServiceMedical {
         System.out.println("Ventilation : " + ventilation);
         System.out.println("Température : " + temperature);
     }
+
+    public int getTemperature() {
+        return this.temperature;
+    }
+
+    public void setTemperature(int tmp){
+        this.temperature = tmp;
+    }
+
+    public int getVentilation(){
+        return this.ventilation;
+    }
+
+    public void setVentilation(int vnt){
+        this.ventilation = vnt ;
+    }
 }

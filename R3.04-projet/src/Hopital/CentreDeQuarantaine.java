@@ -2,7 +2,7 @@ package Hopital;
 
 import Creature.Creature;
 
-public class CentreDeQuarantaine extends ServiceMedical {
+public class CentreDeQuarantaine<T> extends ServiceMedical<T> {
     private boolean isole;
 
     public CentreDeQuarantaine(String nom, double superficie, int capaciteMax, String budget, boolean isole) {
@@ -23,5 +23,13 @@ public class CentreDeQuarantaine extends ServiceMedical {
     public void revisionBudget() {
         super.revisionBudget();
         System.out.println("Isolation : " + (isole ? "Oui" : "Non"));
+    }
+
+    public void setIsole(boolean isole){
+        this.isole = isole ;
+    }
+
+    public boolean isIsolation(){
+        return this.isole;
     }
 }
