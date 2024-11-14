@@ -1,5 +1,7 @@
 package Hopital;
 
+import Creature.Creature;
+
 public class CentreDeQuarantaine extends ServiceMedical {
     private boolean isole;
 

@@ -5,6 +5,7 @@ import Interfaces.Demoralisant;
 
 import java.util.List;
 
+
 public class Elfe extends Creature implements Demoralisant {
 
     public Elfe(String nom, String sexe, double poids, double taille, int age) {
