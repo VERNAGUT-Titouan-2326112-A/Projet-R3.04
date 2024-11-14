@@ -2,7 +2,7 @@ package Hopital;
 
 import Creature.Creature;
 
-public class CentreDeQuarantaine<T> extends ServiceMedical<T> {
+public class CentreDeQuarantaine<T> extends ServiceMedical {
     private boolean isole;
 
     public CentreDeQuarantaine(String nom, double superficie, int capaciteMax, String budget, boolean isole) {
