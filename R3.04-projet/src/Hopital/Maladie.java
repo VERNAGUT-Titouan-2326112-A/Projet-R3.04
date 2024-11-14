@@ -1,4 +1,5 @@
-package Statut;
+package Hopital;
+
 
 public class Maladie {
     private String nomComplet;

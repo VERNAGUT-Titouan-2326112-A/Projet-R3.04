@@ -1,14 +1,16 @@
 package Creature;
 
-import Medecin.ServiceMedecin;
-import Statut.Demoralisant;
+import Creature.Creature;
+import Hopital.ServiceMedecin;
+import Interfaces.Demoralisant;
+import Interfaces.Regenerable;
 
 import java.util.List;
 
-public class Vampire extends Creature implements Demoralisant {
+public class Vampire extends Creature implements Demoralisant, Regenerable {
 
     public Vampire(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age);
+        super(nom, sexe, poids, taille, age,true,true);
     }
 
     @Override
@@ -30,6 +32,11 @@ public class Vampire extends Creature implements Demoralisant {
         }
     }
     public void VIP(){
+
+    }
+
+    @Override
+    public void regenerer() {
 
     }
 }

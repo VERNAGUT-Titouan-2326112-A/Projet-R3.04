@@ -1,8 +1,9 @@
 package Creature;
 
+import Hopital.Maladie;
+
 import java.util.ArrayList;
 import java.util.List;
-import Statut.Maladie;
 
 public abstract class Creature {
     private String nom;
@@ -12,8 +13,10 @@ public abstract class Creature {
     private int age;
     private int moral;
     private List<Maladie> maladies;
+    private boolean regenerable;
+    private boolean contaminant;
 
-    public Creature(String nom, String sexe, double poids, double taille, int age) {
+    public Creature(String nom, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant) {
         this.nom = nom;
         this.sexe = sexe;
         this.poids = poids;
@@ -21,6 +24,8 @@ public abstract class Creature {
         this.age = age;
         this.moral = 100;
         this.maladies = new ArrayList<>();
+        this.regenerable = regenerable;
+        this.contaminant = contaminant;
     }
 
     public void attendre() {
@@ -127,9 +132,29 @@ public abstract class Creature {
         this.maladies = maladies;
     }
 
+    public boolean isRegenerable() {
+        return regenerable;
+    }
+
+    public boolean isContaminant() {
+        return contaminant;
+    }
+
+    public void setRegenerable(boolean regenerable) {
+        this.regenerable = regenerable;
+    }
+
+    public void setContaminant(boolean contaminant) {
+        this.contaminant = contaminant;
+    }
+
     @Override
     public String toString() {
         return "Creature.Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + "]";
+    }
+
+    public boolean estMalade() {
+        return !maladies.isEmpty();
     }
 }

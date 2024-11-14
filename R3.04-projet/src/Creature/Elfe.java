@@ -1,13 +1,15 @@
 package Creature;
 
+import Hopital.ServiceMedecin;
+import Interfaces.Demoralisant;
+
 import java.util.List;
-import Medecin.ServiceMedecin;
-import Statut.Demoralisant;
+
 
 public class Elfe extends Creature implements Demoralisant {
 
     public Elfe(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age);
+        super(nom, sexe, poids, taille, age,true,false);
     }
 
     @Override

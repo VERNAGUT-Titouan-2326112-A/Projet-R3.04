@@ -1,4 +1,5 @@
-package Medecin;
+package Hopital;
+
 
 import Creature.Creature;
 

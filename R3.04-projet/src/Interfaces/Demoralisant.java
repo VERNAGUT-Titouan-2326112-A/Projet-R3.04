@@ -1,4 +1,4 @@
-package Statut;
+package Interfaces;
 
 import Creature.Creature;
 
