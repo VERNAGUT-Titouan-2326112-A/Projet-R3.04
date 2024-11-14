@@ -1,3 +1,5 @@
+package Interfaces;
+
 import Creature.Creature;
 
 import java.util.List;

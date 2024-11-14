@@ -1,3 +1,5 @@
+package Hopital;
+
 public class CentreDeQuarantaine extends ServiceMedical {
     private boolean isole;
 

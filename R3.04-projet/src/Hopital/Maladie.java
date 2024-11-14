@@ -1,3 +1,5 @@
+package Hopital;
+
 public class Maladie {
     private String nomComplet;
     private String nomAbrege;

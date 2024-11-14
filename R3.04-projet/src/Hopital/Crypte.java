@@ -1,3 +1,7 @@
+package Hopital;
+
+import Creature.Creature;
+
 public class Crypte extends ServiceMedical {
     private int ventilation;
     private int temperature;

@@ -1,9 +1,11 @@
 package Creature;
 
+import Interfaces.Regenerable;
+
 public class Zombie extends Creature implements Regenerable {
 
     public Zombie(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age);
+        super(nom, sexe, poids, taille, age,true,false);
     }
     @Override
     public void trepasser() {

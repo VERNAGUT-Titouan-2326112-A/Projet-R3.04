@@ -1,6 +1,13 @@
+package Creature;
+
+import Creature.Creature;
+import Hopital.ServiceMedecin;
+import Interfaces.Demoralisant;
+import Interfaces.Regenerable;
+
 import java.util.List;
 
-public class Vampire extends Creature implements Demoralisant, Regenerable{
+public class Vampire extends Creature implements Demoralisant, Regenerable {
 
     public Vampire(String nom, String sexe, double poids, double taille, int age) {
         super(nom, sexe, poids, taille, age,true,true);

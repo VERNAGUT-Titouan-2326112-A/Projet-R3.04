@@ -1,3 +1,5 @@
+package Hopital;
+
 import Creature.Creature;
 
 import java.util.ArrayList;

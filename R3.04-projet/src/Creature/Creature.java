@@ -1,5 +1,7 @@
 package Creature;
 
+import Hopital.Maladie;
+
 import java.util.ArrayList;
 import java.util.List;
 
