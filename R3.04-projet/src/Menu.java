@@ -1,3 +1,4 @@
+import javax.annotation.processing.SupportedSourceVersion;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -68,7 +69,7 @@ public class Menu {
                 principeJeu();
                 break;
             case 2:
-                commandeJoueur();
+                commentJoueur();
                 break;
             case 3:
                 afficherMenu();
@@ -85,17 +86,24 @@ public class Menu {
     private void principeJeu() {
         clearConsole();
         System.out.println("Bienvenue dans les explications du jeu");
-        System.out.println("Le but du jeu est simple");
-
-
+        System.out.println("Le but du jeu est simple : on joue un médecin qui doit soigner des créatures fantastiques.");
+        System.out.println("Le jeu se termine lorsque le joueur décide de quitter.");
+        System.out.println("Bonne chance!");
+        System.out.println("_______________________________________________________________________________________________________________________________________________");
+        menuAide();
+        gererAide();
     }
 
 
 
-    private void commandeJoueur() {
+    private void commentJoueur() {
         clearConsole();
-        System.out.println("Bienvenue dans le menu de commande!");
-
+        System.out.println("Bienvenue dans le menu de comment Jouer!");
+        System.out.println("Pour cela, il faut examiner les services médicaux, soigner les créatures, réviser le budget et transférer des créatures entre services.");
+        System.out.println("Le jeu se termine lorsque le joueur décide de quitter.");
+        System.out.println("_______________________________________________________________________________________________________________________________________________");
+        menuAide();
+        gererAide();
     }
 
 

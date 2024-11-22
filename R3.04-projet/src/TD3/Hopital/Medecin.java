@@ -77,12 +77,19 @@ public class Medecin {
     }
 
     private void afficherMenu() {
-        System.out.println("Menu:");
-        System.out.println("1. Examiner un service médical");
-        System.out.println("2. Soigner les créatures d'un service médical");
-        System.out.println("3. Réviser le budget d'un service médical");
-        System.out.println("4. Transférer une créature");
-        System.out.println("5. Quitter");
+        System.out.println("_______________________________________________");
+        System.out.println("|                  Menu:                      |");
+        System.out.println("|1. Examiner un service médical               |");
+        System.out.println("|_____________________________________________|");
+        System.out.println("|2. Soigner les créatures d'un service médical|");
+        System.out.println("|_____________________________________________|");
+        System.out.println("|3. Réviser le budget d'un service médical    |");
+        System.out.println("|_____________________________________________|");
+        System.out.println("|4. Transférer une créature                   |");
+        System.out.println("|_____________________________________________|");
+        System.out.println("|5. Quitter                                   |");
+        System.out.println("|_____________________________________________|");
+
     }
 
     public void examinerService(ServiceMedical service) {

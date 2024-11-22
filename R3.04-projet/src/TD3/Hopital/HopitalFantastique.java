@@ -112,7 +112,7 @@ public class HopitalFantastique {
             // Passage de TD3.main à un médecin (interaction utilisateur)
             for (Medecin medecin : medecins) {
                 int actionsRestantes = 3;
-                while (actionsRestantes > 0) {
+                if (actionsRestantes > 0) {
                     // Ici, on pourrait interroger l'utilisateur pour réaliser une action
                     System.out.println("Médecin " + medecin.getNom() + " a " + actionsRestantes + " actions disponibles.");
                     // Exemple d'action : le médecin soigne une créature aléatoire
