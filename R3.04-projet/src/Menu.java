@@ -2,10 +2,9 @@ import TD3.Hopital.CentreDeQuarantaine;
 import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Medecin;
 import TD3.Hopital.ServiceMedical;
-
-import javax.annotation.processing.SupportedSourceVersion;
 import java.io.IOException;
 import java.util.Scanner;
+import java.lang.Thread;
 
 public class Menu {
     public void afficherMenu() {
@@ -118,6 +117,18 @@ public class Menu {
 
     private void principeJeu() {
         clearConsole();
+        System.out.println("Bienvenue dans les explications du jeu");
+        System.out.println("Le but du jeu est simple");
+        System.out.println("Vous aller incarner différents médecin dans un hopital Fantastique");
+        System.out.println("Ces médecin auront le devoir de soigner différents montres qui viendront dans l'hopital");
+        System.out.println("Cependant vous aurait un nombre de coups maximum avec chaque médecin");
+        System.out.println("Certains montres viendront avec des maladies particulière");
+        System.out.println("Bonne chance à vous jeune médecin !");
+        try {
+            Thread.sleep(7000); // Attendre 2 secondes
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("____________________________________________________________________________________________");
         System.out.println("|                       Bienvenue dans les explications du jeu                             |");
         System.out.println("|__________________________________________________________________________________________|");
