@@ -1,13 +1,25 @@
+import TD3.Hopital.CentreDeQuarantaine;
+import TD3.Hopital.HopitalFantastique;
+import TD3.Hopital.Medecin;
+import TD3.Hopital.ServiceMedical;
+
 import javax.annotation.processing.SupportedSourceVersion;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
     public void afficherMenu() {
-        System.out.println("Bienvenue dans le jeu!");
-        System.out.println("1. Démarrer le jeu");
-        System.out.println("2. Options");
-        System.out.println("3. Quitter");
+        System.out.println("___________________________________");
+        System.out.println("|         Menu Principal:         |");
+        System.out.println("|_________________________________|");
+        System.out.println("|Bienvenue dans le jeu!           |");
+        System.out.println("|_________________________________|");
+        System.out.println("|1. Démarrer le jeu               |");
+        System.out.println("|_________________________________|");
+        System.out.println("|2. Options                       |");
+        System.out.println("|_________________________________|");
+        System.out.println("|3. Quitter                       |");
+        System.out.println("|_________________________________|");
     }
 
     public void gererSelection() {
@@ -35,6 +47,22 @@ public class Menu {
     private void demarrerJeu() {
         System.out.println("Le jeu commence...");
         // Logique pour démarrer le jeu
+        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
+        Medecin drAbe = new Medecin("Dr. Abe", "homme", 45);
+        Medecin drZoey = new Medecin("Dr. Zoey", "femme", 35);
+
+        hopital.ajouterMedecin(drAbe);
+        hopital.ajouterMedecin(drZoey);
+
+        // Création et ajout de services médicaux
+        ServiceMedical quarantaineOrcs = new CentreDeQuarantaine("Quarantaine des Orcs", 200, 5, "médiocre", true);
+        hopital.ajouterService(quarantaineOrcs);
+
+        // Création d'une instance de Scanner
+        Scanner scanner = new Scanner(System.in);
+
+        // Appel de la méthode pour gérer le menu
+        drAbe.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
     }
 
     private void afficherExplication() {
@@ -54,10 +82,15 @@ public class Menu {
 
     private void menuAide() {
         clearConsole();
-        System.out.println("Bienvenue dans le menu d'aide!");
-        System.out.println("1. Principe du jeu");
-        System.out.println("2. Comment jouer");
-        System.out.println("3. Retour au menu principal");
+        System.out.println("____________________________________");
+        System.out.println("|  Bienvenue dans le menu d'aide!  |");
+        System.out.println("|__________________________________|");
+        System.out.println("|1. Principe du jeu                |");
+        System.out.println("|__________________________________|");
+        System.out.println("|2. Comment jouer                  |");
+        System.out.println("|__________________________________|");
+        System.out.println("|3. Retour au menu principal       |");
+        System.out.println("|__________________________________|");
     }
 
     public void gererAide() {
@@ -85,11 +118,15 @@ public class Menu {
 
     private void principeJeu() {
         clearConsole();
-        System.out.println("Bienvenue dans les explications du jeu");
-        System.out.println("Le but du jeu est simple : on joue un médecin qui doit soigner des créatures fantastiques.");
-        System.out.println("Le jeu se termine lorsque le joueur décide de quitter.");
-        System.out.println("Bonne chance!");
-        System.out.println("_______________________________________________________________________________________________________________________________________________");
+        System.out.println("____________________________________________________________________________________________");
+        System.out.println("|                       Bienvenue dans les explications du jeu                             |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Le but du jeu est simple : on joue un médecin qui doit soigner des créatures fantastiques.|");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Le jeu se termine lorsque le joueur décide de quitter.                                    |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Bonne chance!                                                                             |");
+        System.out.println("|__________________________________________________________________________________________|");
         menuAide();
         gererAide();
     }
@@ -98,10 +135,13 @@ public class Menu {
 
     private void commentJoueur() {
         clearConsole();
-        System.out.println("Bienvenue dans le menu de comment Jouer!");
-        System.out.println("Pour cela, il faut examiner les services médicaux, soigner les créatures, réviser le budget et transférer des créatures entre services.");
-        System.out.println("Le jeu se termine lorsque le joueur décide de quitter.");
-        System.out.println("_______________________________________________________________________________________________________________________________________________");
+        System.out.println("_________________________________________________________________________________________________________________________________________");
+        System.out.println("|Bienvenue dans le menu de comment Jouer!                                                                                               |");
+        System.out.println("|_______________________________________________________________________________________________________________________________________|");
+        System.out.println("|Pour cela, il faut examiner les services médicaux, soigner les créatures, réviser le budget et transférer des créatures entre services.|");
+        System.out.println("|_______________________________________________________________________________________________________________________________________|");
+        System.out.println("|Le jeu se termine lorsque le joueur décide de quitter.                                                                                 |");
+        System.out.println("|_______________________________________________________________________________________________________________________________________|");
         menuAide();
         gererAide();
     }
