@@ -1,4 +1,4 @@
-package Hopital;
+package TD3.Hopital;
 
 
 public class Maladie {

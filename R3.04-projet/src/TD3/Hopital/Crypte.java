@@ -1,6 +1,6 @@
-package Hopital;
+package TD3.Hopital;
 
-import Creature.Creature;
+import TD3.Creature.Creature;
 
 public class Crypte extends ServiceMedical {
     private int ventilation;

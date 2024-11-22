@@ -1,9 +1,9 @@
-package Hopital;
+package TD3.Hopital;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import Creature.Creature;
+import TD3.Creature.Creature;
 public class HopitalFantastique {
     private String nom;
     private int capaciteMaxServices;
@@ -109,7 +109,7 @@ public class HopitalFantastique {
                 }
             }
 
-            // Passage de main à un médecin (interaction utilisateur)
+            // Passage de TD3.main à un médecin (interaction utilisateur)
             for (Medecin medecin : medecins) {
                 int actionsRestantes = 3;
                 while (actionsRestantes > 0) {

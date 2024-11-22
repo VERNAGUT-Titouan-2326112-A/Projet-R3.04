@@ -1,6 +1,6 @@
-package Interfaces;
+package TD3.Interfaces;
 
-import Creature.Creature;
+import TD3.Creature.Creature;
 
 import java.util.List;
 

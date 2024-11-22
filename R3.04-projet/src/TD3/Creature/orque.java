@@ -1,4 +1,4 @@
-package Creature;
+package TD3.Creature;
 
 public class orque extends Creature {
     public orque(String nom, String sexe, double poids, double taille, int age) {

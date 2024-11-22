@@ -1,6 +1,6 @@
-package Creature;
+package TD3.Creature;
 
-import Hopital.Maladie;
+import TD3.Hopital.Maladie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +150,7 @@ public abstract class Creature {
 
     @Override
     public String toString() {
-        return "Creature.Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
+        return "TD3.Creature.TD3.Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + "]";
     }
 

@@ -1,15 +1,15 @@
-package Creature;
+package TD3.Creature;
 
-import Hopital.ServiceMedecin;
-import Interfaces.Demoralisant;
+import TD3.Hopital.ServiceMedecin;
+import TD3.Interfaces.Demoralisant;
+import TD3.Interfaces.Regenerable;
 
 import java.util.List;
 
+public class Vampire extends Creature implements Demoralisant, Regenerable {
 
-public class Elfe extends Creature implements Demoralisant {
-
-    public Elfe(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age,true,false);
+    public Vampire(String nom, String sexe, double poids, double taille, int age) {
+        super(nom, sexe, poids, taille, age,true,true);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Elfe extends Creature implements Demoralisant {
 
     @Override
     protected void contaminer() {
-        //les elfes ne contaminent pas
+        //les vampires ne contaminent pas
     }
 
     @Override
@@ -31,6 +31,11 @@ public class Elfe extends Creature implements Demoralisant {
         }
     }
     public void VIP(){
+
+    }
+
+    @Override
+    public void regenerer() {
 
     }
 }

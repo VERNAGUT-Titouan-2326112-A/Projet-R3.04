@@ -1,8 +1,8 @@
-package Creature;
+package TD3.Creature;
 
-public class HommeBete extends Creature{
+public class lycanthropes extends Creature{
 
-    public HommeBete(String nom, String sexe, double poids, double taille, int age) {
+    public lycanthropes(String nom, String sexe, double poids, double taille, int age) {
         super(nom, sexe, poids, taille, age,false,true);
     }
     @Override

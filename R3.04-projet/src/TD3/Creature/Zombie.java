@@ -1,6 +1,6 @@
-package Creature;
+package TD3.Creature;
 
-import Interfaces.Regenerable;
+import TD3.Interfaces.Regenerable;
 
 public class Zombie extends Creature implements Regenerable {
 

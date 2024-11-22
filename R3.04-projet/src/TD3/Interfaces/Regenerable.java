@@ -1,4 +1,4 @@
-package Interfaces;
+package TD3.Interfaces;
 
 
 public interface Regenerable {

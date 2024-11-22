@@ -1,7 +1,7 @@
-package Hopital;
+package TD3.Hopital;
 
 
-import Creature.Creature;
+import TD3.Creature.Creature;
 
 import java.util.Scanner;
 
