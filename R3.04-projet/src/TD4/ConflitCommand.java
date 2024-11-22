@@ -26,6 +26,7 @@ public class ConflitCommand implements Command {
             System.out.println(agresseur + "domine " + cible);
             agresseur.augmenterFacteurDomination();
             cible.baisserFacteurDomination();
+            agresseur.hurler("AOOOOUHHHH");
         } else if (agresseur.calculerNiveau() > cible.calculerNiveau()){
             System.out.println(agresseur + "domine " + cible);
             if (rangs.indexOf(agresseur.getRang()) < rangs.indexOf(cible.getRang())){
@@ -36,11 +37,14 @@ public class ConflitCommand implements Command {
             }
             agresseur.augmenterFacteurDomination();
             cible.baisserFacteurDomination();
+            agresseur.hurler("AOUH");
+            cible.hurler("AIH");
         } else {
             System.out.println(agresseur + "n'arrive pas à dominer " + cible);
             agresseur.baisserFacteurDomination();
             cible.augmenterFacteurDomination();
-
+            agresseur.hurler("AIH");
+            cible.hurler("AOUH");
         }
 
     }
