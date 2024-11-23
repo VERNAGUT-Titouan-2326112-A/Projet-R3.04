@@ -46,22 +46,31 @@ public class Menu {
     private void demarrerJeu() {
         System.out.println("Le jeu commence...");
         // Logique pour démarrer le jeu
-        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
-        Medecin drAbe = new Medecin("Dr. Abe", "homme", 45);
-        Medecin drZoey = new Medecin("Dr. Zoey", "femme", 35);
+        Scanner scanner = new Scanner(System.in);
 
-        hopital.ajouterMedecin(drAbe);
-        hopital.ajouterMedecin(drZoey);
+        // Prompt user for doctor's details
+        System.out.print("Entrez le nom du médecin: ");
+        String nom = scanner.nextLine();
+
+        System.out.print("Entrez le sexe du médecin: ");
+        String sexe = scanner.nextLine();
+
+        System.out.print("Entrez l'âge du médecin: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        // Create a new doctor with user input
+        Medecin userMedecin = new Medecin(nom, sexe, age);
+
+        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
+        hopital.ajouterMedecin(userMedecin);
 
         // Création et ajout de services médicaux
         ServiceMedical quarantaineOrcs = new CentreDeQuarantaine("Quarantaine des Orcs", 200, 5, "médiocre", true);
         hopital.ajouterService(quarantaineOrcs);
 
-        // Création d'une instance de Scanner
-        Scanner scanner = new Scanner(System.in);
-
         // Appel de la méthode pour gérer le menu
-        drAbe.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
+        userMedecin.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
     }
 
     private void afficherExplication() {
@@ -117,27 +126,26 @@ public class Menu {
 
     private void principeJeu() {
         clearConsole();
-        System.out.println("Bienvenue dans les explications du jeu");
-        System.out.println("Le but du jeu est simple");
-        System.out.println("Vous aller incarner différents médecin dans un hopital Fantastique");
-        System.out.println("Ces médecin auront le devoir de soigner différents montres qui viendront dans l'hopital");
-        System.out.println("Cependant vous aurait un nombre de coups maximum avec chaque médecin");
-        System.out.println("Certains montres viendront avec des maladies particulière");
-        System.out.println("Bonne chance à vous jeune médecin !");
+        System.out.println("____________________________________________________________________________________________");
+        System.out.println("|                           Bienvenue dans les explications du jeu                         |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Le but du jeu est simple                                                                  |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Vous aller incarner différents médecin dans un hopital Fantastique                        |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Ces médecin auront le devoir de soigner différents montres qui viendront dans l'hopital   |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Cependant vous aurait un nombre de coups maximum avec chaque médecin                      |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Certains montres viendront avec des maladies particulière                                 |");
+        System.out.println("|__________________________________________________________________________________________|");
+        System.out.println("|Bonne chance à vous jeune médecin !                                                       |");
+        System.out.println("|__________________________________________________________________________________________|");
         try {
-            Thread.sleep(7000); // Attendre 2 secondes
+            Thread.sleep(10000); // Attendre 10 secondes
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("____________________________________________________________________________________________");
-        System.out.println("|                       Bienvenue dans les explications du jeu                             |");
-        System.out.println("|__________________________________________________________________________________________|");
-        System.out.println("|Le but du jeu est simple : on joue un médecin qui doit soigner des créatures fantastiques.|");
-        System.out.println("|__________________________________________________________________________________________|");
-        System.out.println("|Le jeu se termine lorsque le joueur décide de quitter.                                    |");
-        System.out.println("|__________________________________________________________________________________________|");
-        System.out.println("|Bonne chance!                                                                             |");
-        System.out.println("|__________________________________________________________________________________________|");
         menuAide();
         gererAide();
     }
@@ -153,6 +161,11 @@ public class Menu {
         System.out.println("|_______________________________________________________________________________________________________________________________________|");
         System.out.println("|Le jeu se termine lorsque le joueur décide de quitter.                                                                                 |");
         System.out.println("|_______________________________________________________________________________________________________________________________________|");
+        try {
+            Thread.sleep(8000); // Attendre 8 secondes
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         menuAide();
         gererAide();
     }

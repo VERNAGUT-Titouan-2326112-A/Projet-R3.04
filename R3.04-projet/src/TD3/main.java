@@ -9,21 +9,30 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
-        Medecin drAbe = new Medecin("Dr. Abe", "homme", 45);
-        Medecin drZoey = new Medecin("Dr. Zoey", "femme", 35);
+        Scanner scanner = new Scanner(System.in);
 
-        hopital.ajouterMedecin(drAbe);
-        hopital.ajouterMedecin(drZoey);
+        // Prompt user for doctor's details
+        System.out.print("Entrez le nom du médecin: ");
+        String nom = scanner.nextLine();
+
+        System.out.print("Entrez le sexe du médecin: ");
+        String sexe = scanner.nextLine();
+
+        System.out.print("Entrez l'âge du médecin: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        // Create a new doctor with user input
+        Medecin userMedecin = new Medecin(nom, sexe, age);
+
+        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
+        hopital.ajouterMedecin(userMedecin);
 
         // Création et ajout de services médicaux
         ServiceMedical quarantaineOrcs = new CentreDeQuarantaine("Quarantaine des Orcs", 200, 5, "médiocre", true);
         hopital.ajouterService(quarantaineOrcs);
 
-        // Création d'une instance de Scanner
-        Scanner scanner = new Scanner(System.in);
-
         // Appel de la méthode pour gérer le menu
-        drAbe.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
+        userMedecin.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
     }
 }

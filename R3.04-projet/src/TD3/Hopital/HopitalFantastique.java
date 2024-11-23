@@ -17,6 +17,7 @@ public class HopitalFantastique {
         this.medecins = new ArrayList<>();
     }
 
+
     public String getNom() {
         return nom;
     }
