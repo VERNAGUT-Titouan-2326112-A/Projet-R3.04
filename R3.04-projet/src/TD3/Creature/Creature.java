@@ -5,7 +5,7 @@ import TD3.Hopital.Maladie;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Creature {
+public  class Creature {
     private String nom;
     private String sexe;
     private double poids;
@@ -15,6 +15,7 @@ public abstract class Creature {
     private List<Maladie> maladies;
     private boolean regenerable;
     private boolean contaminant;
+    private String type;
 
     public Creature(String nom, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant) {
         this.nom = nom;
@@ -26,6 +27,7 @@ public abstract class Creature {
         this.maladies = new ArrayList<>();
         this.regenerable = regenerable;
         this.contaminant = contaminant;
+        this.type = type;
     }
 
     public void attendre() {
@@ -74,7 +76,17 @@ public abstract class Creature {
         System.out.println(nom + " patiente mais ne va pas tarder à perdre sa patiente");
     }
     // Méthode abstraite pour spécialiser le comportement de contamination dans les sous-classes
-    protected abstract void contaminer();
+    protected void contaminer(){
+        // Par défaut, les créatures ne contaminent pas
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getNom() {
         return nom;

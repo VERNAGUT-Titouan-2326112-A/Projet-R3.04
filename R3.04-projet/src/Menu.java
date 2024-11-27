@@ -1,8 +1,11 @@
+import TD3.Creature.Creature;
 import TD3.Hopital.CentreDeQuarantaine;
 import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Medecin;
 import TD3.Hopital.ServiceMedical;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.lang.Thread;
 
@@ -57,20 +60,19 @@ public class Menu {
 
         System.out.print("Entrez l'âge du médecin: ");
         int age = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
-        // Create a new doctor with user input
         Medecin userMedecin = new Medecin(nom, sexe, age);
-
         HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
-        hopital.ajouterMedecin(userMedecin);
+        hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
 
-        // Création et ajout de services médicaux
-        ServiceMedical quarantaineOrcs = new CentreDeQuarantaine("Quarantaine des Orcs", 200, 5, "médiocre", true);
-        hopital.ajouterService(quarantaineOrcs);
+        List<Creature> creatures = hopital.getCreatures();
+        ServiceMedical service1 = new ServiceMedical("Service 1", creatures);
+        ServiceMedical service2 = new ServiceMedical("Service 2", new ArrayList<>());
 
-        // Appel de la méthode pour gérer le menu
-        userMedecin.gererMenu(quarantaineOrcs, quarantaineOrcs, scanner);
+        Medecin medecin = new Medecin("Dr. Smith", "male", 45);
+
+        medecin.gererMenu(service1, service2, scanner);
     }
 
     private void afficherExplication() {

@@ -3,21 +3,82 @@ package TD3.Hopital;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+
 import TD3.Creature.Creature;
+
 public class HopitalFantastique {
     private String nom;
     private int capaciteMaxServices;
     private List<ServiceMedical> services;
     private List<Medecin> medecins;
+    private List<Creature> creatures;
 
     public HopitalFantastique(String nom, int capaciteMaxServices) {
         this.nom = nom;
         this.capaciteMaxServices = capaciteMaxServices;
         this.services = new ArrayList<>();
         this.medecins = new ArrayList<>();
+        this.creatures = new ArrayList<>();
     }
 
+    public void ajouterCreature(Creature creature) {
+        if (creatures.size() < capaciteMaxServices) {
+            creatures.add(creature);
+        } else {
+            System.out.println("Capacité maximale atteinte !");
+        }
+    }
 
+    public void genererCreaturesAleatoires(int nombre) {
+        Random random = new Random();
+        for (int i = 0; i < nombre; i++) {
+            String sexe = random.nextBoolean() ? "male" : "female";
+            double poids = 50 + (100 - 50) * random.nextDouble();
+            double taille = 1.5 + (2.5 - 1.5) * random.nextDouble();
+            int age = random.nextInt(100) + 1;
+            boolean regenerable = random.nextBoolean();
+            boolean contaminant = random.nextBoolean();
+
+            int randomType = random.nextInt(8) + 1;
+            switch (randomType) {
+                case 1:
+                    nom = "elfe";
+                    break;
+                case 2:
+                    nom = "Hommebete";
+                    break;
+                case 3:
+                    nom = "lycanthropes";
+                    break;
+                case 4:
+                    nom = "nain";
+                    break;
+                case 5:
+                    nom = "orque";
+                    break;
+                case 6:
+                    nom = "reptilien";
+                    break;
+                case 7:
+                    nom = "vampire";
+                    break;
+                case 8:
+                    nom = "zombie";
+                    break;
+                default:
+                    nom = "inconnu";
+                    break;
+            }
+
+            Creature creature = new Creature(nom, sexe, poids, taille, age, regenerable, contaminant);
+            ajouterCreature(creature);
+        }
+    }
+
+    public List<Creature> getCreatures() {
+        return creatures;
+    }
     public String getNom() {
         return nom;
     }
@@ -77,11 +138,11 @@ public class HopitalFantastique {
             for (ServiceMedical service : services) {
                 for (Creature creature : service.getCreatures()) {
                     if (random.nextBoolean()) {
-                    //    creature.tomberMalade();
+                        // creature.tomberMalade();
                         System.out.println(creature.getNom() + " est tombé malade.");
                     }
                     if (random.nextBoolean()) {
-                       // creature.se();
+                        // creature.se();
                         System.out.println("Évolution de la maladie pour " + creature.getNom());
                     }
                     if (random.nextBoolean()) {
@@ -136,3 +197,5 @@ public class HopitalFantastique {
         }
     }
 }
+
+

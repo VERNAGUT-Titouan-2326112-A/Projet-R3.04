@@ -93,16 +93,17 @@ public class Medecin {
     }
 
     public void examinerService(ServiceMedical service) {
-        System.out.println("Examen du service médical : " + service.getNom());
-        System.out.println("Liste des créatures dans ce service :" + service.getCreatures());
+        System.out.println("Examen du service médical : " + service.getNom());// choix entre les deux services
+        System.out.println("Liste des créatures dans ce service :");
         for (Creature creature : service.getCreatures()) {
-            System.out.println("- " + creature.getNom());
+            System.out.println(creature.getNom());
+
         }
     }
 
     public void soignerCreatures(ServiceMedical service) {
         for (Creature creature : service.getCreatures()) {
-            System.out.println("Le médecin " + nom + " soigne " + creature.getNom());
+            creature.soigner();
         }
     }
 

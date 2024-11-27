@@ -42,6 +42,12 @@ public class ServiceMedical {
         this.nombreCreatures = 0;
     }
 
+    public ServiceMedical(String nom, List<Creature> creatures) {
+        this.nom = nom;
+        this.creatures = creatures;
+    }
+
+
     public void afficherDetails() {
         System.out.println("Nom: " + nom);
         System.out.println("Superficie: " + superficie + " m²");
