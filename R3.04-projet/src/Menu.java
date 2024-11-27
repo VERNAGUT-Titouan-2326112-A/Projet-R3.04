@@ -62,7 +62,10 @@ public class Menu {
         int age = scanner.nextInt();
         scanner.nextLine();
 
+
         Medecin userMedecin = new Medecin(nom, sexe, age);
+        System.out.println("Bienvenue " + userMedecin.getNom() + "!" + " Vous êtes un médecin " + userMedecin.getSexe() + " de " + userMedecin.getAge() + " ans.");
+        System.out.println("Vous êtes prêt à commencer votre journée de travail à l'hôpital fantastique!");
         HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
         hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
 
@@ -70,9 +73,8 @@ public class Menu {
         ServiceMedical service1 = new ServiceMedical("Service 1", creatures);
         ServiceMedical service2 = new ServiceMedical("Service 2", new ArrayList<>());
 
-        Medecin medecin = new Medecin("Dr. Smith", "male", 45);
 
-        medecin.gererMenu(service1, service2, scanner);
+        userMedecin.gererMenu(service1, service2, scanner);
     }
 
     private void afficherExplication() {
