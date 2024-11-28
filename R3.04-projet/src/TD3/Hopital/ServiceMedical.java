@@ -4,6 +4,7 @@ import TD3.Creature.Creature;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ServiceMedical {
     private String nom;
@@ -84,24 +85,35 @@ public class ServiceMedical {
     }
 
     public void revisionBudget() {
+        Random random = new Random();
         System.out.println("Révision du budget du service : " + nom);
+        String[] budgets = {BUDGET_INEXISTANT, BUDGET_MEDIOCRE, BUDGET_INSUFFISANT, BUDGET_FAIBLE, BUDGET_MOYEN, BUDGET_ELEVE};
+        budget = budgets[random.nextInt(budgets.length)];
+
         switch (budget) {
             case BUDGET_INEXISTANT:
                 System.out.println("Le service n'a aucun budget.");
                 break;
             case BUDGET_MEDIOCRE:
-                System.out.println("Le budget est médiocre, il est insuffisant pour bien fonctionner.");
+                System.out.println("Le budget est médiocre.");
                 break;
             case BUDGET_INSUFFISANT:
-                System.out.println("Le budget est insuffisant, des améliorations sont nécessaires.");
+                System.out.println("Le budget est insuffisant.");
                 break;
             case BUDGET_FAIBLE:
-                System.out.println("Le budget est faible, mais il permet de fonctionner.");
+                System.out.println("Le budget est faible.");
+                break;
+            case BUDGET_MOYEN:
+                System.out.println("Le budget est moyen");
+                break;
+            case BUDGET_ELEVE:
+                System.out.println("Le budget est élevé.");
                 break;
             default:
                 System.out.println("Budget inconnu.");
                 break;
         }
+
     }
 
     public String getNom() {
@@ -139,4 +151,5 @@ public class ServiceMedical {
         return BUDGET_INEXISTANT.equals(budget) || BUDGET_MEDIOCRE.equals(budget) ||
                 BUDGET_INSUFFISANT.equals(budget) || BUDGET_FAIBLE.equals(budget);
     }
+
 }

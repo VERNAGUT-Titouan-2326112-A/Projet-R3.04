@@ -1,8 +1,7 @@
 package TD3.Hopital;
 
-
 import TD3.Creature.Creature;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class Medecin {
@@ -39,6 +38,7 @@ public class Medecin {
     public int getAge() {
         return age;
     }
+
     // Méthode qui gère le menu avec switch-case
     public void gererMenu(ServiceMedical service1, ServiceMedical service2, Scanner scanner) {
         while (true) {
@@ -48,13 +48,13 @@ public class Medecin {
 
             switch (choix) {
                 case 1:
-                    examinerService(service1,service2);
+                    examinerService(service1, service2, scanner);
                     break;
                 case 2:
                     soignerCreatures(service1);
                     break;
                 case 3:
-                    revisionBudget(service1);
+                    service1.revisionBudget();
                     break;
                 case 4:
                     System.out.println("Entrez le nom de la créature à transférer : ");
@@ -89,16 +89,19 @@ public class Medecin {
         System.out.println("|_____________________________________________|");
         System.out.println("|5. Quitter                                   |");
         System.out.println("|_____________________________________________|");
-
     }
 
-    public void examinerService(ServiceMedical service1, ServiceMedical service2) {
-        Scanner scanner = new Scanner(System.in);
+    public void examinerService(ServiceMedical service1, ServiceMedical service2, Scanner scanner) {
         while (true) {
-            System.out.println("Choisissez un service médical à examiner :");
-            System.out.println("1. " + service1.getNom());
-            System.out.println("2. " + service2.getNom());
-            System.out.println("3. Retour au menu principal");
+            System.out.println("____________________________________________");
+            System.out.println("|Choisissez un service médical à examiner :|");
+            System.out.println("|__________________________________________|");
+            System.out.println("|1. " + service1.getNom() + "                      |");
+            System.out.println("|__________________________________________|");
+            System.out.println("|2. " + service2.getNom() + "                    |");
+            System.out.println("|__________________________________________|");
+            System.out.println("|3. Retour au menu principal               |");
+            System.out.println("|__________________________________________|");
             int choix = scanner.nextInt();
             scanner.nextLine(); // Consomme la nouvelle ligne
 
@@ -124,16 +127,9 @@ public class Medecin {
             System.out.println(creature.getNom());
         }
     }
+
     public void soignerCreatures(ServiceMedical service) {
-        for (Creature creature : service.getCreatures()) {
-            creature.soigner();
-        }
         System.out.println("Les créatures du service " + service.getNom() + " ont été soignées.");
-
-    }
-
-    public void revisionBudget(ServiceMedical service) {
-        System.out.println("Le budget du service " + service.getNom() + " est de " + service.getBudget() + " unités.");
     }
 
     public void transfererCreature(Creature creature, ServiceMedical serviceFrom, ServiceMedical serviceTo) {

@@ -18,9 +18,4 @@ public class ServiceMedecin {
         System.out.println(creature.getNom() + " a été ajouté au service médical.");
     }
 
-    public static void afficherCreatures() {
-        for (Creature creature : creatures) {
-            System.out.println(creature.getNom());
-        }
-    }
 }
