@@ -6,6 +6,7 @@ import TD3.Hopital.ServiceMedical;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.lang.Thread;
 
@@ -62,17 +63,23 @@ public class Menu {
         int age = scanner.nextInt();
         scanner.nextLine();
 
-
-        Medecin userMedecin = new Medecin(nom, sexe, age);
-        System.out.println("Bienvenue " + userMedecin.getNom() + "!" + " Vous êtes un médecin " + userMedecin.getSexe() + " de " + userMedecin.getAge() + " ans.");
-        System.out.println("Vous êtes prêt à commencer votre journée de travail à l'hôpital fantastique!");
+        // Create the hospital and generate random creatures
         HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
+        HopitalFantastique hopital2 = new HopitalFantastique("Fantasy Hospital", 10);
         hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
+        hopital2.genererCreaturesAleatoires(5);
 
         List<Creature> creatures = hopital.getCreatures();
+        List<Creature> creatures2 = hopital2.getCreatures();
         ServiceMedical service1 = new ServiceMedical("Quarantaine du sud", creatures);
-        ServiceMedical service2 = new ServiceMedical("Quarantaine du nord", new ArrayList<>());
+        ServiceMedical service2 = new ServiceMedical("Quarantaine du nord", creatures2);
 
+        Random random = new Random();
+        Creature randomCreature = creatures.get(random.nextInt(creatures.size()));
+
+        Medecin userMedecin = new Medecin(nom, sexe, age);
+        System.out.println("Bienvenue " + userMedecin.getNom() + "!" + " Vous êtes un médecin "+ randomCreature.getNom()+"," + userMedecin.getSexe() + " de " + userMedecin.getAge() + " ans.");
+        System.out.println("Vous êtes prêt à commencer votre journée de travail à l'hôpital fantastique!");
 
         userMedecin.gererMenu(service1, service2, scanner);
     }
