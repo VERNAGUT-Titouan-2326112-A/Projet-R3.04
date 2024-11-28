@@ -48,7 +48,7 @@ public class Medecin {
 
             switch (choix) {
                 case 1:
-                    examinerService(service1);
+                    examinerService(service1,service2);
                     break;
                 case 2:
                     soignerCreatures(service1);
@@ -92,19 +92,44 @@ public class Medecin {
 
     }
 
-    public void examinerService(ServiceMedical service) {
-        System.out.println("Examen du service médical : " + service.getNom());// choix entre les deux services
-        System.out.println("Liste des créatures dans ce service :");
-        for (Creature creature : service.getCreatures()) {
-            System.out.println(creature.getNom());
+    public void examinerService(ServiceMedical service1, ServiceMedical service2) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Choisissez un service médical à examiner :");
+            System.out.println("1. " + service1.getNom());
+            System.out.println("2. " + service2.getNom());
+            System.out.println("3. Retour au menu principal");
+            int choix = scanner.nextInt();
+            scanner.nextLine(); // Consomme la nouvelle ligne
 
+            switch (choix) {
+                case 1:
+                    afficherCreatures(service1);
+                    break;
+                case 2:
+                    afficherCreatures(service2);
+                    break;
+                case 3:
+                    return; // Retour au menu principal
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
         }
     }
 
+    private void afficherCreatures(ServiceMedical service) {
+        System.out.println("Examen du service médical : " + service.getNom());
+        System.out.println("Liste des créatures dans ce service :");
+        for (Creature creature : service.getCreatures()) {
+            System.out.println(creature.getNom());
+        }
+    }
     public void soignerCreatures(ServiceMedical service) {
         for (Creature creature : service.getCreatures()) {
             creature.soigner();
         }
+        System.out.println("Les créatures du service " + service.getNom() + " ont été soignées.");
+
     }
 
     public void revisionBudget(ServiceMedical service) {

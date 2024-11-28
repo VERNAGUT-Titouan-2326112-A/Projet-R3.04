@@ -70,8 +70,8 @@ public class Menu {
         hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
 
         List<Creature> creatures = hopital.getCreatures();
-        ServiceMedical service1 = new ServiceMedical("Service 1", creatures);
-        ServiceMedical service2 = new ServiceMedical("Service 2", new ArrayList<>());
+        ServiceMedical service1 = new ServiceMedical("Quarantaine du sud", creatures);
+        ServiceMedical service2 = new ServiceMedical("Quarantaine du nord", new ArrayList<>());
 
 
         userMedecin.gererMenu(service1, service2, scanner);
