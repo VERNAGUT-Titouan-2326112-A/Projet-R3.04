@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Elfe extends Creature implements Demoralisant {
 
-    public Elfe(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age,true,false);
+    public Elfe(String nom,int moral, String sexe, double poids, double taille, int age) {
+        super(nom,moral, sexe, poids, taille, age,true,false);
     }
 
     @Override
