@@ -2,7 +2,6 @@ package TD4;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Lycanthrope {
     private String sexe;
@@ -14,7 +13,9 @@ public class Lycanthrope {
     private double facteurImpetuosite;
     private Meute meute;
     private String etat;
-
+    private String nom;
+    private static int DERNIER_ID = 0;
+    private final int id ;
     private final List<HurlementListener> listeners = new ArrayList<>(); // Liste des observateurs
 
     public Lycanthrope(String sexe, String categorieAge, int force, double facteurImpetuosite) {
@@ -27,21 +28,24 @@ public class Lycanthrope {
         this.niveau = calculerNiveau();
         this.meute = null;
         this.etat = "normal";
+        ++DERNIER_ID;
+        this.id = DERNIER_ID;
+        this.nom = "Lycanthrope" + id;
     }
 
     public double calculerNiveau() {
-        return force * 0.5 + facteurDomination * 0.3 + (rang.charAt(0) - 'ω') * 0.2;
+        return force * 0.5 + facteurDomination * 0.3 + (rang.charAt(0) - 'ω') * 0.2 + facteurImpetuosite * 0.1;
     }
 
 
     public void seTransformerEnHumain() {
-        System.out.println(this + " se transforme en humain.");
-        etat = "humain";
+        System.out.println(this.getNom() + " se transforme en humain.");
+        setEtat("humain");
     }
 
     public void afficherCaracteristiques() {
-        System.out.printf("Sexe: %s, Âge: %s, Force: %d, Rang: %s, Niveau: %.2f\n",
-                sexe, categorieAge, force, rang, niveau);
+        System.out.printf("Nom: %s Sexe: %s, Âge: %s, Force: %d, Rang: %s, Niveau: %.2f\n",
+                nom, sexe, categorieAge, force, rang, niveau);
     }
 
     // Méthode pour ajouter un observateur
@@ -50,7 +54,7 @@ public class Lycanthrope {
     }
 
     // Méthode pour notifier les observateurs
-    private void notifierListeners(String typeHurlement) {
+    public void notifierListeners(String typeHurlement) {
         for (HurlementListener listener : listeners) {
             listener.reagirAuHurlement(typeHurlement, this);
         }
@@ -58,8 +62,7 @@ public class Lycanthrope {
 
     // Émet un hurlement
     public void hurler(String typeHurlement) {
-        System.out.println(this + " hurle : " + typeHurlement);
-        notifierListeners(typeHurlement);
+        System.out.println(nom + " hurle : " + typeHurlement);
     }
 
     public void setRang(String rang) {
@@ -76,10 +79,6 @@ public class Lycanthrope {
         this.meute = meute;
     }
 
-    public Meute getMeute() {
-        return meute;
-    }
-
     public String getSexe() {
         return sexe;
     }
@@ -90,14 +89,6 @@ public class Lycanthrope {
 
     public double getNiveau() {
         return niveau;
-    }
-
-    public double getFacteurImpetuosite() {
-        return facteurImpetuosite;
-    }
-
-    public void setFacteurImpetuosite(double facteurImpetuosite) {
-        this.facteurImpetuosite = facteurImpetuosite;
     }
 
     public void setNiveau(double niveau) {
@@ -128,6 +119,9 @@ public class Lycanthrope {
         return categorieAge;
     }
 
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
 
     @Override
     public String toString() {
@@ -135,42 +129,64 @@ public class Lycanthrope {
     }
 
     public void augmenterFacteurDomination() {
-        facteurDomination++;
-        niveau = calculerNiveau();
+        setFacteurDomination(getFacteurDomination()+1);
+        setNiveau(calculerNiveau());
     }
 
     public void baisserFacteurDomination() {
-        facteurDomination--;
-        niveau = calculerNiveau();
+        setFacteurDomination(getFacteurDomination()-1);
+        setNiveau(calculerNiveau());
     }
 
     public void choisirRangAleatoire() {
-        Random random = new Random();
-        int choix = random.nextInt(6); // Limiter les choix à 7 (α à ζ)
-
-        switch (choix) {
-            case 0:
-                setRang("β");
-            case 1:
-                setRang("γ");
-            case 2:
-                setRang("δ");
-            case 3:
-                setRang("ε");
-            case 4:
-                setRang("ζ");
-            case 5:
-                setRang("η");
-            case 6:
-                setRang("θ");
-            default:
-                setRang("ω");
+        double proba = Math.random();
+        if(proba < 0.1) {
+            setRang("β");
         }
+        else if (proba < 0.2) {
+            setRang("γ");
+        }
+        else if (proba < 0.3) {
+            setRang("δ");
+        }
+        else if (proba < 0.4) {
+            setRang("ε");
+        }
+        else if (proba < 0.5) {
+            setRang("ζ");
+        }
+        else if (proba < 0.6) {
+            setRang("η");
+        }
+        else if (proba < 0.7) {
+            setRang("θ");
+        }
+        else {
+            setRang("ω");
+        }
+
+
     }
 
     public void quitterMeute() {
         meute.retirerMembre(this);
         meute = null;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public double getFacteurImpetuosite() {
+        return facteurImpetuosite;
+    }
+
+    public void setFacteurImpetuosite(double facteurImpetuosite) {
+        this.facteurImpetuosite = facteurImpetuosite;
     }
 }
 
