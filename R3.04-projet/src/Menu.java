@@ -66,13 +66,13 @@ public class Menu {
         // Create the hospital and generate random creatures
         HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
         HopitalFantastique hopital2 = new HopitalFantastique("Fantasy Hospital", 10);
-        hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
-        hopital2.genererCreaturesAleatoires(5);
-
         List<Creature> creatures = hopital.getCreatures();
         List<Creature> creatures2 = hopital2.getCreatures();
         ServiceMedical service1 = new ServiceMedical("Quarantaine du sud", creatures);
         ServiceMedical service2 = new ServiceMedical("Quarantaine du nord", creatures2);
+
+        hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
+        hopital2.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
 
         Random random = new Random();
         Creature randomCreature = creatures.get(random.nextInt(creatures.size()));

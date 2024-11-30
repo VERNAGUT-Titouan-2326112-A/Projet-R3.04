@@ -1,6 +1,7 @@
 package TD3.Hopital;
 
 import TD3.Creature.Creature;
+import TD3.Hopital.Maladie;
 import java.util.Scanner;
 
 public class Medecin {
@@ -124,7 +125,11 @@ public class Medecin {
         for (Creature creature : service.getCreatures()) {
             System.out.println("Nom: " + creature.getNom());
             System.out.println("Moral: " + creature.getMoral());
-            System.out.println("Maladies: " + creature.getMaladies());
+            System.out.println("Maladies: ");
+
+            for (Maladie maladie : creature.getMaladies()) {
+                System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ")");
+            }
             System.out.println("-----------------------------------");
         }
     }
