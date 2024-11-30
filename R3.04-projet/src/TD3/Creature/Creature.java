@@ -17,17 +17,17 @@ public  class Creature {
     private boolean contaminant;
     private String type;
 
-    public Creature(String nom, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant) {
+    public Creature(String nom,int moral, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant) {
         this.nom = nom;
         this.sexe = sexe;
         this.poids = poids;
         this.taille = taille;
         this.age = age;
-        this.moral = 100;
+        this.moral = moral;
         this.maladies = new ArrayList<>();
         this.regenerable = regenerable;
         this.contaminant = contaminant;
-        this.type = type;
+
     }
 
     public void attendre() {

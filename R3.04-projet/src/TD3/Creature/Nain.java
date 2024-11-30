@@ -1,8 +1,8 @@
 package TD3.Creature;
 
 public class Nain extends Creature{
-    public Nain(String nom, String sexe, double poids, double taille, int age) {
-        super(nom, sexe, poids, taille, age,false,false);
+    public Nain(String nom,int moral, String sexe, double poids, double taille, int age) {
+        super(nom,moral, sexe, poids, taille, age,false,false);
     }
     @Override
     public void trepasser() {

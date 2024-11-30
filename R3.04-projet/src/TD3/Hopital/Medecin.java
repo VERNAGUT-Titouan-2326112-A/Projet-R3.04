@@ -1,7 +1,7 @@
 package TD3.Hopital;
 
 import TD3.Creature.Creature;
-import java.util.Random;
+import TD3.Hopital.Maladie;
 import java.util.Scanner;
 
 public class Medecin {
@@ -39,7 +39,6 @@ public class Medecin {
         return age;
     }
 
-    // Méthode qui gère le menu avec switch-case
     public void gererMenu(ServiceMedical service1, ServiceMedical service2, Scanner scanner) {
         while (true) {
             afficherMenu();
@@ -51,7 +50,7 @@ public class Medecin {
                     examinerService(service1, service2, scanner);
                     break;
                 case 2:
-                    soignerCreatures(service1);
+                    service1.soignerCreatures();
                     break;
                 case 3:
                     service1.revisionBudget();
@@ -96,7 +95,7 @@ public class Medecin {
             System.out.println("____________________________________________");
             System.out.println("|Choisissez un service médical à examiner :|");
             System.out.println("|__________________________________________|");
-            System.out.println("|1. " + service1.getNom() + "                      |");
+            System.out.println("|1. " + service1.getNom() + "                     |");
             System.out.println("|__________________________________________|");
             System.out.println("|2. " + service2.getNom() + "                    |");
             System.out.println("|__________________________________________|");
@@ -124,12 +123,15 @@ public class Medecin {
         System.out.println("Examen du service médical : " + service.getNom());
         System.out.println("Liste des créatures dans ce service :");
         for (Creature creature : service.getCreatures()) {
-            System.out.println(creature.getNom());
-        }
-    }
+            System.out.println("Nom: " + creature.getNom());
+            System.out.println("Moral: " + creature.getMoral());
+            System.out.println("Maladies: ");
 
-    public void soignerCreatures(ServiceMedical service) {
-        System.out.println("Les créatures du service " + service.getNom() + " ont été soignées.");
+            for (Maladie maladie : creature.getMaladies()) {
+                System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ")");
+            }
+            System.out.println("-----------------------------------");
+        }
     }
 
     public void transfererCreature(Creature creature, ServiceMedical serviceFrom, ServiceMedical serviceTo) {
@@ -142,7 +144,6 @@ public class Medecin {
         }
     }
 
-    // Chercher une créature par son nom
     public Creature chercherCreatureParNom(String nom, ServiceMedical service1, ServiceMedical service2) {
         for (Creature creature : service1.getCreatures()) {
             if (creature.getNom().equals(nom)) {

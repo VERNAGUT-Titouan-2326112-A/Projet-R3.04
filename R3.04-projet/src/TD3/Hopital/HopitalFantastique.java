@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 import TD3.Creature.Creature;
 
 public class HopitalFantastique {
@@ -37,6 +36,7 @@ public class HopitalFantastique {
             double poids = 50 + (100 - 50) * random.nextDouble();
             double taille = 1.5 + (2.5 - 1.5) * random.nextDouble();
             int age = random.nextInt(100) + 1;
+            int moral = random.nextInt(100) + 1;
             boolean regenerable = random.nextBoolean();
             boolean contaminant = random.nextBoolean();
 
@@ -71,14 +71,16 @@ public class HopitalFantastique {
                     break;
             }
 
-            Creature creature = new Creature(nom, sexe, poids, taille, age, regenerable, contaminant);
+            Creature creature = new Creature(nom, moral, sexe, poids, taille, age, regenerable, contaminant);
             ajouterCreature(creature);
+
         }
     }
 
     public List<Creature> getCreatures() {
         return creatures;
     }
+
     public String getNom() {
         return nom;
     }
@@ -126,10 +128,4 @@ public class HopitalFantastique {
             service.afficherDetails();
         }
     }
-
-
-
-
 }
-
-
