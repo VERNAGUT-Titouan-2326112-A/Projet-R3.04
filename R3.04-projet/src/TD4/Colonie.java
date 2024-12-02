@@ -13,6 +13,10 @@ public class Colonie {
     private final List<List<Lycanthrope>> groupeDeSolitaires;
     private final GestionnaireDeSaisons gestionnaireDeSaisons;
 
+    /**
+     *Constructeur de la classe Colonie
+     *
+     */
     public Colonie() {
         this.meutes = new ArrayList<>();
         this.solitaires = new ArrayList<>();
@@ -20,10 +24,19 @@ public class Colonie {
         gestionnaireDeSaisons = new GestionnaireDeSaisons(5000, meutes, this);
     }
 
+    /**
+     *Méthode permettant d'ajouter une meute à la colonie
+     *
+     * @param meute : Meute à ajouter à la colonie
+     */
     public void ajouterMeute(Meute meute) {
         meutes.add(meute);
     }
 
+    /**
+     *Méthode permettant d'afficher les meutes de la colonie
+     *
+     */
     public void afficherMeutes() {
         System.out.println("Meutes de la colonie (" +meutes.size() + ") :");
         for (Meute meute : meutes) {
@@ -31,6 +44,10 @@ public class Colonie {
         }
     }
 
+    /**
+     *Méthode permettant d'afficher les groupes de lycanthropes solitaires de la colonie
+     *
+     */
     public void afficherGroupesDeSolitaires(){
         System.out.println("Groupes de lycanthropes solitaires (" +groupeDeSolitaires.size()+":");
         for (int i = 0; i < groupeDeSolitaires.size(); i++){
@@ -38,19 +55,31 @@ public class Colonie {
         }
     }
 
-public void ajouterSolitaire(Lycanthrope lycanthrope){
+    /**
+     *
+     *
+     * @param lycanthrope : Lycanthrope à ajouter à un groupe de lycanthropes solitaires
+     */
+    public void ajouterSolitaire(Lycanthrope lycanthrope){
         solitaires.add(lycanthrope);
     }
 
+    /**
+     *Méthode de gestion des meutes via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
+     *
+     */
     public void menuMeute () {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
-        while (choix != 4) {
+        while (choix != 7) {
             System.out.println("Que voulez vous faire ?");
             System.out.println("1. Créer une meute");
             System.out.println("2. Afficher les meutes");
             System.out.println("3. Afficher les caractéristiques d'une meute");
-            System.out.println("4. Quitter");
+            System.out.println("4. Regénérer la hiérarchie d'une meutes");
+            System.out.println("5. Ajouter des lycanthropes ω à une meute");
+            System.out.println("6. Ajouter ou Supprimer un/des lycanthrope(s) d'une meute");
+            System.out.println("7. Quitter");
             choix = scanner.nextInt();
             switch (choix) {
                 case 1:
@@ -97,6 +126,87 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
                     }
                     break;
                 case 4:
+                    if (meutes.isEmpty()) {
+                        System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir régénérer sa hiérarchie.");
+                        break;
+                    }
+                    System.out.println("Choisissez la meute dont vous voulez régénérer la hiérarchie :");
+                    afficherMeutes();
+                    int idx3 = scanner.nextInt();
+                    Meute meute2 = meutes.get(idx3 - 1);
+                    meute2.creerHierarchie();
+                    break;
+                case 5:
+                    if (meutes.isEmpty()) {
+                        System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir ajouter des lycanthropes ω.");
+                        break;
+                    }
+                    System.out.println("Choisissez la meute à laquelle vous voulez générer des lycanthropes ω :");
+                    afficherMeutes();
+                    int idx4 = scanner.nextInt();
+                    Meute meute3 = meutes.get(idx4 - 1);
+                    System.out.println("Combien de lycanthropes ω voulez vous ajouter ?");
+                    int nbr = scanner.nextInt();
+                    Lycanthrope plusfaible = meute3.getMembres().getFirst();
+                    for (int i = 0; i < nbr; i++) {
+                        for (Lycanthrope lycanthrope : meute3.getMembres()) {
+                            if (lycanthrope.getForce() < plusfaible.getForce() && !lycanthrope.getRang().equals("ω")) {
+                                plusfaible = lycanthrope;
+                            }
+                        }
+                        plusfaible.setRang("ω");
+                    }
+                    break ;
+                case 6:
+                    if (meutes.isEmpty()) {
+                        System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir ajouter ou supprimer un/des lycanthrope(s).");
+                        break;
+                    }
+                    System.out.println("Choisissez la meute à laquelle vous voulez ajouter ou supprimer un/des lycanthrope(s) :");
+                    afficherMeutes();
+                    int idx5 = scanner.nextInt();
+                    Meute meute4 = meutes.get(idx5 - 1);
+                    System.out.println("Que voulez vous faire ?");
+                    System.out.println("1. Ajouter un lycanthrope");
+                    System.out.println("2. Supprimer un lycanthrope");
+                    int chx2 = scanner.nextInt();
+                    switch (chx2) {
+                        case 1:
+                            System.out.println("Ajout de lycanthropes");
+                            System.out.println("Combien de lycanthropes voulez vous ajouter ?");
+                            int nbr2 = scanner.nextInt();
+                            for (int i = 0; i < nbr2; i++) {
+                                String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
+                                double proba = Math.random();
+                                String categorieAge;
+                                if (proba < 0.3) {
+                                    categorieAge = "Jeune";
+                                } else if (proba < 0.6) {
+                                    categorieAge = "Adulte";
+                                } else {
+                                    categorieAge = "Vieux";
+                                }
+                                meute4.ajouterMembre(new LycanthropeFactoryImpl().creerLycanthrope(sexe, categorieAge));
+                            }
+                            break;
+
+                        case 2:
+                            System.out.println("Suppression de lycanthropes");
+                            System.out.println("Combien de lycanthropes voulez vous supprimer ?");
+                            int nbr3 = scanner.nextInt();
+                            for (int i = 0; i < nbr3; i++) {
+                                System.out.println("Lequel parmi " + meute4.getMembres().size() + " (son numéro)");
+                                int idx6 = scanner.nextInt();
+                                Lycanthrope choisi2 = meute4.getMembres().get(idx6 - 1);
+                                meute4.retirerMembre(choisi2);
+                            }
+                            break;
+                        default:
+                            System.out.println("Choix invalide");
+                            break;
+                    }
+                    break ;
+                case 7:
                     System.out.println("Retour au menu principal");
                     break;
                 default:
@@ -106,6 +216,10 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
         }
     }
 
+    /**
+     *Méthode de gestion des lycanthropes solitaires via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
+     *
+     */
     public void menuSolitaire(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -183,6 +297,10 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
         }
     }
 
+    /**
+     *Méthode de gestion des évènements via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
+     *
+     */
     public void menuEvent(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -244,6 +362,10 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
         }
     }
 
+    /**
+     *Méthode de gestion des saisons via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
+     *
+     */
     public void menuSaison(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -285,6 +407,11 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
             }
         }
     }
+
+    /**
+     *Méthode de gestion des menus via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier. Cette méthode gère aussi les évènements aléatoires qui peuvent se produire au cours de la simulation via un Thread.
+     *
+     */
     public void menu(){
         GestionnaireDeSaisons GestionnaireDeSaisons = new GestionnaireDeSaisons(5000, meutes,this); // Une saison dure 5 secondes
         Scanner scanner = new Scanner(System.in);
@@ -369,6 +496,26 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
                 });
                 thread.start();
             }
+            else {
+                Meute meute = new Meute(this);
+                Random random1 = new Random();
+                int randomNumber = random1.nextInt(101);
+                for (int i = 0; i < randomNumber; i++) {
+                    String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
+                    double proba = Math.random();
+                    String categorieAge;
+                    if (proba < 0.3) {
+                        categorieAge = "Jeune";
+                    } else if (proba < 0.6) {
+                        categorieAge = "Adulte";
+                    } else {
+                        categorieAge = "Vieux";
+                    }
+                    meute.ajouterMembre(new LycanthropeFactoryImpl().creerLycanthrope(sexe, categorieAge));
+                }
+                meute.creerHierarchie();
+                ajouterMeute(meute);
+            }
             System.out.println("Que voulez vous faire ?");
             System.out.println("1. Afficher le contenu de la colonie");
             System.out.println("2. Gérer les meutes :");
@@ -406,6 +553,10 @@ public void ajouterSolitaire(Lycanthrope lycanthrope){
             }
         }
     }
+
+    /**
+     *Méthode principale de la classe colonie permettant de lancer une simulation
+     */
     public void simulation(){
         System.out.println("Bienvenue dans le zoo des lycanthropes !");
         menu();

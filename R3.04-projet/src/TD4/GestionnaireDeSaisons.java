@@ -2,6 +2,14 @@ package TD4;
 
 import java.util.*;
 
+/**
+ *
+ * GestionnaireDeSaisons est une classe qui permet de gérer les saisons et les événements qui s'y déroulent.
+ * Elle permet de changer de saison et d'appliquer des événements en fonction de la saison actuelle.
+ * Elle permet aussi de démarrer et d'arrêter le cycle des saisons.
+ * Elle contient une liste de meutes et une colonie.
+ */
+
 public class GestionnaireDeSaisons {
     private final String[] saisons = {"Printemps", "Été", "Automne", "Hiver"};
     private int indexSaisonActuelle = 0;
@@ -10,6 +18,12 @@ public class GestionnaireDeSaisons {
     private final List<Meute> meutes;
     private final Colonie colonie;
 
+    /**
+     * Constructeur de la classe GestionnaireDeSaisons
+     * @param dureeSaison Durée en millisecondes d'une saison
+     * @param meutes Liste des meutes
+     * @param colonie Colonie
+     */
     public GestionnaireDeSaisons(int dureeSaison, List<Meute> meutes, Colonie colonie) {
         this.dureeSaison = dureeSaison;
         this.timer = new Timer();
@@ -17,7 +31,9 @@ public class GestionnaireDeSaisons {
         this.colonie = colonie;
     }
 
-    // Commence le cycle des saisons
+    /**
+     * Méthode permettant de démarrer le cycle des saisons
+     */
     public void demarrer() {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -27,12 +43,16 @@ public class GestionnaireDeSaisons {
         }, 0, dureeSaison);
     }
 
-    // Arrête le cycle
+    /**
+     * Méthode permettant d'arrêter le cycle des saisons
+     */
     public void arreter() {
         timer.cancel();
     }
 
-    // Change la saison actuelle
+    /**
+     * Méthode permettant de changer de saison et d'appliquer les événements associés
+     */
     public void changerSaison() {
         indexSaisonActuelle = (indexSaisonActuelle + 1) % saisons.length;
         String saisonActuelle = saisons[indexSaisonActuelle];
@@ -105,6 +125,11 @@ public class GestionnaireDeSaisons {
             }
         }
     }
+
+    /**
+     * Méthode permettant de modifier la durée d'une saison
+     * @param dureeSaison Durée en millisecondes d'une saison
+     */
     public void setDureeSaison(int dureeSaison) {
         this.dureeSaison = dureeSaison;
     }

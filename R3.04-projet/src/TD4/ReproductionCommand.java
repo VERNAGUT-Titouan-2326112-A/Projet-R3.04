@@ -1,15 +1,22 @@
 package TD4;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Classe représentant une simulation de reproduction d'une meute appelée sur commande
+ */
 public class ReproductionCommand implements Command {
-    private Meute meute;
+    private final Meute meute;
 
+    /**
+     * Constructeur de la classe ReproductionCommand
+     * @param meute Meute sur laquelle la commande de reproduction est appelée
+     */
     public ReproductionCommand(Meute meute) {
         this.meute = meute;
     }
 
+    /**
+     * Méthode permettant d'exécuter la commande de reproduction et simuler celle-ci
+     */
     @Override
     public void execute() {
         if (meute.getMaleAlpha() != null && meute.getFemelleAlpha() != null) {

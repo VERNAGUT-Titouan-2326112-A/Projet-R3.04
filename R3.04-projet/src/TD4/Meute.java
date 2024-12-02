@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe représentant une meute de lycanthropes
+ */
 public class Meute implements HurlementListener {
     private Lycanthrope maleAlpha;
     private Lycanthrope femelleAlpha;
@@ -13,6 +16,10 @@ public class Meute implements HurlementListener {
     private final int id;
     private final Colonie colonie;
 
+    /**
+     * Constructeur de la classe Meute
+     * @param colonie Colonie à laquelle appartient la meute
+     */
     public Meute(Colonie colonie) {
         this.colonie = colonie;
         this.membres = new ArrayList<>();
@@ -21,6 +28,9 @@ public class Meute implements HurlementListener {
         this.nom = "Meute" + id;
     }
 
+    /**
+     * Méthode permettant d'afficher les caractéristiques de la meute
+     */
     public void afficherCaracteristiques() {
         System.out.println("Couple Alpha :");
         if (maleAlpha != null) maleAlpha.afficherCaracteristiques();
@@ -31,18 +41,29 @@ public class Meute implements HurlementListener {
         }
     }
 
+    /**
+     * Méthode permettant de définir ou modifier le lycanthrope mâle alpha de la meute
+     * @param maleAlpha : lycanthrope qui va devenir le mâle alpha de la meute
+     */
     public void setMaleAlpha(Lycanthrope maleAlpha) {
         this.maleAlpha = maleAlpha;
         maleAlpha.setRang("α");
         maleAlpha.calculerNiveau();
     }
 
+    /**
+     * Méthode permettant de définir ou modifier le lycanthrope femelle alpha de la meute
+     * @param femelleAlpha : lycanthrope qui va devenir la femelle alpha de la meute
+     */
     public void setFemelleAlpha(Lycanthrope femelleAlpha) {
         this.femelleAlpha = femelleAlpha;
         femelleAlpha.setRang("α");
         maleAlpha.calculerNiveau();
     }
 
+    /**
+     * Méthode permettant de créer la hiérarchie de la meute
+     */
     public void creerHierarchie() {
         int i = 0;
         while (!membres.get(i).getSexe().equals("Mâle") & !membres.get(i).getCategorieAge().equals("Adulte")){
@@ -71,13 +92,21 @@ public class Meute implements HurlementListener {
         }
     }
 
-
+    /**
+     * Méthode permettant d'ajouter un lycanthrope à la meute
+     * @param lycanthrope : lycanthrope à ajouter à la meute
+     */
     public void ajouterMembre(Lycanthrope lycanthrope) {
         membres.add(lycanthrope);
         lycanthrope.ajouterListener(this);
         lycanthrope.setMeute(this);
     }
 
+    /**
+     * Méthode permettant de réagir au hurlement d'un lycanthrope parmi la meute
+     * @param typeHurlement : type de hurlement émis
+     * @param emetteur : lycanthrope à l'origine du hurlement
+     */
     @Override
     public void reagirAuHurlement(String typeHurlement, Lycanthrope emetteur) {
         System.out.println("Réaction dans la meute au hurlement de " + emetteur.getNom() + ": " + typeHurlement);
@@ -99,46 +128,50 @@ public class Meute implements HurlementListener {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer le lycanthrope mAle alpha de la meute
+     * @return le lycanthrope Mâle alpha de la meute
+     */
     public Lycanthrope getMaleAlpha() {
         return maleAlpha;
     }
 
+    /**
+     * Méthode permettant de récupérer le lycanthrope femelle alpha de la meute
+     * @return le lycanthrope Femelle alpha de la meute
+     */
     public Lycanthrope getFemelleAlpha() {
         return femelleAlpha;
     }
 
+    /**
+     * Méthode permettant de récupérer les membres de la meute
+     * @return la liste des membres de la meute
+     */
     public List<Lycanthrope> getMembres() {
         return membres;
     }
 
+    /**
+     * Méthode permettant de retirer un lycanthrope de la meute
+     * @param lycanthrope : lycanthrope à retirer de la meute
+     */
     public void retirerMembre(Lycanthrope lycanthrope) {
         membres.remove(lycanthrope);
     }
 
-
-    public static void ajusterPourSaison(String saison) {
-        switch (saison) {
-            case "Printemps":
-                System.out.println("La meute rentre dans la période de reproduction.");
-                break;
-            case "Été":
-                System.out.println("La meute souffre de la chaleur estivale...");
-                break;
-            case "Automne":
-                System.out.println("La meute se prépare pour l'hiver.");
-                break;
-            case "Hiver":
-                System.out.println("La meute lutte contre le froid.");
-                break;
-            default:
-                break;
-        }
-    }
-
+    /**
+     * Méthode permettant de récupérer le nom de la meute
+     * @return le nom de la meute
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Méthode permettant de définir le nom de la meute
+     * @param nom : nom de la meute à définir
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }

@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+/**
+ * Classe de commande de conflit entre deux lycanthropes
+ */
 public class ConflitCommand implements Command {
     private final Lycanthrope agresseur;
     private final Lycanthrope cible;
     private final Meute meute;
     private final Colonie colonie;
 
+    /**
+     * Constructeur de la classe ConflitCommand
+     * @param agresseur Lycanthrope agresseur
+     * @param cible Lycanthrope cible
+     * @param meute Meute meute
+     * @param colonie Colonie colonie
+     */
     public ConflitCommand(Lycanthrope agresseur, Lycanthrope cible, Meute meute , Colonie colonie) {
         this.agresseur = agresseur;
         this.cible = cible;
@@ -17,6 +27,9 @@ public class ConflitCommand implements Command {
         this.colonie = colonie;
     }
 
+    /**
+     * Méthode d'exécution de la commande servant ici à gérer un conflit entre deux lycanthropes et à le simuler.
+     */
     @Override
     public void execute() {
         ArrayList<String> rangs = new ArrayList<>(Arrays.asList("α","β", "γ", "δ", "ε", "ζ", "η", "θ", "ω"));
