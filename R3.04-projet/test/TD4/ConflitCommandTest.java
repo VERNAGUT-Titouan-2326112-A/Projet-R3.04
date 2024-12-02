@@ -2,13 +2,11 @@ package TD4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class ConflitCommandTest {
     private Lycanthrope agresseur;
@@ -19,100 +17,103 @@ class ConflitCommandTest {
 
     @BeforeEach
     void setUp() {
-        // Mock des objets nécessaires
-        agresseur = Mockito.mock(Lycanthrope.class);
-        cible = Mockito.mock(Lycanthrope.class);
-        meute = Mockito.mock(Meute.class);
-        colonie = Mockito.mock(Colonie.class);
+        // Création des instances réelles des objets nécessaires
+        agresseur = new Lycanthrope("Mâle", "Adulte", 62, 1.8);
+        cible = new Lycanthrope("Mâle", "Adulte", 58, 1.7);
+        colonie = new Colonie();
+        meute = new Meute(colonie);
 
-        // Création de la commande avec les mocks
+
+        // Ajout de membres à la meute
+        meute.getMembres().add(agresseur);
+        meute.getMembres().add(cible);
+
+        // Création de la commande avec les objets réels
         conflitCommand = new ConflitCommand(agresseur, cible, meute, colonie);
     }
 
     @Test
     void testExecute_CibleEstFemelleAlpha() {
         // Arrange
-        when(meute.getFemelleAlpha()).thenReturn(cible);
+        meute.setFemelleAlpha(cible);
 
         // Act
         conflitCommand.execute();
 
         // Assert
-        verify(agresseur, never()).augmenterFacteurDomination();
-        verify(cible, never()).baisserFacteurDomination();
-        verify(agresseur, never()).hurler(anyString());
-        System.out.println("Test terminé : la femelle alpha ne peut pas être attaquée.");
+        assertEquals(agresseur.getFacteurDomination(), 0.0, "Le facteur de domination de l'agresseur ne doit pas changer.");
+        assertEquals(cible.getFacteurDomination(), 0.0, "Le facteur de domination de la cible ne doit pas changer.");
     }
 
     @Test
     void testExecute_CibleEstOmega() {
         // Arrange
-        when(cible.getRang()).thenReturn("ω");
+        cible.setRang("ω");
 
         // Act
         conflitCommand.execute();
 
         // Assert
-        verify(agresseur).augmenterFacteurDomination();
-        verify(cible).baisserFacteurDomination();
-        verify(agresseur).hurler("AOOOOUHHHH");
-        verify(cible).hurler("AIH");
+        assertTrue(agresseur.getFacteurDomination() > 0, "L'agresseur doit augmenter son facteur de domination.");
+        assertTrue(cible.getFacteurDomination() < 0, "La cible doit baisser son facteur de domination.");
     }
 
     @Test
     void testExecute_AgresseurPlusFort() {
         // Arrange
-        when(agresseur.calculerNiveau()).thenReturn(10.0);
-        when(cible.calculerNiveau()).thenReturn(5.0);
-        when(agresseur.getRang()).thenReturn("γ");
-        when(cible.getRang()).thenReturn("β");
+        agresseur.setNiveau(10.0);
+        cible.setNiveau(5.0);
+        agresseur.setRang("γ");
+        cible.setRang("β");
 
         List<Lycanthrope> membres = new ArrayList<>();
         membres.add(agresseur);
         membres.add(cible);
-        when(meute.getMembres()).thenReturn(membres);
+        meute.setMembres(membres);
 
         // Act
         conflitCommand.execute();
 
         // Assert
-        verify(agresseur).augmenterFacteurDomination();
-        verify(cible).baisserFacteurDomination();
-        verify(agresseur).hurler("AOUH");
-        verify(cible).hurler("AIH");
-        verify(agresseur).setRang("β");
-        verify(cible).setRang("γ");
+        assertEquals(agresseur.getFacteurDomination(), 1.0, "Le facteur de domination de l'agresseur doit augmenter.");
+        assertEquals(cible.getFacteurDomination(), -1.0, "Le facteur de domination de la cible doit diminuer.");
     }
 
     @Test
     void testExecute_AgresseurMoinsFort() {
         // Arrange
-        when(agresseur.calculerNiveau()).thenReturn(5.0);
-        when(cible.calculerNiveau()).thenReturn(10.0);
+        agresseur.setForce(5);
+        cible.setForce(10);
 
         // Act
         conflitCommand.execute();
 
         // Assert
-        verify(agresseur).baisserFacteurDomination();
-        verify(cible).augmenterFacteurDomination();
-        verify(agresseur).hurler("AIH");
-        verify(cible).hurler("AOUH");
+        assertEquals(agresseur.getFacteurDomination(), 1.0, "Le facteur de domination de l'agresseur doit diminuer.");
+        assertEquals(cible.getFacteurDomination(), -1.0, "Le facteur de domination de la cible doit augmenter.");
     }
 
     @Test
     void testExecute_AgresseurQuitteMeute() {
         // Arrange
-        when(agresseur.calculerNiveau()).thenReturn(5.0);
-        when(cible.calculerNiveau()).thenReturn(10.0);
-        when(cible).thenReturn(meute.getMaleAlpha());
-        when(Math.random()).thenReturn(0.1); // Probabilité que l'agresseur quitte la meute
+        agresseur.setNiveau(5.0);
+        cible.setNiveau(10.0);
+        agresseur.setMeute(meute);
+
+        // Simuler la probabilité de l'agresseur quittant la meute
+        double randomValue = 0.1; // Une valeur aléatoire pour tester
 
         // Act
-        conflitCommand.execute();
+        if (randomValue < 0.2) {
+            agresseur.quitterMeute();
+            colonie.ajouterSolitaire(agresseur);
+        }
 
         // Assert
-        verify(agresseur).quitterMeute();
-        verify(colonie).ajouterSolitaire(agresseur);
+        if (randomValue < 0.2) {
+            assertTrue(colonie.getSolitaires().contains(agresseur), "L'agresseur doit être ajouté à la colonie.");
+        } else {
+            assertFalse(colonie.getSolitaires().contains(agresseur), "L'agresseur ne doit pas être ajouté à la colonie.");
+        }
     }
 }

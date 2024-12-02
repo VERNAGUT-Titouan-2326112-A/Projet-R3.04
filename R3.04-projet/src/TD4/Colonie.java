@@ -1,9 +1,6 @@
 package TD4;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.System.exit;
 
@@ -562,5 +559,9 @@ public class Colonie {
         menu();
         System.out.println("Fin de la simulation.");
         exit(0);
+    }
+
+    public List<Lycanthrope> getSolitaires() {
+        return solitaires;
     }
 }

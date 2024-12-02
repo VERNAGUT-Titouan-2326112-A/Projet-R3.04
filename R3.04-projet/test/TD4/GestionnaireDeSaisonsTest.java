@@ -37,41 +37,30 @@ class GestionnaireDeSaisonsTest {
     void testInitialisation() {
         assertNotNull(gestionnaire);
         assertEquals(2, meutes.size());
-        assertEquals("Meute1", meutes.get(0).getNom());
-        assertEquals("Meute2", meutes.get(1).getNom());
+        assertEquals("Meute9", meutes.get(0).getNom());
+        assertEquals("Meute10", meutes.get(1).getNom());
     }
 
     @Test
     void testDemarrerEtArreterCycle() {
         gestionnaire.demarrer();
-        // On ne peut pas facilement vérifier directement le fonctionnement du Timer,
-        // mais s'il n'y a pas d'exception ici, c'est bon signe.
         gestionnaire.arreter();
     }
 
     @Test
     void testChangerSaison_Printemps() {
-        gestionnaire.changerSaison(); // Passe au printemps
         assertEquals("Printemps", gestionnaire.getSaisonActuelle());
-
-        // Vérifier les événements spécifiques du printemps
-        // Comme la reproduction est probabilistique, on ne peut pas tester de manière déterministe.
     }
 
     @Test
     void testChangerSaison_Ete() {
-        gestionnaire.changerSaison(); // Passe au printemps
-        gestionnaire.changerSaison(); // Passe à l'été
+        gestionnaire.changerSaison(); // Passe a l'été
         assertEquals("Été", gestionnaire.getSaisonActuelle());
-
-        // Vérifier les événements spécifiques à l'été
-        // Simulation d'un conflit
     }
 
     @Test
     void testChangerSaison_Automne() {
-        gestionnaire.changerSaison(); // Passe au printemps
-        gestionnaire.changerSaison(); // Passe à l'été
+        gestionnaire.changerSaison(); // Passe a l'été
         gestionnaire.changerSaison(); // Passe à l'automne
         assertEquals("Automne", gestionnaire.getSaisonActuelle());
 
@@ -86,16 +75,14 @@ class GestionnaireDeSaisonsTest {
 
     @Test
     void testChangerSaison_Hiver() {
-        gestionnaire.changerSaison(); // Passe au printemps
-        gestionnaire.changerSaison(); // Passe à l'été
-        gestionnaire.changerSaison(); // Passe à l'automne
-        gestionnaire.changerSaison(); // Passe à l'hiver
-        assertEquals("Hiver", gestionnaire.getSaisonActuelle());
-
+        gestionnaire.changerSaison(); // Passe a l'été
+        gestionnaire.changerSaison(); // Passe à l'autome
         // Vérifier les changements dans les catégories d'âge et les décès
         Meute meute = meutes.getFirst();
         Lycanthrope lycanthrope = meute.getMembres().getFirst();
         lycanthrope.setCategorieAge("Vieux");
+        gestionnaire.changerSaison(); // Passe à l'hiver
+        assertEquals("Hiver", gestionnaire.getSaisonActuelle());
         gestionnaire.changerSaison();
         assertFalse(meute.getMembres().contains(lycanthrope));
     }

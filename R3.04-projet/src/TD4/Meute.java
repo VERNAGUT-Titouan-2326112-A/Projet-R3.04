@@ -47,8 +47,8 @@ public class Meute implements HurlementListener {
      */
     public void setMaleAlpha(Lycanthrope maleAlpha) {
         this.maleAlpha = maleAlpha;
-        maleAlpha.setRang("α");
-        maleAlpha.calculerNiveau();
+        this.maleAlpha.setRang("α");
+        this.maleAlpha.calculerNiveau();
     }
 
     /**
@@ -57,8 +57,8 @@ public class Meute implements HurlementListener {
      */
     public void setFemelleAlpha(Lycanthrope femelleAlpha) {
         this.femelleAlpha = femelleAlpha;
-        femelleAlpha.setRang("α");
-        maleAlpha.calculerNiveau();
+        this.femelleAlpha.setRang("α");
+        this.femelleAlpha.calculerNiveau();
     }
 
     /**
@@ -174,6 +174,11 @@ public class Meute implements HurlementListener {
      */
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public void setMembres(List<Lycanthrope> membres) {
+        this.membres.clear();
+        this.membres.addAll(membres);
     }
 }
 
