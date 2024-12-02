@@ -133,5 +133,13 @@ public class GestionnaireDeSaisons {
     public void setDureeSaison(int dureeSaison) {
         this.dureeSaison = dureeSaison;
     }
+
+    public String getSaisonActuelle(){
+        return this.saisons[indexSaisonActuelle];
+    }
+
+    public int getDureeSaison(){
+        return dureeSaison ;
+    }
 }
 
