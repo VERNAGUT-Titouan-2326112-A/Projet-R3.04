@@ -1,8 +1,7 @@
 package TD3.Hopital;
 
 import TD3.Creature.Creature;
-import TD3.Hopital.Maladie;
-import java.util.Scanner;
+
 
 public class Medecin {
     String nom;
@@ -53,5 +52,10 @@ public class Medecin {
         for (Creature creature : service.getCreatures()) {
             creature.afficherCaractériques();
         }
+    }
+
+    public void transfererCreature(Creature creature, ServiceMedical service1, ServiceMedical service2){
+        service1.enleverCreature(creature);
+        service2.ajouterCreature(creature);
     }
 }

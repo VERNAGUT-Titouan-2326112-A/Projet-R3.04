@@ -28,7 +28,6 @@ public class HopitalFantastique {
         this.creatures = new ArrayList<>();
         this.maladiesDisponibles = new ArrayList<>();
         initialiserMaladies();
-        startMaladieThread();
     }
 
     private void initialiserMaladies() {
@@ -38,11 +37,7 @@ public class HopitalFantastique {
         maladiesDisponibles.add(new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10));
         maladiesDisponibles.add(new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10));
     }
-    private void startMaladieThread() {
-        MaladieThread maladieThread = new MaladieThread(creatures);
-        Thread thread = new Thread(maladieThread);
-        thread.start();
-    }
+
 
     public void genererCreaturesAleatoires(int nombre) {
         for (int i = 0; i < nombre; i++) {
@@ -609,13 +604,12 @@ public class HopitalFantastique {
                     }
                     int index12 = scanner.nextInt();
                     Creature creature = services.get(index11).getCreatures().get(index12);
-                    services.get(index11).enleverCreature(services.get(index11).getCreatures().get(index12));
                     System.out.println("Dans quel service voulez-vous transférer la créature ?");
                     for (int i = 0; i < services.size(); i++) {
                         System.out.println(i+1 + ". " + services.get(i).getNom());
                     }
                     int index13 = scanner.nextInt();
-                    services.get(index13).ajouterCreature(creature);
+                    medecins.get(index10).transfererCreature(creature, services.get(index11), services.get(index13));
                     break;
                 case 9:
                     System.out.println("Retour au menu principal");
@@ -625,6 +619,98 @@ public class HopitalFantastique {
                     break;
 
 
+            }
+        }
+    }
+
+    public void menuRpMedecin(){
+        System.out.println("Bienvenue dans le RP de médecin");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Quel est votre nom ?");
+        String nom = scanner.next();
+        System.out.println("Quel est votre sexe ?");
+        String sexe = scanner.next();
+        System.out.println("Quel est votre âge ?");
+        int age = scanner.nextInt();
+        System.out.println("Quel est votre type de créature ?");
+        String type = scanner.next();
+        Medecin medecin = new Medecin(sexe, age, type);
+        medecin.setNom(nom);
+        System.out.println("Bienvenue " + medecin.getNom());
+        int choix = 0;
+        while (choix != 4) {
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Soigner les créatures d'un service");
+            System.out.println("2. Réviser le budget d'un service");
+            System.out.println("3. Inspecter un service");
+            System.out.println("4. Transférer une créature vers un autre service");
+            System.out.println("5. Quitter");
+            choix = scanner.nextInt();
+            switch (choix) {
+                case 1:
+                    System.out.println("Soigner les créatures d'un service");
+                    System.out.println("Quel service voulez-vous soigner ?");
+                    int m = 0;
+                    for (int i = 0; i < services.size(); i++) {
+                        if (services.get(i).getType().equals(medecin.getType())) {
+                            System.out.println(m+1 + ". " + services.get(i).getNom());
+                            m++;
+                        }
+                    }
+                    int index7 = scanner.nextInt();
+                    services.get(index7).soignerCreatures();
+                    break;
+                case 2:
+                    System.out.println("Révision du budget d'un service");
+                    System.out.println("Quel service voulez-vous réviser ?");
+                    int n = 0;
+                    for (int i = 0; i < services.size(); i++) {
+                        if (services.get(i).getType().equals(medecin.getType())) {
+                            System.out.println(n+1 + ". " + services.get(i).getNom());
+                            n++;
+                        }
+                    }
+                    int index8 = scanner.nextInt();
+                    services.get(index8).revisionBudget();
+                    break;
+                case 3:
+                    System.out.println("Inspection d'un service");
+                    System.out.println("Quel service voulez-vous inspecter ?");
+                    int o = 0;
+                    for (int i = 0; i < services.size(); i++) {
+                        if (services.get(i).getType().equals(medecin.getType())) {
+                            System.out.println(o+1 + ". " + services.get(i).getNom());
+                            o++;
+                        }
+                    }
+                    int index9 = scanner.nextInt();
+                    medecin.inspecterService(services.get(index9));
+                    break;
+                case 4 :
+                    System.out.println("Dans quel service voulez-vous prendre une créature à transférer?");
+                    for (int i = 0; i < services.size(); i++) {
+                        System.out.println(i+1 + ". " + services.get(i).getNom());
+                    }
+                    int index11 = scanner.nextInt();
+                    System.out.println("Quelle créature voulez-vous transférer ?");
+                    for (int i = 0; i < services.get(index11).getNombreCreatures(); i++) {
+                        System.out.println(i+1 + ". " + services.get(index11).getCreatures().get(i).getNom());
+                    }
+                    int index12 = scanner.nextInt();
+                    Creature creature = services.get(index11).getCreatures().get(index12);
+                    System.out.println("Dans quel service voulez-vous transférer la créature ?");
+                    for (int i = 0; i < services.size(); i++) {
+                        System.out.println(i+1 + ". " + services.get(i).getNom());
+                    }
+                    int index13 = scanner.nextInt();
+                    medecin.transfererCreature(creature, services.get(index11), services.get(index13));
+                    break;
+                case 5:
+                    System.out.println("Retour au menu principal");
+                    break;
+                default:
+                    System.out.println("Choix invalide");
+                    break;
             }
         }
     }
@@ -668,7 +754,7 @@ public class HopitalFantastique {
                         }
                     }
                     break;
-                    case 7:
+                case 7:
                         System.out.println("Fin de la simulation");
                         break;
                 default:

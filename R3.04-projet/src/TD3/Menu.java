@@ -80,11 +80,7 @@ public class Menu {
         Random random = new Random();
         Creature randomCreature = creatures.get(random.nextInt(creatures.size()));
 
-        Medecin userMedecin = new Medecin(nom, sexe, age);
-        System.out.println("Bienvenue " + userMedecin.getNom() + "!" + " Vous êtes un médecin "+ randomCreature.getNom()+"," + userMedecin.getSexe() + " de " + userMedecin.getAge() + " ans.");
-        System.out.println("Vous êtes prêt à commencer votre journée de travail à l'hôpital fantastique!");
 
-        userMedecin.gererMenu(service1, service2, scanner);
     }
 
     private void afficherExplication() {

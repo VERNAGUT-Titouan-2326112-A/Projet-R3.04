@@ -150,7 +150,7 @@ public class ServiceMedical {
 
     private boolean isValidBudget(String budget) {
         return BUDGET_INEXISTANT.equals(budget) || BUDGET_MEDIOCRE.equals(budget) ||
-                BUDGET_INSUFFISANT.equals(budget) || BUDGET_FAIBLE.equals(budget);
+                BUDGET_INSUFFISANT.equals(budget) || BUDGET_FAIBLE.equals(budget)|| BUDGET_MOYEN.equals(budget) || BUDGET_ELEVE.equals(budget);
     }
 
     public String getType() {
