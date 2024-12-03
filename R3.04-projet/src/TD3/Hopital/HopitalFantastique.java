@@ -132,7 +132,7 @@ public class HopitalFantastique {
     public void afficherCreaturesDansServices() {
         System.out.println("Créatures présentes dans l'hôpital :");
         for (Creature creature : creatures) {
-            creature.afficherCaractériques();
+            creature.afficherCaracteriques();
         }
     }
 
@@ -362,7 +362,7 @@ public class HopitalFantastique {
                     int choix2 = scanner.nextInt();
                     if (choix2 == 1) {
                         for (Creature creature : services.get(index2-1).getCreatures()) {
-                            creature.afficherCaractériques();
+                            creature.afficherCaracteriques();
                         }
                     }
                     break;
@@ -746,7 +746,7 @@ public class HopitalFantastique {
                     for (ServiceMedical service : services) {
                         service.afficherDetails();
                         for (Creature creature : service.getCreatures()) {
-                            creature.afficherCaractériques();
+                            creature.afficherCaracteriques();
                         }
                     }
                     break;

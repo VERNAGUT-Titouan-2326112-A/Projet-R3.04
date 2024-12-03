@@ -8,8 +8,12 @@ public class Medecin {
     String sexe;
     int age;
     String type ;
+    private int id;
+    private static int DERNIER_ID = 0;
 
     public Medecin(String sexe, int age, String type) {
+        this.id = DERNIER_ID++;
+        this.nom = "Medecin " + id;
         this.sexe = sexe;
         this.age = age;
         this.type = type ;
@@ -50,7 +54,7 @@ public class Medecin {
     public void inspecterService(ServiceMedical service){
         service.afficherDetails();
         for (Creature creature : service.getCreatures()) {
-            creature.afficherCaractériques();
+            creature.afficherCaracteriques();
         }
     }
 

@@ -178,7 +178,7 @@ public  class Creature {
         return !maladies.isEmpty();
     }
 
-    public void afficherCaractériques() {
+    public void afficherCaracteriques() {
         System.out.println("nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + ", regenerable=" + regenerable + ", contaminant=" + contaminant);
     }

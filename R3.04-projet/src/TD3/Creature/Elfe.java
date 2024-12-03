@@ -8,9 +8,13 @@ import java.util.List;
 
 
 public class Elfe extends Creature implements Demoralisant {
+  private int id;
+  private static int DERNIER_ID = 0;
 
     public Elfe(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
         super(nom, moral, sexe, poids, taille, age, true, true, maladies);
+        this.id = ++DERNIER_ID;
+        setNom("Elfe " + id);
     }
 
     @Override

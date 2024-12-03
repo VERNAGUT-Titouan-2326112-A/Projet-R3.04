@@ -4,10 +4,15 @@ import TD3.Creature.Creature;
 
 public class CentreDeQuarantaine<T> extends ServiceMedical {
     private boolean isole;
+    private String nom;
+    private int id;
+    private static int DERNIER_ID = 0;
 
     public CentreDeQuarantaine( double superficie, int capaciteMax, String budget, boolean isole, String type) {
         super(superficie, capaciteMax, budget,type);
         this.isole = isole;
+        this.id = DERNIER_ID++;
+        setNom("Centre de Quarantaine " + id);
     }
 
     @Override
@@ -25,11 +30,7 @@ public class CentreDeQuarantaine<T> extends ServiceMedical {
         System.out.println("Isolation : " + (isole ? "Oui" : "Non"));
     }
 
-    public void setIsole(boolean isole){
-        this.isole = isole ;
-    }
-
-    public boolean isIsolation(){
-        return this.isole;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }
