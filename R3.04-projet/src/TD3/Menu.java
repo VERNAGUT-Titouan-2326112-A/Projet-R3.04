@@ -1,10 +1,12 @@
+package TD3;
+
+
 import TD3.Creature.Creature;
-import TD3.Hopital.CentreDeQuarantaine;
 import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Medecin;
 import TD3.Hopital.ServiceMedical;
-import java.io.IOException;
-import java.util.ArrayList;
+import com.sun.tools.javac.Main;
+
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,7 +15,7 @@ import java.lang.Thread;
 public class Menu {
     public void afficherMenu() {
         System.out.println("___________________________________");
-        System.out.println("|         Menu Principal:         |");
+        System.out.println("|         TD3.Menu Principal:     |");
         System.out.println("|_________________________________|");
         System.out.println("|Bienvenue dans le jeu!           |");
         System.out.println("|_________________________________|");
@@ -46,6 +48,7 @@ public class Menu {
                 break;
         }
     }
+
 
     private void demarrerJeu() {
         System.out.println("Le jeu commence...");
@@ -124,6 +127,7 @@ public class Menu {
                 commentJoueur();
                 break;
             case 3:
+                clearConsole();
                 afficherMenu();
                 gererSelection();
                 break;
