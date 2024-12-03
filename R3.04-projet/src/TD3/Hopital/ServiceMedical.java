@@ -7,13 +7,15 @@ import java.util.List;
 import java.util.Random;
 
 public class ServiceMedical {
-    private String nom;
     private double superficie;
     private int capaciteMax;
     private int nombreCreatures;
     private List<Creature> creatures;
     private String budget;
     private String type;
+    private String nom;
+    private int id;
+    private static int DERNIER_ID = 0;
 
     public static final String BUDGET_FAIBLE = "faible";
     public static final String BUDGET_MEDIOCRE = "médiocre";
@@ -39,11 +41,14 @@ public class ServiceMedical {
         this.creatures = new ArrayList<>();
         this.nombreCreatures = 0;
         this.type = type;
+        this.id = DERNIER_ID++;
+        this.nom = "Service médical " + id;
 
     }
 
-    public ServiceMedical(String nom, List<Creature> creatures) {
-        this.nom = nom;
+    public ServiceMedical(List<Creature> creatures) {
+        this.id = DERNIER_ID++;
+        this.nom = "Service médical " + id;
         this.creatures = creatures;
     }
 

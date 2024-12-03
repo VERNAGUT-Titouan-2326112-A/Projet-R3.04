@@ -6,9 +6,13 @@ import TD3.Interfaces.Regenerable;
 import java.util.List;
 
 public class Zombie extends Creature implements Regenerable {
+    private int id;
+    private static int DERNIER_ID = 0;
 
     public Zombie(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
         super(nom, moral, sexe, poids, taille, age, true, true, maladies);
+        this.id = ++DERNIER_ID;
+        setNom("Zombie" + id);
     }
     @Override
     public void trepasser() {

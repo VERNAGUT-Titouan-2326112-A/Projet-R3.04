@@ -132,7 +132,7 @@ public class HopitalFantastique {
     public void afficherCreaturesDansServices() {
         System.out.println("Créatures présentes dans l'hôpital :");
         for (Creature creature : creatures) {
-            creature.afficherCaractériques();
+            creature.afficherCaracteriques();
         }
     }
 
@@ -405,7 +405,7 @@ public class HopitalFantastique {
                     int choix2 = scanner.nextInt();
                     if (choix2 == 1) {
                         for (Creature creature : services.get(index2-1).getCreatures()) {
-                            creature.afficherCaractériques();
+                            creature.afficherCaracteriques();
                         }
                     }
                     break;
@@ -537,11 +537,7 @@ public class HopitalFantastique {
                     String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
                     int age = (int) (Math.random() * 100);
                     List<String> types = new ArrayList<>();
-                    for (ServiceMedical service : services) {
-                        if (!types.contains(service.getType())) {
-                            types.add(service.getType());
-                        }
-                    }
+                    types.addAll(List.of("Elfe", "HommeBete", "Lycanthrope", "Nain", "Orque", "Reptilien", "Vampire", "Zombie"));
                     Random random = new Random();
                     String type = types.get(random.nextInt(types.size()));
                     Medecin medecin = new Medecin(sexe, age, type);

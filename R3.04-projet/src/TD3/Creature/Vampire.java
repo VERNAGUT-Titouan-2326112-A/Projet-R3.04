@@ -8,9 +8,13 @@ import TD3.Interfaces.Regenerable;
 import java.util.List;
 
 public class Vampire extends Creature implements Demoralisant, Regenerable {
+    private int id;
+    private static int DERNIER_ID = 0;
 
     public Vampire(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
         super(nom, moral, sexe, poids, taille, age, true, true, maladies);
+        this.id = ++DERNIER_ID;
+        setNom("Vampire" + id);
     }
 
     @Override
