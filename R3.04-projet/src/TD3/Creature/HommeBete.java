@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Maladie;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class HommeBete extends Creature{
         setNom("HommeBete" + id);
     }
     @Override
-    public void trepasser() {
-        super.trepasser();
+    public void trepasser(HopitalFantastique hopital) {
+        super.trepasser(hopital);
         // Démoraliser les autres créatures
     }
     @Override

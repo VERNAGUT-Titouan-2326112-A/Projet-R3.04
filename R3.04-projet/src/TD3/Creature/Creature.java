@@ -1,11 +1,12 @@
 package TD3.Creature;
 
+import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Maladie;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public  class Creature {
+public abstract class Creature {
     private String nom;
     private String sexe;
     private double poids;
@@ -16,6 +17,8 @@ public  class Creature {
     private boolean regenerable;
     private boolean contaminant;
     private String type;
+    private boolean VIP = false;
+    private boolean triage = false;
 
     public Creature(String nom,int moral, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant, List<Maladie> maladies) {
         this.nom = nom;
@@ -49,11 +52,11 @@ public  class Creature {
         contaminer();
     }
 
-    public void tomberMalade(Maladie maladie) {
+    public void tomberMalade(Maladie maladie , HopitalFantastique hopital) {
         maladies.add(maladie);
         System.out.println(nom + " tombe malade de " + maladie);
         if (maladies.size() >= 3) {
-            trepasser();
+            trepasser(hopital);
         }
     }
 
@@ -69,17 +72,18 @@ public  class Creature {
         }
     }
 
-    public boolean estMort() {
-        return this.moral <= 0;
-    }
-    public void trepasser() {
+    public void trepasser(HopitalFantastique hopital) {
         System.out.println(nom + " est mort...");
+        hopital.getCreatures().remove(this);
 
     }
     public void Triage(){
         System.out.println(nom + " patiente");
 
     }
+
+    public abstract void demoraliser(HopitalFantastique hopital);
+
     public void VIP(){
         System.out.println(nom + " patiente mais ne va pas tarder à perdre sa patiente");
     }
@@ -181,5 +185,21 @@ public  class Creature {
     public void afficherCaracteriques() {
         System.out.println("nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + ", regenerable=" + regenerable + ", contaminant=" + contaminant);
+    }
+
+    public void setVIP(boolean VIP) {
+        this.VIP = VIP;
+    }
+
+    public boolean isVIP() {
+        return VIP;
+    }
+
+    public void setTriage(boolean triage) {
+        this.triage = triage;
+    }
+
+    public boolean isTriage() {
+        return triage;
     }
 }

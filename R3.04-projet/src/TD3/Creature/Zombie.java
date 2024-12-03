@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Maladie;
 import TD3.Interfaces.Regenerable;
 
@@ -15,8 +16,8 @@ public class Zombie extends Creature implements Regenerable {
         setNom("Zombie" + id);
     }
     @Override
-    public void trepasser() {
-        super.trepasser();
+    public void trepasser(HopitalFantastique hopital) {
+        super.trepasser(hopital);
         // Démoraliser les autres créatures
     }
 
@@ -31,6 +32,11 @@ public class Zombie extends Creature implements Regenerable {
         System.out.println(getNom() + " se régénère après sa mort !");
     }
     public void Triage(){
+
+    }
+
+    @Override
+    public void demoraliser(HopitalFantastique hopital) {
 
     }
 }

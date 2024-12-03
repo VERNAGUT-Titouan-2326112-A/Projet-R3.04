@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Maladie;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class orque extends Creature {
     }
 
     @Override
-    public void trepasser() {
-        super.trepasser();
+    public void trepasser(HopitalFantastique hopital) {
+        super.trepasser(hopital);
         // Démoraliser les autres créatures
     }
 
@@ -25,6 +26,11 @@ public class orque extends Creature {
 
     }
     public void Triage(){
+
+    }
+
+    @Override
+    public void demoraliser(HopitalFantastique hopital) {
 
     }
 }

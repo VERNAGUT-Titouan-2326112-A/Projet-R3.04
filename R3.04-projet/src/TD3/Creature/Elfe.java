@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.HopitalFantastique;
 import TD3.Hopital.Maladie;
 import TD3.Hopital.ServiceMedecin;
 import TD3.Interfaces.Demoralisant;
@@ -18,18 +19,17 @@ public class Elfe extends Creature implements Demoralisant {
     }
 
     @Override
-    public void trepasser() {
-        super.trepasser();
-        demoraliser(ServiceMedecin.getServiceCreatures());
+    public void trepasser(HopitalFantastique hopital) {
+        super.trepasser(hopital);
+        for (Creature creature : hopital.getCreatures()) {
+            creature.attendre();
+            System.out.println(creature.getNom() + " est démoralisé par la mort de " + getNom());
+        }
     }
 
     @Override
-    protected void contaminer() {
-        //les elfes ne contaminent pas
-    }
-
-    @Override
-    public void demoraliser(List<Creature> creatures) {
+    public void demoraliser(HopitalFantastique hopital) {
+        List<Creature> creatures = hopital.getCreatures();
         for (Creature creature : creatures) {
             creature.attendre();
             System.out.println(creature.getNom() + " est démoralisé par la mort de " + getNom());

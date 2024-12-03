@@ -29,7 +29,6 @@ public class MaladieThread implements Runnable {
                     maladie.augmenterNiveau(1);
                 }
                 if (creature.getMoral() <= 0) {
-                    creature.trepasser();
                     iterator.remove();
                     System.out.println("La créature " + creature.getNom() + " est morte et a été retirée de la liste.");
                 } else if (creature.getMoral() >= 100 && !creature.getMaladies().isEmpty()) {
