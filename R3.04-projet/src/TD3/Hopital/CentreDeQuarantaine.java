@@ -5,8 +5,8 @@ import TD3.Creature.Creature;
 public class CentreDeQuarantaine<T> extends ServiceMedical {
     private boolean isole;
 
-    public CentreDeQuarantaine(String nom, double superficie, int capaciteMax, String budget, boolean isole) {
-        super(nom, superficie, capaciteMax, budget);
+    public CentreDeQuarantaine( double superficie, int capaciteMax, String budget, boolean isole, String type) {
+        super(superficie, capaciteMax, budget,type);
         this.isole = isole;
     }
 

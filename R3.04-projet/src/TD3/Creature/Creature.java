@@ -170,11 +170,16 @@ public  class Creature {
 
     @Override
     public String toString() {
-        return "TD3.Creature.TD3.Creature [nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
+        return "nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
                 + ", moral=" + moral + ", maladies=" + maladies + "]";
     }
 
     public boolean estMalade() {
         return !maladies.isEmpty();
+    }
+
+    public void afficherCaractériques() {
+        System.out.println("nom=" + nom + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age
+                + ", moral=" + moral + ", maladies=" + maladies + ", regenerable=" + regenerable + ", contaminant=" + contaminant);
     }
 }

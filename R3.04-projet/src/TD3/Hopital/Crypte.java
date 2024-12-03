@@ -2,14 +2,16 @@ package TD3.Hopital;
 
 import TD3.Creature.Creature;
 
-public class Crypte extends ServiceMedical {
+public class Crypte<T> extends ServiceMedical {
     private int ventilation;
     private int temperature;
+    String type;
 
-    public Crypte(String nom, double superficie, int capaciteMax, String budget, int ventilation, int temperature) {
-        super(nom, superficie, capaciteMax, budget);
+    public Crypte(double superficie, int capaciteMax, String budget, int ventilation, int temperature, String type) {
+        super(superficie, capaciteMax, budget,type);
         this.ventilation = ventilation;
         this.temperature = temperature;
+        this.type = type;
     }
 
     @Override

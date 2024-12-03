@@ -13,6 +13,7 @@ public class ServiceMedical {
     private int nombreCreatures;
     private List<Creature> creatures;
     private String budget;
+    private String type;
 
     public static final String BUDGET_FAIBLE = "faible";
     public static final String BUDGET_MEDIOCRE = "médiocre";
@@ -21,10 +22,7 @@ public class ServiceMedical {
     public static final String BUDGET_INSUFFISANT = "insuffisant";
     public static final String BUDGET_INEXISTANT = "inexistant";
 
-    public ServiceMedical(String nom, double superficie, int capaciteMax, String budget) {
-        if (nom == null || nom.isEmpty()) {
-            throw new IllegalArgumentException("Le nom ne peut pas être vide.");
-        }
+    public ServiceMedical(double superficie, int capaciteMax, String budget, String type) {
         if (superficie <= 0) {
             throw new IllegalArgumentException("La superficie doit être positive.");
         }
@@ -35,12 +33,12 @@ public class ServiceMedical {
             throw new IllegalArgumentException("Budget invalide.");
         }
 
-        this.nom = nom;
         this.superficie = superficie;
         this.capaciteMax = capaciteMax;
         this.budget = budget;
         this.creatures = new ArrayList<>();
         this.nombreCreatures = 0;
+        this.type = type;
 
     }
 
@@ -78,7 +76,12 @@ public class ServiceMedical {
             System.out.println("La créature" + creature.getNom() + " n'a pas été trouvée dans le service médical.");
         }
     }
-
+    public void soignerCreatures() {
+        for (Creature creature : creatures) {
+            creature.soigner();
+        }
+        System.out.println("Les créatures du service médical ont été soignées.");
+    }
 
     public void revisionBudget() {
         Random random = new Random();
@@ -150,4 +153,7 @@ public class ServiceMedical {
                 BUDGET_INSUFFISANT.equals(budget) || BUDGET_FAIBLE.equals(budget);
     }
 
+    public String getType() {
+        return type;
+    }
 }
