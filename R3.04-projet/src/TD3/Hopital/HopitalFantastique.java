@@ -721,9 +721,11 @@ public class HopitalFantastique {
             System.out.println("Que voulez vous faire ?");
             System.out.println("1. Gérer les créatures");
             System.out.println("2. Gérer les services médicaux");
-            System.out.println("3. Géner les médecins");
+            System.out.println("3. Gérer les médecins");
             System.out.println("4. Afficher les créatures présentes dans l'hôpital");
             System.out.println("5. Afficher l'ensemble des services médicaux et leurs créatures");
+            System.out.println("6. Incarner un médecin");
+            System.out.println("7. Quitter");
             choix = scanner.nextInt();
             switch (choix) {
                 case 1:
@@ -738,14 +740,12 @@ public class HopitalFantastique {
                     System.out.println("Gestion des médecins");
                     menuMedecin();
                     break;
-                case 4:
-                    System.out.println("Au revoir");
-                    break;
-                case 5 :
+
+                case 4 :
                     System.out.println("Affichage des créatures présentes dans l'hôpital");
                     afficherCreaturesDansServices();
                     break;
-                case 6 :
+                case 5 :
                     System.out.println("Affichage des services médicaux et de leurs créatures");
                     for (ServiceMedical service : services) {
                         service.afficherDetails();
@@ -754,9 +754,14 @@ public class HopitalFantastique {
                         }
                     }
                     break;
-                case 7:
+                case 6:
                         System.out.println("Fin de la simulation");
                         break;
+                case 7 :
+                    menuRpMedecin();
+                case 8:
+                    System.out.println("Au revoir");
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
