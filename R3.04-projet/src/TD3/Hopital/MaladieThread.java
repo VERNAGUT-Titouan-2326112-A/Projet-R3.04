@@ -32,6 +32,13 @@ public class MaladieThread implements Runnable {
                     creature.trepasser();
                     iterator.remove();
                     System.out.println("La créature " + creature.getNom() + " est morte et a été retirée de la liste.");
+                } else if (creature.getMoral() >= 100 && !creature.getMaladies().isEmpty()) {
+                    creature.getMaladies().removeFirst();
+                    System.out.println("La créature " + creature.getNom() + " a perdu une maladie car son moral est à 100.");
+                }
+                if (creature.getMaladies().isEmpty()) {
+                    iterator.remove();
+                    System.out.println("La créature " + creature.getNom() + " n'a plus de maladies et a été retirée de la liste.");
                 }
             }
             System.out.println("Toutes les créatures ont perdu 10 de moral et leurs niveaux de maladies ont augmenté de 1.");
