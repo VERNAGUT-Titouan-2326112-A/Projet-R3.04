@@ -27,6 +27,7 @@ public class HopitalFantastique {
         this.creatures = new ArrayList<>();
         this.maladiesDisponibles = new ArrayList<>();
         initialiserMaladies();
+        startMaladieThread();
     }
 
     private void initialiserMaladies() {
@@ -35,6 +36,11 @@ public class HopitalFantastique {
         maladiesDisponibles.add(new Maladie("Dépendance aux réseaux sociaux", "DRS", 10));
         maladiesDisponibles.add(new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10));
         maladiesDisponibles.add(new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10));
+    }
+    private void startMaladieThread() {
+        MaladieThread maladieThread = new MaladieThread(creatures);
+        Thread thread = new Thread(maladieThread);
+        thread.start();
     }
 
     public void ajouterCreature(Creature creature) {

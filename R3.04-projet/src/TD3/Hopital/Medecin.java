@@ -1,7 +1,6 @@
 package TD3.Hopital;
 
 import TD3.Creature.Creature;
-import TD3.Hopital.Maladie;
 import java.util.Scanner;
 
 public class Medecin {
@@ -50,8 +49,7 @@ public class Medecin {
                     examinerService(service1, service2, scanner);
                     break;
                 case 2:
-                    service1.soignerCreatures();
-
+                    soignerCreatures(service1, service2, scanner);
                     break;
                 case 3:
                     service1.revisionBudget();
@@ -120,21 +118,63 @@ public class Medecin {
         }
     }
 
+    public void soignerCreatures(ServiceMedical service1, ServiceMedical service2, Scanner scanner) {
+        while (true) {
+            System.out.println("____________________________________________");
+            System.out.println("|Choisissez un service médical à soigner : |");
+            System.out.println("|__________________________________________|");
+            System.out.println("|1. " + service1.getNom() + "                     |");
+            System.out.println("|__________________________________________|");
+            System.out.println("|2. " + service2.getNom() + "                    |");
+            System.out.println("|__________________________________________|");
+            System.out.println("|3. Retour au menu principal               |");
+            System.out.println("|__________________________________________|");
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    soignerCreaturesDansService(service1);
+                    break;
+                case 2:
+                    soignerCreaturesDansService(service2);
+                    break;
+                case 3:
+                    return; // Retour au menu principal
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
+    private void soignerCreaturesDansService(ServiceMedical service) {
+        for (Creature creature : service.getCreatures()) {
+            creature.soigner();
+            if (creature.getMoral() == 100 && !creature.getMaladies().isEmpty()) {
+                creature.getMaladies().remove(0);
+                System.out.println("La créature " + creature.getNom() + " a perdu une maladie car son moral est à 100.");
+            }
+        }
+        System.out.println("Les créatures du service médical " + service.getNom() + " ont été soignées.");
+    }
+
     private void afficherCreatures(ServiceMedical service) {
         System.out.println("Examen du service médical : " + service.getNom());
         System.out.println("Liste des créatures dans ce service :");
         for (Creature creature : service.getCreatures()) {
-            System.out.println("Nom: " + creature.getNom());
-            System.out.println("Moral: " + creature.getMoral());
-            System.out.println("Sexe: " + creature.getSexe());
-            System.out.println("Poids: " + creature.getPoids() + " kg");
-            System.out.println("Taille: " + creature.getTaille() + " m");
-            System.out.println("Age: " + creature.getAge() + " ans");
-            System.out.println("Maladies: ");
-            for (Maladie maladie : creature.getMaladies()) {
-                System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ") - Niveau: " + maladie.getNiveauActuel() + "/" + maladie.getNiveauMax());
+            if (!creature.estMort()) {
+                System.out.println("Nom: " + creature.getNom());
+                System.out.println("Moral: " + creature.getMoral());
+                System.out.println("Sexe: " + creature.getSexe());
+                System.out.println("Poids: " + creature.getPoids() + " kg");
+                System.out.println("Taille: " + creature.getTaille() + " m");
+                System.out.println("Age: " + creature.getAge() + " ans");
+                System.out.println("Maladies: ");
+                for (Maladie maladie : creature.getMaladies()) {
+                    System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ") - Niveau: " + maladie.getNiveauActuel() + "/" + maladie.getNiveauMax());
+                }
+                System.out.println("-----------------------------------");
             }
-            System.out.println("-----------------------------------");
         }
     }
 

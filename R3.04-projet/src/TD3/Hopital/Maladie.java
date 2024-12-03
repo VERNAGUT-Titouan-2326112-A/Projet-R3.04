@@ -10,7 +10,7 @@ public class Maladie {
     public Maladie(String nomComplet, String nomAbrege, int niveauMax) {
         this.nomComplet = nomComplet;
         this.nomAbrege = nomAbrege;
-        this.niveauActuel = 0;
+        this.niveauActuel = 4;
         this.niveauMax = niveauMax;
     }
 

@@ -69,8 +69,12 @@ public  class Creature {
         }
     }
 
+    public boolean estMort() {
+        return this.moral <= 0;
+    }
     public void trepasser() {
         System.out.println(nom + " est mort...");
+
     }
     public void Triage(){
         System.out.println(nom + " patiente");

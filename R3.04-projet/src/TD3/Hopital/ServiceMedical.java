@@ -78,12 +78,7 @@ public class ServiceMedical {
             System.out.println("La créature" + creature.getNom() + " n'a pas été trouvée dans le service médical.");
         }
     }
-    public void soignerCreatures() {
-        for (Creature creature : creatures) {
-            creature.soigner();
-        }
-        System.out.println("Les créatures du service médical ont été soignées.");
-    }
+
 
     public void revisionBudget() {
         Random random = new Random();
