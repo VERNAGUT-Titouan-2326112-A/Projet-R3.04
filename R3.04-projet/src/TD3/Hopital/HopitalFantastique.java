@@ -816,7 +816,7 @@ public class HopitalFantastique {
                     for (ServiceMedical service : services) {
                         service.afficherDetails();
                         for (Creature creature : service.getCreatures()) {
-                            creature.afficherCaractériques();
+                            creature.afficherCaracteriques();
                         }
                     }
                     break;
