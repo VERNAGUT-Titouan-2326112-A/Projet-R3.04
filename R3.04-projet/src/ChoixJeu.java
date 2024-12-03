@@ -34,7 +34,6 @@ public class ChoixJeu {
         } catch (InputMismatchException e) {
             System.out.println("Erreur: Veuillez entrer un chiffre valide.");
             scanner.nextLine(); // Consommer l'entrée incorrecte
-            System.exit(1);
         }
 
         switch (choix) {

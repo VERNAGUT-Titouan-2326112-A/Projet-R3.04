@@ -7,6 +7,7 @@ import TD3.Hopital.Medecin;
 import TD3.Hopital.ServiceMedical;
 import com.sun.tools.javac.Main;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -29,57 +30,41 @@ public class Menu {
 
     public void gererSelection() {
         Scanner scanner = new Scanner(System.in);
-        int choix = scanner.nextInt();
+        int choix = -1;
 
-        switch (choix) {
-            case 1:
-                demarrerJeu();
-                break;
-            case 2:
-                afficherExplication();
-                break;
-            case 3:
-                quitter();
-                break;
-            default:
-                System.out.println("Choix invalide. Veuillez réessayer.");
+        while (true) {
+            try {
+                choix = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur: Veuillez entrer un chiffre valide.");
+                scanner.nextLine(); // Consommer l'entrée incorrecte
                 afficherMenu();
-                gererSelection();
-                break;
+                continue;
+            }
+
+            switch (choix) {
+                case 1:
+                    clearConsole();
+                    demarrerJeu();
+                    break;
+                case 2:
+                    clearConsole();
+                    afficherExplication();
+                    break;
+                case 3:
+                    quitter();
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    menuAide();
+                    break;
+            }
         }
     }
 
 
     private void demarrerJeu() {
-        System.out.println("Le jeu commence...");
-        // Logique pour démarrer le jeu
-        Scanner scanner = new Scanner(System.in);
-
-        // Prompt user for doctor's details
-        System.out.print("Entrez le nom du médecin: ");
-        String nom = scanner.nextLine();
-
-        System.out.print("Entrez le sexe du médecin (Male ou Femelle) : ");
-        String sexe = scanner.nextLine();
-
-        System.out.print("Entrez l'âge du médecin: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-
-        // Create the hospital and generate random creatures
-        HopitalFantastique hopital = new HopitalFantastique("Fantasy Hospital", 10);
-        HopitalFantastique hopital2 = new HopitalFantastique("Fantasy Hospital", 10);
-        List<Creature> creatures = hopital.getCreatures();
-        List<Creature> creatures2 = hopital2.getCreatures();
-
-
-        hopital.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
-        hopital2.genererCreaturesAleatoires(5); // Ajouter 5 créatures aléatoires
-
-        Random random = new Random();
-        Creature randomCreature = creatures.get(random.nextInt(creatures.size()));
-
-
+        HopitalFantastique hopital = new HopitalFantastique("Hopital Fantastique",1000);
+        hopital.menu();
     }
 
     private void afficherExplication() {
@@ -112,25 +97,35 @@ public class Menu {
 
     public void gererAide() {
         Scanner scanner = new Scanner(System.in);
-        int choixA = scanner.nextInt();
+        int choixA = -1;
 
-        switch (choixA) {
-            case 1:
-                principeJeu();
-                break;
-            case 2:
-                commentJoueur();
-                break;
-            case 3:
-                clearConsole();
-                afficherMenu();
-                gererSelection();
-                break;
-            default:
-                System.out.println("Choix invalide. Veuillez réessayer.");
+        while (true) {
+            try {
+                choixA = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur: Veuillez entrer un chiffre valide.");
+                scanner.nextLine(); // Consommer l'entrée incorrecte
                 menuAide();
-                gererAide();
-                break;
+                continue;
+            }
+
+            switch (choixA) {
+                case 1:
+                    principeJeu();
+                    return;
+                case 2:
+                    commentJoueur();
+                    return;
+                case 3:
+                    clearConsole();
+                    afficherMenu();
+                    gererSelection();
+                    return;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    menuAide();
+                    break;
+            }
         }
     }
 
