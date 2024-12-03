@@ -51,6 +51,7 @@ public class Medecin {
                     break;
                 case 2:
                     service1.soignerCreatures();
+
                     break;
                 case 3:
                     service1.revisionBudget();
@@ -125,10 +126,13 @@ public class Medecin {
         for (Creature creature : service.getCreatures()) {
             System.out.println("Nom: " + creature.getNom());
             System.out.println("Moral: " + creature.getMoral());
+            System.out.println("Sexe: " + creature.getSexe());
+            System.out.println("Poids: " + creature.getPoids() + " kg");
+            System.out.println("Taille: " + creature.getTaille() + " m");
+            System.out.println("Age: " + creature.getAge() + " ans");
             System.out.println("Maladies: ");
-
             for (Maladie maladie : creature.getMaladies()) {
-                System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ")");
+                System.out.println("  - " + maladie.getNomComplet() + " (" + maladie.getNomAbrege() + ") - Niveau: " + maladie.getNiveauActuel() + "/" + maladie.getNiveauMax());
             }
             System.out.println("-----------------------------------");
         }

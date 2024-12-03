@@ -13,12 +13,7 @@ public class ServiceMedical {
     private int nombreCreatures;
     private List<Creature> creatures;
     private String budget;
-    private List<Maladie> maladiesDisponibles;
-    Maladie mdc = new Maladie("Maladie débilitante chronique", "MDC", 10);
-    Maladie fomo = new Maladie("Syndrome fear of missing out", "FOMO", 10);
-    Maladie drs = new Maladie("Dépendance aux réseaux sociaux", "DRS", 10);
-    Maladie pec = new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10);
-    Maladie zpl = new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10);
+
     public static final String BUDGET_FAIBLE = "faible";
     public static final String BUDGET_MEDIOCRE = "médiocre";
     public static final String BUDGET_MOYEN = "moyen";
@@ -46,7 +41,7 @@ public class ServiceMedical {
         this.budget = budget;
         this.creatures = new ArrayList<>();
         this.nombreCreatures = 0;
-        this.maladiesDisponibles = new ArrayList<>();
+
     }
 
     public ServiceMedical(String nom, List<Creature> creatures) {
@@ -121,13 +116,7 @@ public class ServiceMedical {
         }
 
     }
-    private void initialiserMaladies() {
-        maladiesDisponibles.add(new Maladie("Maladie débilitante chronique", "MDC", 10));
-        maladiesDisponibles.add(new Maladie("Syndrome fear of missing out", "FOMO", 10));
-        maladiesDisponibles.add(new Maladie("Dépendance aux réseaux sociaux", "DRS", 10));
-        maladiesDisponibles.add(new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10));
-        maladiesDisponibles.add(new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10));
-    }
+
     public String getNom() {
         return nom;
     }
@@ -152,34 +141,7 @@ public class ServiceMedical {
         return budget;
     }
 
-    public void assignerMaladiesAleatoires(Creature creature) {
-        Random random = new Random();
-        int nombreMaladies = random.nextInt(maladiesDisponibles.size()) + 1;
-        for (int i = 0; i < nombreMaladies; i++) {
-            int maladieIndex = random.nextInt(maladiesDisponibles.size());
-            Maladie maladie;
-            switch (maladieIndex) {
-                case 0:
-                    maladie = new Maladie("Maladie débilitante chronique", "MDC", 10);
-                    break;
-                case 1:
-                    maladie = new Maladie("Syndrome fear of missing out", "FOMO", 10);
-                    break;
-                case 2:
-                    maladie = new Maladie("Dépendance aux réseaux sociaux", "DRS", 10);
-                    break;
-                case 3:
-                    maladie = new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10);
-                    break;
-                case 4:
-                    maladie = new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + maladieIndex);
-            }
-            creature.tomberMalade(maladie);
-        }
-    }
+
 
     public void setBudget(String budget) {
         if (!isValidBudget(budget)) {

@@ -17,14 +17,14 @@ public  class Creature {
     private boolean contaminant;
     private String type;
 
-    public Creature(String nom,int moral, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant) {
+    public Creature(String nom,int moral, String sexe, double poids, double taille, int age, boolean regenerable, boolean contaminant, List<Maladie> maladies) {
         this.nom = nom;
         this.sexe = sexe;
         this.poids = poids;
         this.taille = taille;
         this.age = age;
         this.moral = moral;
-        this.maladies = new ArrayList<>();
+        this.maladies = maladies != null ? maladies : new ArrayList<>();
         this.regenerable = regenerable;
         this.contaminant = contaminant;
 
@@ -62,6 +62,10 @@ public  class Creature {
             maladies.remove(0);
             this.moral += 20;
             System.out.println(nom + " a été soigné !");
+        }
+        if (moral>100){
+            moral=100;
+            System.out.println(nom + " a retrouvé son moral");
         }
     }
 

@@ -12,6 +12,12 @@ public class HopitalFantastique {
     private List<ServiceMedical> services;
     private List<Medecin> medecins;
     private List<Creature> creatures;
+    private List<Maladie> maladiesDisponibles;
+    Maladie mdc = new Maladie("Maladie débilitante chronique", "MDC", 10);
+    Maladie fomo = new Maladie("Syndrome fear of missing out", "FOMO", 10);
+    Maladie drs = new Maladie("Dépendance aux réseaux sociaux", "DRS", 10);
+    Maladie pec = new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10);
+    Maladie zpl = new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10);
 
     public HopitalFantastique(String nom, int capaciteMaxServices) {
         this.nom = nom;
@@ -19,6 +25,16 @@ public class HopitalFantastique {
         this.services = new ArrayList<>();
         this.medecins = new ArrayList<>();
         this.creatures = new ArrayList<>();
+        this.maladiesDisponibles = new ArrayList<>();
+        initialiserMaladies();
+    }
+
+    private void initialiserMaladies() {
+        maladiesDisponibles.add(new Maladie("Maladie débilitante chronique", "MDC", 10));
+        maladiesDisponibles.add(new Maladie("Syndrome fear of missing out", "FOMO", 10));
+        maladiesDisponibles.add(new Maladie("Dépendance aux réseaux sociaux", "DRS", 10));
+        maladiesDisponibles.add(new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10));
+        maladiesDisponibles.add(new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10));
     }
 
     public void ajouterCreature(Creature creature) {
@@ -41,6 +57,7 @@ public class HopitalFantastique {
             boolean contaminant = random.nextBoolean();
 
             int randomType = random.nextInt(8) + 1;
+            String nom;
             switch (randomType) {
                 case 1:
                     nom = "elfe";
@@ -71,9 +88,35 @@ public class HopitalFantastique {
                     break;
             }
 
-            Creature creature = new Creature(nom, moral, sexe, poids, taille, age, regenerable, contaminant);
-            ajouterCreature(creature);
+            List<Maladie> maladies = new ArrayList<>();
+            int nombreMaladies = random.nextInt(maladiesDisponibles.size()) + 1;
+            for (int j = 0; j < nombreMaladies; j++) {
+                int maladieIndex = random.nextInt(maladiesDisponibles.size());
+                Maladie maladie;
+                switch (maladieIndex) {
+                    case 0:
+                        maladie = mdc;
+                        break;
+                    case 1:
+                        maladie = fomo;
+                        break;
+                    case 2:
+                        maladie = drs;
+                        break;
+                    case 3:
+                        maladie = pec;
+                        break;
+                    case 4:
+                        maladie = zpl;
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + maladieIndex);
+                }
+                maladies.add(maladie);
+            }
 
+            Creature creature = new Creature(nom, moral, sexe, poids, taille, age, regenerable, contaminant, maladies);
+            ajouterCreature(creature);
         }
     }
 

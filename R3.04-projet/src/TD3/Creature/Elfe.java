@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.Maladie;
 import TD3.Hopital.ServiceMedecin;
 import TD3.Interfaces.Demoralisant;
 
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class Elfe extends Creature implements Demoralisant {
 
-    public Elfe(String nom,int moral, String sexe, double poids, double taille, int age) {
-        super(nom,moral, sexe, poids, taille, age,true,false);
+    public Elfe(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
+        super(nom, moral, sexe, poids, taille, age, true, true, maladies);
     }
 
     @Override

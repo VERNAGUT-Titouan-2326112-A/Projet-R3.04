@@ -56,7 +56,7 @@ public class Menu {
         System.out.print("Entrez le nom du médecin: ");
         String nom = scanner.nextLine();
 
-        System.out.print("Entrez le sexe du médecin (Male ou Femmelle) : ");
+        System.out.print("Entrez le sexe du médecin (Male ou Femelle) : ");
         String sexe = scanner.nextLine();
 
         System.out.print("Entrez l'âge du médecin: ");

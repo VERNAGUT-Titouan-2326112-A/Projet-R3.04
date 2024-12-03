@@ -1,5 +1,6 @@
 package TD3.Creature;
 
+import TD3.Hopital.Maladie;
 import TD3.Hopital.ServiceMedecin;
 import TD3.Interfaces.Demoralisant;
 import TD3.Interfaces.Regenerable;
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class Vampire extends Creature implements Demoralisant, Regenerable {
 
-    public Vampire(String nom,int moral, String sexe, double poids, double taille, int age) {
-        super(nom,moral, sexe, poids, taille, age,true,true);
+    public Vampire(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
+        super(nom, moral, sexe, poids, taille, age, true, true, maladies);
     }
 
     @Override

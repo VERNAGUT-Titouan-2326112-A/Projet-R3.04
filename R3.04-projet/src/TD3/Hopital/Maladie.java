@@ -62,6 +62,7 @@ public class Maladie {
         return niveauActuel >= niveauMax;
     }
 
+
     @Override
     public String toString() {
         return nomComplet + " (" + nomAbrege + ") - Niveau: " + niveauActuel + "/" + niveauMax;
