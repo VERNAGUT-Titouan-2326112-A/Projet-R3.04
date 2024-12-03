@@ -483,11 +483,7 @@ public class HopitalFantastique {
                     String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
                     int age = (int) (Math.random() * 100);
                     List<String> types = new ArrayList<>();
-                    for (ServiceMedical service : services) {
-                        if (!types.contains(service.getType())) {
-                            types.add(service.getType());
-                        }
-                    }
+                    types.addAll(List.of("Elfe", "HommeBete", "Lycanthrope", "Nain", "Orque", "Reptilien", "Vampire", "Zombie"));
                     Random random = new Random();
                     String type = types.get(random.nextInt(types.size()));
                     Medecin medecin = new Medecin(sexe, age, type);
@@ -638,7 +634,7 @@ public class HopitalFantastique {
         medecin.setNom(nom);
         System.out.println("Bienvenue " + medecin.getNom());
         int choix = 0;
-        while (choix != 4) {
+        while (choix != 5) {
             System.out.println("Que voulez vous faire ?");
             System.out.println("1. Soigner les créatures d'un service");
             System.out.println("2. Réviser le budget d'un service");
@@ -717,7 +713,7 @@ public class HopitalFantastique {
     public void menu() {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
-        while (choix != 4) {
+        while (choix != 7) {
             System.out.println("Que voulez vous faire ?");
             System.out.println("1. Gérer les créatures");
             System.out.println("2. Gérer les services médicaux");
@@ -754,13 +750,11 @@ public class HopitalFantastique {
                         }
                     }
                     break;
-                case 6:
-                        System.out.println("Fin de la simulation");
-                        break;
-                case 7 :
+                case 6 :
                     menuRpMedecin();
-                case 8:
-                    System.out.println("Au revoir");
+                    break;
+                case 7:
+                    System.out.println("Fin de la simulation");
                     break;
                 default:
                     System.out.println("Choix invalide");
