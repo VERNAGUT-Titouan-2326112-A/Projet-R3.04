@@ -1,3 +1,5 @@
+package Jeu;
+
 /**
  * Méthode principale pour lancer l'application
  */

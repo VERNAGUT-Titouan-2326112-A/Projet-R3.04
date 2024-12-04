@@ -1,3 +1,5 @@
+package Jeu;
+
 import java.util.Scanner;
 
 import TD3.Hopital.HopitalFantastique;
