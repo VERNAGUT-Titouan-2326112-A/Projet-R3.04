@@ -572,7 +572,8 @@ public class Colonie {
                     menuSaison();
                     break;
                 case 6:
-                    Thread.currentThread().interrupt();
+                    thread.interrupt();
+                    System.out.println("Fin de la simulation");
                     break;
                 default:
                     System.out.println("Choix invalide");

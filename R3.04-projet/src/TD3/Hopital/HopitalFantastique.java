@@ -964,12 +964,18 @@ public class HopitalFantastique {
     public void menu() {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
-        while (choix != 4) {
+        while (choix != 8) {
+            if (creatures.isEmpty()){
+                genererCreaturesAleatoires(50);
+            }
+            if (services.isEmpty()){
+                genererServicesAleatoires(10);
+            }
             Thread thread = new Thread(()->{
                 while (true){
                     try {
                         trierCreaturesPriorites();
-                        for (Creature creature : creatures) {
+                        for (Creature creature : new ArrayList<>(creatures)) {
                             creature.attendre();
                             if (creature.getMoral() == 0){
                                 creature.trepasser(this);
@@ -977,7 +983,7 @@ public class HopitalFantastique {
                             if (creature.getMaladies().isEmpty()) {
                                 creatures.remove(creature);
                             }
-                            for (Maladie maladie : maladiesDisponibles) {
+                            for (Maladie maladie : new ArrayList<>(maladiesDisponibles)) {
                                 if (maladie.estLetale()) {
                                     if (creature.getMaladies().contains(maladie)) {
                                         creature.trepasser(this);
@@ -986,30 +992,30 @@ public class HopitalFantastique {
                             }
                         }
                         double proba = Math.random();
-                        if (proba < 0.1) {
-                            for (Maladie maladie : maladiesDisponibles) {
+                        if (proba < 0.05) {
+                            for (Maladie maladie : new ArrayList<>(maladiesDisponibles)) {
                                 maladie.augmenterNiveau();
                             }
                         }
-                        else if (proba < 0.2) {
-                            for (Maladie maladie : maladiesDisponibles) {
+                        else if (proba < 0.1) {
+                            for (Maladie maladie : new ArrayList<>(maladiesDisponibles)) {
                                 maladie.diminuerNiveau();
                             }
                         }
 
                         double proba2 = Math.random();
-                        if (proba2 < 0.1) {
-                            for (Creature creature : creatures) {
+                        if (proba2 < 0.05) {
+                            for (Creature creature : new ArrayList<>(creatures)) {
                                 proba2 = Math.random();
-                                if (proba2 < 0.1) {
+                                if (proba2 < 0.05) {
                                     creature.hurler();
                                 }
                             }
                         }
-                        else if (proba2 < 0.3) {
-                                for (Creature creature : creatures) {
+                        else if (proba2 < 0.1) {
+                            for (Creature creature : new ArrayList<>(creatures)) {
                                     proba2 = Math.random();
-                                    if (proba2 < 0.1) {
+                                    if (proba2 < 0.05) {
                                         Maladie maladie = maladiesDisponibles.get((int) (Math.random() * maladiesDisponibles.size()));
                                         creature.tomberMalade(maladie,this);
                                     }
@@ -1017,7 +1023,7 @@ public class HopitalFantastique {
                         }
                         double proba3 = Math.random();
                         if (proba3 < 0.1) {
-                            for (ServiceMedical service : services) {
+                            for (ServiceMedical service : new ArrayList<>(services)) {
                                 proba3 = Math.random();
                                 if (proba3 < 0.1) {
                                     service.revisionBudget();
@@ -1036,12 +1042,6 @@ public class HopitalFantastique {
                     }
                 }
             });
-            if (creatures.isEmpty()){
-                genererCreaturesAleatoires(50);
-            }
-            if (services.isEmpty()){
-                genererServicesAleatoires(10);
-            }
             System.out.println("_________________________________________________________________");
             System.out.println("|Que voulez vous faire ?                                        |");
             System.out.println("|_______________________________________________________________|");
@@ -1101,13 +1101,11 @@ public class HopitalFantastique {
                     }
                     break;
                 case 7:
-                    System.out.println("Fin de la simulation");
-                    break;
-                case 8 :
                     menuRpMedecin();
                     break;
-                case 9:
-                    System.out.println("Au revoir");
+                case 8:
+                    thread.interrupt();
+                    System.out.println("Fin de la simulation");
                     break;
                 case 10:
                     break;

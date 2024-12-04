@@ -352,7 +352,7 @@ public abstract class Creature {
      * @param hopital : hôpital fantastique avec lequel la créature interagit
      */
     protected void contaminer(HopitalFantastique hopital){
-        List<Creature> creatures = hopital.getCreatures();
+        List<Creature> creatures = new ArrayList<>(hopital.getCreatures());
         for (Creature creature : creatures) {
             Random random = new Random();
             Maladie maladie = this.getMaladies().get(random.nextInt(this.getMaladies().size()));
@@ -380,6 +380,9 @@ public abstract class Creature {
         if (this.isRegenerable()){
             this.setMoral(50);
             System.out.println(getNom() + " se régénère après sa mort !");
+            if (!this.maladies.isEmpty()){
+                this.maladies.removeLast();
+            }
             hopital.getCreatures().add(this);
         }
 
