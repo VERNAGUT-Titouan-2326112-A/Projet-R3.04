@@ -28,7 +28,13 @@ public class ChoixJeu {
         System.out.println("|_________________________________|");
         System.out.println("|3. Quitter                       |");
         System.out.println("|_________________________________|");
-        choix = scanner.nextInt();
+        String input = scanner.nextLine();
+        if (input.isEmpty()) {
+            choix = 10;
+        }
+        else {
+            choix = Integer.parseInt(input);
+        }
         switch (choix) {
             case 1 :
                 clearConsole();
@@ -43,6 +49,9 @@ public class ChoixJeu {
                 case 3 :
                 quitter();
                 break;
+            case 10 : 
+                	choixJeu();
+                	break;
             default:
                 System.out.println("Choix invalide. Veuillez choisir un nombre entre 1 et 3.");
                 choixJeu();
