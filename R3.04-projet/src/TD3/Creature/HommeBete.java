@@ -5,7 +5,7 @@ import TD3.Hopital.Maladie;
 
 import java.util.List;
 
-public class HommeBete extends Creature{
+public class HommeBete extends Creature {
     private int id;
     private static int DERNIER_ID = 0;
 
@@ -14,16 +14,24 @@ public class HommeBete extends Creature{
         this.id = ++DERNIER_ID;
         setNom("HommeBete" + id);
     }
+
     @Override
     public void trepasser(HopitalFantastique hopital) {
         super.trepasser(hopital);
         // Démoraliser les autres créatures
     }
+
     @Override
     protected void contaminer() {
-
+        // Implémentation de la méthode contaminer
     }
-    public void Triage(){
 
+    @Override
+    public void demoraliser(HopitalFantastique hopital) {
+        // Implémentation de la méthode demoraliser
+    }
+
+    public void Triage() {
+        // Implémentation de la méthode Triage
     }
 }

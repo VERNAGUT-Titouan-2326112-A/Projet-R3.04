@@ -1,10 +1,9 @@
-import TD3.Menu;
+package TD3;
 
-public class Main {
+public class td3Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.afficherMenu();
         menu.gererSelection();
-
     }
 }

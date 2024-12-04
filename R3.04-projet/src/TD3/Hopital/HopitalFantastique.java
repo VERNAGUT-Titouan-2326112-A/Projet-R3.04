@@ -1,9 +1,7 @@
 package TD3.Hopital;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.util.*;
 
 import TD3.Creature.*;
 
@@ -139,6 +137,7 @@ public class HopitalFantastique {
     public void menuCreature(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
+
         while (choix != 4) {
             System.out.println("_____________________________________");
             System.out.println("|Que voulez vous faire ?            |");
@@ -151,7 +150,26 @@ public class HopitalFantastique {
             System.out.println("|___________________________________|");
             System.out.println("|4. Quitter                         |");
             System.out.println("|___________________________________|");
+
+            boolean entreeValide = false;
+            while (!entreeValide) {
+                try {
+                    System.out.print("Votre choix : ");
+                    choix = scanner.nextInt();
+                    if (choix >= 1 && choix <= 4) {
+                        entreeValide = true;  // Sort de la boucle si l'entrée est correcte
+                    } else {
+                        System.out.println("Veuillez entrer un chiffre entre 1 et 4.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 4.");
+                    scanner.next();  // Efface l'entrée incorrecte
+                }
+            }
+
             choix = scanner.nextInt();
+
+
             switch (choix) {
                 case 1:
                     System.out.println("_____________________________________________");
@@ -173,6 +191,21 @@ public class HopitalFantastique {
                     System.out.println("|___________________________________________|");
                     System.out.println("|8. Zombie                                  |");
                     System.out.println("|___________________________________________|");
+
+                    boolean entreeValide2 = false;
+                    while (!entreeValide2) {
+                        try {
+                            choix = scanner.nextInt();
+                            if (choix >= 1 && choix <= 8) {
+                                entreeValide2 = true;  // Sortir de la boucle si l'entrée est correcte
+                            } else {
+                                System.out.println("Veuillez entrer un chiffre entre 1 et 8.");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 8.");
+                            scanner.next();  // Efface l'entrée incorrecte
+                        }
+                    }
                     int type = scanner.nextInt();
                     System.out.println("Combien de maladies voulez-vous ajouter à votre créature ?");
                     Random random = new Random();
@@ -315,7 +348,26 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|9. Quitter                                       |");
             System.out.println("|_________________________________________________|");
+
+            boolean entreeValide = false;
+            while (!entreeValide) {
+                try {
+                    System.out.print("Votre choix : ");
+                    choix = scanner.nextInt(); // Lecture de l'entrée utilisateur
+
+                    if (choix >= 1 && choix <= 9) {  // Vérification de la plage de valeurs
+                        entreeValide = true;
+                    } else {
+                        System.out.println("Veuillez entrer un chiffre entre 1 et 9.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 9.");
+                    scanner.next();  // Efface l'entrée incorrecte
+                }
+            }
+
             choix = scanner.nextInt();
+
             switch (choix) {
                 case 1:
                     System.out.println("___________________________________________________");
@@ -329,6 +381,24 @@ public class HopitalFantastique {
                     System.out.println("|_________________________________________________|");
                     System.out.println("|3. Service de médical classique                  |");
                     System.out.println("|_________________________________________________|");
+
+                    boolean entreeValide2 = false;
+                    while (!entreeValide2) {
+                        try {
+                            System.out.print("Votre choix : ");
+                            choix = scanner.nextInt(); // Lecture de l'entrée utilisateur
+
+                            if (choix >= 1 && choix <= 3) { // Vérification de la plage des valeurs
+                                entreeValide2 = true;  // Sort de la boucle si l'entrée est correcte
+                            } else {
+                                System.out.println("Veuillez entrer un chiffre entre 1 et 3.");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 3.");
+                            scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                        }
+                    }
+                    
                     int type = scanner.nextInt();
                     System.out.println("_____________________________________________________");
                     System.out.println("|Quel type de créature peuvent intégrer le service ?|");
@@ -349,6 +419,24 @@ public class HopitalFantastique {
                     System.out.println("|___________________________________________________|");
                     System.out.println("|8. Zombie                                          |");
                     System.out.println("|___________________________________________________|");
+
+                    boolean entreeValide3 = false;
+                    while (!entreeValide3) {
+                        try {
+                            System.out.print("Votre choix : ");
+                            choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
+
+                            if (choix >= 1 && choix <= 8) { // Vérification de la plage des valeurs
+                                entreeValide3 = true;  // Sort de la boucle si l'entrée est correcte
+                            } else {
+                                System.out.println("Veuillez entrer un chiffre entre 1 et 8.");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 8.");
+                            scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                        }
+                    }
+
                     String typeCreature = scanner.next();
                     double superficie = Math.random() * 1000;
                     int capaciteMax = (int) (Math.random() * 100);
@@ -530,7 +618,26 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|9. Quitter                                       |");
             System.out.println("|_________________________________________________|");
+
+            boolean entreeValide = false;
+            while (!entreeValide) {
+                try {
+                    System.out.print("Votre choix : ");
+                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
+
+                    if (choix >= 1 && choix <= 9) {  // Vérification de la plage des valeurs
+                        entreeValide = true;
+                    } else {
+                        System.out.println("Veuillez entrer un chiffre entre 1 et 9.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 9.");
+                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                }
+            }
+
             choix = scanner.nextInt();
+
             switch (choix) {
                 case 1:
                     System.out.println("Ajout d'un médecin");
@@ -702,6 +809,23 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|5. Quitter                                       |");
             System.out.println("|_________________________________________________|");
+
+            boolean entreeValide = false;
+            while (!entreeValide) {
+                try {
+                    System.out.print("Votre choix : ");
+                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
+
+                    if (choix >= 1 && choix <= 5) {  // Vérification de la plage des valeurs
+                        entreeValide = true;
+                    } else {
+                        System.out.println("Veuillez entrer un chiffre entre 1 et 5.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 5.");
+                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                }
+            }
             choix = scanner.nextInt();
             switch (choix) {
                 case 1:
@@ -792,6 +916,23 @@ public class HopitalFantastique {
             System.out.println("|_______________________________________________________________|");
             System.out.println("|7. Quitter                                                     |");
             System.out.println("|_______________________________________________________________|");
+
+            boolean entreeValide = false;
+            while (!entreeValide) {
+                try {
+                    System.out.print("Votre choix : ");
+                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
+
+                    if (choix >= 1 && choix <= 7) {  // Vérification de la plage des valeurs
+                        entreeValide = true;
+                    } else {
+                        System.out.println("Veuillez entrer un chiffre entre 1 et 7.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 7.");
+                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                }
+            }
             choix = scanner.nextInt();
             switch (choix) {
                 case 1:
@@ -832,6 +973,23 @@ public class HopitalFantastique {
                     System.out.println("Choix invalide");
                     break;
             }
+        }
+    }
+    private void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                // Pour Windows, imprimer plusieurs lignes vides
+                for (int i = 0; i <= 50; i++) {
+                    System.out.println();
+                }
+            } else {
+                // Pour Unix/Linux/MacOS, utiliser les séquences d'échappement ANSI
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception ex) {
+            System.out.println("Erreur lors de l'effacement de la console.");
+
         }
     }
 }
