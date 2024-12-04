@@ -9,6 +9,7 @@ public class Main {
      */
     public static void main(String[] args) {
         ChoixJeu choixJeu = new ChoixJeu();
-        choixJeu.choixJeu();
+        choixJeu.choixJeu
+                ();
 }
 }

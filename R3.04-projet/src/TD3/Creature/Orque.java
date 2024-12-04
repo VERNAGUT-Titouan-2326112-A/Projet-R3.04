@@ -44,7 +44,7 @@ public class Orque extends Creature {
      * @param hopital : hôpital fantastique avec lequel la créature interagit
      */
     @Override
-    protected void contaminer(HopitalFantastique hopital) {
+    public void contaminer(HopitalFantastique hopital) {
         super.contaminer(hopital);
     }
 }

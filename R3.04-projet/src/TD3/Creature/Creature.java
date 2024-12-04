@@ -351,7 +351,7 @@ public abstract class Creature {
      * Méthode pour faire contaminer d'autres créatures par la créature.
      * @param hopital : hôpital fantastique avec lequel la créature interagit
      */
-    protected void contaminer(HopitalFantastique hopital){
+    public void contaminer(HopitalFantastique hopital){
         List<Creature> creatures = new ArrayList<>(hopital.getCreatures());
         for (Creature creature : creatures) {
             Random random = new Random();
@@ -364,7 +364,7 @@ public abstract class Creature {
      * Méthode pour démoraliser les créatures de l'hôpital.
      * @param hopital : hôpital fantastique avec lequel la créature interagit
      */
-    protected void demoraliser(HopitalFantastique hopital){
+    public void demoraliser(HopitalFantastique hopital){
         List<Creature> creatures = hopital.getCreatures();
         for (Creature creature : creatures) {
             creature.attendre();

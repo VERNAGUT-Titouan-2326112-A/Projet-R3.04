@@ -47,7 +47,7 @@ public class Vampire extends Creature implements Demoralisant, Regenerable {
      * @param hopital : hôpital fantastique avec lequel la créature interagit
      */
     @Override
-    protected void contaminer(HopitalFantastique hopital) {
+    public void contaminer(HopitalFantastique hopital) {
       super.contaminer(hopital);
     }
 

@@ -200,7 +200,7 @@ public class HopitalFantastique {
      */
     public void afficherCreaturesDansServices() {
         System.out.println("Créatures présentes dans l'hôpital :");
-        for (Creature creature : creatures) {
+        for (Creature creature : new ArrayList<>(creatures)) {
             creature.afficherCaracteriques();
         }
     }
@@ -785,6 +785,9 @@ public class HopitalFantastique {
      * Méthode permettant de gérer le menu du mode de jeu rp médecin.
      */
     public void menuRpMedecin(){
+        for (int i = 0; 100 > i; i++) {
+            System.out.println();
+        }
         System.out.println("Bienvenue dans le RP de médecin");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Quel est votre nom ?");
@@ -966,10 +969,10 @@ public class HopitalFantastique {
         int choix = 0;
         while (choix != 8) {
             if (creatures.isEmpty()){
-                genererCreaturesAleatoires(50);
+                genererCreaturesAleatoires(10);
             }
             if (services.isEmpty()){
-                genererServicesAleatoires(10);
+                genererServicesAleatoires(5);
             }
             Thread thread = new Thread(()->{
                 while (true){
@@ -1042,6 +1045,9 @@ public class HopitalFantastique {
                     }
                 }
             });
+            for (int i = 0; i < 500; i++) {
+                System.out.println();
+            }
             System.out.println("_________________________________________________________________");
             System.out.println("|Que voulez vous faire ?                                        |");
             System.out.println("|_______________________________________________________________|");
@@ -1101,6 +1107,10 @@ public class HopitalFantastique {
                     }
                     break;
                 case 7:
+                    thread.interrupt();
+                    for (int i = 0; 500 > i; i++) {
+                        System.out.println();
+                    }
                     menuRpMedecin();
                     break;
                 case 8:
@@ -1113,7 +1123,9 @@ public class HopitalFantastique {
                     System.out.println("Choix invalide");
                     break;
             }
+            thread.interrupt();
         }
+
     }
 
     /**
@@ -1147,5 +1159,26 @@ public class HopitalFantastique {
     public void simulation(){
         System.out.println("Bienvenue dans " + this.nom);
         menu();
+    }
+
+    /**
+     * Méthode pour effacer la console
+     */
+    private void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                // Pour Windows, imprimer plusieurs lignes vides
+                for (int i = 0; i <= 50; i++) {
+                    System.out.println();
+                }
+            } else {
+                // Pour Unix/Linux/MacOS, utiliser les séquences d'échappement ANSI
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception ex) {
+            System.out.println("Erreur lors de l'effacement de la console.");
+
+        }
     }
 }
