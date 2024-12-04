@@ -1045,9 +1045,6 @@ public class HopitalFantastique {
                     }
                 }
             });
-            for (int i = 0; i < 500; i++) {
-                System.out.println();
-            }
             System.out.println("_________________________________________________________________");
             System.out.println("|Que voulez vous faire ?                                        |");
             System.out.println("|_______________________________________________________________|");
@@ -1094,10 +1091,18 @@ public class HopitalFantastique {
                     menuMaladie();
                     break;
                 case 5 :
+                    thread.interrupt();
+                    for (int i = 0; i < 500; i++) {
+                        System.out.println();
+                    }
                     System.out.println("Affichage des créatures présentes dans l'hôpital");
                     afficherCreaturesDansServices();
                     break;
                 case 6:
+                    thread.interrupt();
+                    for (int i = 0; i < 500; i++) {
+                        System.out.println();
+                    }
                     System.out.println("Affichage des services médicaux et de leurs créatures");
                     for (ServiceMedical service : services) {
                         service.afficherDetails();
@@ -1118,8 +1123,14 @@ public class HopitalFantastique {
                     System.out.println("Fin de la simulation");
                     break;
                 case 10:
+                    for (int i = 0; i < 500; i++) {
+                        System.out.println();
+                    }
                     break;
                 default:
+                    for (int i = 0; i < 500; i++) {
+                        System.out.println();
+                    }
                     System.out.println("Choix invalide");
                     break;
             }
