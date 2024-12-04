@@ -150,7 +150,7 @@ public class Colonie {
                     Meute meute3 = meutes.get(idx4 - 1);
                     System.out.println("Combien de Lycanthropes ω voulez vous ajouter ?");
                     int nbr = scanner.nextInt();
-                    Lycanthrope plusfaible = meute3.getMembres().getFirst();
+                    Lycanthrope plusfaible = meute3.getMembres().get(0);
                     for (int i = 0; i < nbr; i++) {
                         for (Lycanthrope lycanthrope : meute3.getMembres()) {
                             if (lycanthrope.getForce() < plusfaible.getForce() && !lycanthrope.getRang().equals("ω")) {

@@ -78,8 +78,8 @@ class GestionnaireDeSaisonsTest {
         gestionnaire.changerSaison(); // Passe a l'été
         gestionnaire.changerSaison(); // Passe à l'autome
         // Vérifier les changements dans les catégories d'âge et les décès
-        Meute meute = meutes.getFirst();
-        Lycanthrope lycanthrope = meute.getMembres().getFirst();
+        Meute meute = meutes.get(0);
+        Lycanthrope lycanthrope = meute.getMembres().get(0);
         lycanthrope.setCategorieAge("Vieux");
         gestionnaire.changerSaison(); // Passe à l'hiver
         assertEquals("Hiver", gestionnaire.getSaisonActuelle());

@@ -104,7 +104,7 @@ public abstract class Creature {
      */
     public void soigner() {
         if (!maladies.isEmpty()) {
-            maladies.removeFirst();
+            maladies.remove(0);
             this.moral += 20;
             System.out.println(nom + " a été soigné !");
         }
@@ -381,7 +381,7 @@ public abstract class Creature {
             this.setMoral(50);
             System.out.println(getNom() + " se régénère après sa mort !");
             if (!this.maladies.isEmpty()){
-                this.maladies.removeLast();
+                this.maladies.remove(maladies.size()-1);
             }
             hopital.getCreatures().add(this);
         }

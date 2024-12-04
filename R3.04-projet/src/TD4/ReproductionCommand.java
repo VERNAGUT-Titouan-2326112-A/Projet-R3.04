@@ -32,9 +32,9 @@ public class ReproductionCommand implements Command {
                 String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
                 meute.ajouterMembre(new LycanthropeFactoryImpl().creerLycanthrope(sexe, "Jeune"));
                 if (cptBeta == 0) {
-                    meute.getMembres().getLast().setRang("β");
+                    meute.getMembres().get(meute.getMembres().size()-1).setRang("β");
                 } else {
-                    meute.getMembres().getLast().setRang("γ");
+                    meute.getMembres().get(meute.getMembres().size()-1).setRang("γ");
                 }
             }
             System.out.println(nbNouveaux + " jeunes Lycanthropes ont été ajoutés à la meute.");
