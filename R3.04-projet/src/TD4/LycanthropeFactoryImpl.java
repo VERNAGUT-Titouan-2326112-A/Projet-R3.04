@@ -1,7 +1,7 @@
 package TD4;
 
 /**
- * Classe permettant de créer des lycanthropes via l'interface LycanthropeFactory
+ * Classe permettant de créer des Lycanthropes via l'interface LycanthropeFactory
  */
 public class LycanthropeFactoryImpl implements LycanthropeFactory {
     /**

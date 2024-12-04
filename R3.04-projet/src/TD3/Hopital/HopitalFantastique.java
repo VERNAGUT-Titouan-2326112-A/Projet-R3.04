@@ -1,10 +1,15 @@
 package TD3.Hopital;
 
-import java.util.InputMismatchException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 import TD3.Creature.*;
 
+/**
+ * Classe HopitalFantastique représentant un hôpital fantastique.
+ */
 public class HopitalFantastique {
     private final String nom;
     private final int capaciteMaxServices;
@@ -18,6 +23,11 @@ public class HopitalFantastique {
     Maladie pec = new Maladie("Porphyrie érythropoïétique congénitale", "PEC", 10);
     Maladie zpl = new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10);
 
+    /**
+     * Constructeur de la classe HopitalFantastique.
+     * @param nom Nom de l'hôpital.
+     * @param capaciteMaxServices Capacité maximale de services de l'hôpital.
+     */
     public HopitalFantastique(String nom, int capaciteMaxServices) {
         this.nom = nom;
         this.capaciteMaxServices = capaciteMaxServices;
@@ -28,6 +38,9 @@ public class HopitalFantastique {
         initialiserMaladies();
     }
 
+    /**
+     * Méthode permettant d'initialiser les maladies disponibles dans l'hôpital.
+     */
     private void initialiserMaladies() {
         maladiesDisponibles.add(new Maladie("Maladie débilitante chronique", "MDC", 10));
         maladiesDisponibles.add(new Maladie("Syndrome fear of missing out", "FOMO", 10));
@@ -36,7 +49,30 @@ public class HopitalFantastique {
         maladiesDisponibles.add(new Maladie("Zoopathie paraphrénique lycanthropique", "ZPL", 10));
     }
 
+    /**
+     * Méthode permettant de trier les créatures de l'hôpital par priorité.
+     */
+    public void trierCreaturesPriorites() {
+        List<Creature> vip = new ArrayList<>();
+        List<Creature> triage = new ArrayList<>();
+        for (Creature creature : creatures) {
+            if (creature.getVIP()) {
+                vip.add(creature);
+            }
+            if (creature.getTriage()) {
+                triage.add(creature);
+            }
+        }
+        creatures.removeAll(vip);
+        creatures.removeAll(triage);
+        creatures.addAll(vip);
+        creatures.addAll(triage);
+    }
 
+    /**
+     * Méthode permettant de générer des créatures aléatoires.
+     * @param nombre Nombre de créatures à générer.
+     */
     public void genererCreaturesAleatoires(int nombre) {
         for (int i = 0; i < nombre; i++) {
             int type = new Random().nextInt(8);
@@ -63,13 +99,13 @@ public class HopitalFantastique {
                     creatures.add(new HommeBete("HommeBete", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
                     break;
                 case 2:
-                    creatures.add(new lycanthropes("Lycanthrope", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
+                    creatures.add(new Lycanthropes("Lycanthrope", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
                     break;
                 case 3:
                     creatures.add(new Nain("Nain", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
                     break;
                 case 4:
-                    creatures.add(new orque("Orque", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
+                    creatures.add(new Orque("Orque", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
                     break;
                 case 5:
                     creatures.add(new Reptilien("Reptilien", (int) (Math.random() * 100), Math.random() < 0.5 ? "Mâle" : "Femelle", Math.random() * 100, Math.random() + 1, (int) (Math.random() * 100),maladies));
@@ -85,26 +121,50 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer les créatures de l'hôpital.
+     * @return Liste des créatures de l'hôpital.
+     */
     public List<Creature> getCreatures() {
         return creatures;
     }
 
+    /**
+     * Méthode permettant de récupérer le nom de l'hôpital.
+     * @return Nom de l'hôpital.
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Méthode permettant de récupérer la capacité maximale de services de l'hôpital.
+     * @return Capacité maximale de services de l'hôpital.
+     */
     public int getCapaciteMaxServices() {
         return capaciteMaxServices;
     }
 
+    /**
+     * Méthode permettant de récupérer les services de l'hôpital.
+     * @return Liste des services de l'hôpital.
+     */
     public List<ServiceMedical> getServices() {
         return services;
     }
 
+    /**
+     * Méthode permettant de récupérer les médecins de l'hôpital.
+     * @return Liste des médecins de l'hôpital.
+     */
     public List<Medecin> getMedecins() {
         return medecins;
     }
 
+    /**
+     * Méthode permettant d'ajouter un service médical à l'hôpital.
+     * @param service Service médical à ajouter.
+     */
     public void ajouterService(ServiceMedical service) {
         if (services.size() < capaciteMaxServices) {
             services.add(service);
@@ -114,11 +174,19 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant d'ajouter un médecin à l'hôpital.
+     * @param medecin Médecin à ajouter.
+     */
     public void ajouterMedecin(Medecin medecin) {
         medecins.add(medecin);
         System.out.println("Médecin ajouté : " + medecin.getNom());
     }
 
+    /**
+     * Méthode permettant de compter le nombre de créatures dans l'hôpital.
+     * @return Nombre de créatures dans l'hôpital.
+     */
     public int compterCreatures() {
         int total = 0;
         for (ServiceMedical service : services) {
@@ -127,6 +195,9 @@ public class HopitalFantastique {
         return total;
     }
 
+    /**
+     * Méthode permettant d'afficher les créatures présentes dans un service de l'hôpital.
+     */
     public void afficherCreaturesDansServices() {
         System.out.println("Créatures présentes dans l'hôpital :");
         for (Creature creature : creatures) {
@@ -134,10 +205,12 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant de lancer le menu de gestion des créatures.
+     */
     public void menuCreature(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
-
         while (choix != 4) {
             System.out.println("_____________________________________");
             System.out.println("|Que voulez vous faire ?            |");
@@ -150,26 +223,13 @@ public class HopitalFantastique {
             System.out.println("|___________________________________|");
             System.out.println("|4. Quitter                         |");
             System.out.println("|___________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();
-                    if (choix >= 1 && choix <= 4) {
-                        entreeValide = true;  // Sort de la boucle si l'entrée est correcte
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 4.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 4.");
-                    scanner.next();  // Efface l'entrée incorrecte
-                }
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-
-            choix = scanner.nextInt();
-
-
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     System.out.println("_____________________________________________");
@@ -191,21 +251,6 @@ public class HopitalFantastique {
                     System.out.println("|___________________________________________|");
                     System.out.println("|8. Zombie                                  |");
                     System.out.println("|___________________________________________|");
-
-                    boolean entreeValide2 = false;
-                    while (!entreeValide2) {
-                        try {
-                            choix = scanner.nextInt();
-                            if (choix >= 1 && choix <= 8) {
-                                entreeValide2 = true;  // Sortir de la boucle si l'entrée est correcte
-                            } else {
-                                System.out.println("Veuillez entrer un chiffre entre 1 et 8.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 8.");
-                            scanner.next();  // Efface l'entrée incorrecte
-                        }
-                    }
                     int type = scanner.nextInt();
                     System.out.println("Combien de maladies voulez-vous ajouter à votre créature ?");
                     Random random = new Random();
@@ -249,7 +294,7 @@ public class HopitalFantastique {
                             int moral3 = (int) (Math.random() * 100);
                             double poids3 = Math.random() * 100;
                             double taille3 = (Math.random()+1) ;
-                            creatures.add(new lycanthropes("Lycanthrope", moral3, sexe3, poids3, taille3, age3, maladies));
+                            creatures.add(new Lycanthropes("Lycanthrope", moral3, sexe3, poids3, taille3, age3, maladies));
                             break;
                         case 4:
                             System.out.println("Ajout d'un nain");
@@ -267,7 +312,7 @@ public class HopitalFantastique {
                             int moral5 = (int) (Math.random() * 100);
                             double poids5 = (Math.random() * 100);
                             double taille5 =  (Math.random() ) + 1;
-                            creatures.add(new orque("Orque", moral5, sexe5, poids5, taille5, age5, maladies));
+                            creatures.add(new Orque("Orque", moral5, sexe5, poids5, taille5, age5, maladies));
                             break;
                         case 6:
                             System.out.println("Ajout d'un reptilien");
@@ -316,6 +361,8 @@ public class HopitalFantastique {
                 case 4:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -323,6 +370,9 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant de lancer le menu de gestion des services.
+     */
     public void menuService() {
         int choix = 0;
         while (choix != 9){
@@ -348,26 +398,13 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|9. Quitter                                       |");
             System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt(); // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 9) {  // Vérification de la plage de valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 9.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 9.");
-                    scanner.next();  // Efface l'entrée incorrecte
-                }
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-
-            choix = scanner.nextInt();
-
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     System.out.println("___________________________________________________");
@@ -381,24 +418,6 @@ public class HopitalFantastique {
                     System.out.println("|_________________________________________________|");
                     System.out.println("|3. Service de médical classique                  |");
                     System.out.println("|_________________________________________________|");
-
-                    boolean entreeValide2 = false;
-                    while (!entreeValide2) {
-                        try {
-                            System.out.print("Votre choix : ");
-                            choix = scanner.nextInt(); // Lecture de l'entrée utilisateur
-
-                            if (choix >= 1 && choix <= 3) { // Vérification de la plage des valeurs
-                                entreeValide2 = true;  // Sort de la boucle si l'entrée est correcte
-                            } else {
-                                System.out.println("Veuillez entrer un chiffre entre 1 et 3.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 3.");
-                            scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                        }
-                    }
-                    
                     int type = scanner.nextInt();
                     System.out.println("_____________________________________________________");
                     System.out.println("|Quel type de créature peuvent intégrer le service ?|");
@@ -419,24 +438,6 @@ public class HopitalFantastique {
                     System.out.println("|___________________________________________________|");
                     System.out.println("|8. Zombie                                          |");
                     System.out.println("|___________________________________________________|");
-
-                    boolean entreeValide3 = false;
-                    while (!entreeValide3) {
-                        try {
-                            System.out.print("Votre choix : ");
-                            choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                            if (choix >= 1 && choix <= 8) { // Vérification de la plage des valeurs
-                                entreeValide3 = true;  // Sort de la boucle si l'entrée est correcte
-                            } else {
-                                System.out.println("Veuillez entrer un chiffre entre 1 et 8.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 8.");
-                            scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                        }
-                    }
-
                     String typeCreature = scanner.next();
                     double superficie = Math.random() * 1000;
                     int capaciteMax = (int) (Math.random() * 100);
@@ -464,6 +465,8 @@ public class HopitalFantastique {
                             ServiceMedical service3 = new ServiceMedical(superficie, capaciteMax, budget,typeCreature);
                             ajouterService(service3);
                             break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + type);
                     }
                     break;
                 case 2:
@@ -511,7 +514,11 @@ public class HopitalFantastique {
                         int p = 0 ;
                         for (int j = 0; j < creatures.size(); j++) {
                             if (creatures.get(j).getType().equals(services.get(index3).getType())) {
-                                System.out.println(p+1 + ". " + creatures.get(j).getNom());
+                                if (creatures.get(j).getVIP()) {
+                                    System.out.println(p + 1 + ". " + creatures.get(j).getNom() + ", VIP" );
+                                } else {
+                                    System.out.println(p + 1 + ". " + creatures.get(j).getNom() + ", Triage" );
+                                }
                                 p++;
                             }
                         }
@@ -586,6 +593,8 @@ public class HopitalFantastique {
                 case 9:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                        break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -593,6 +602,9 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant de lancer le menu de gestion des médecins.
+     */
     public void menuMedecin(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -618,26 +630,13 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|9. Quitter                                       |");
             System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 9) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 9.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 9.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-
-            choix = scanner.nextInt();
-
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     System.out.println("Ajout d'un médecin");
@@ -771,6 +770,8 @@ public class HopitalFantastique {
                 case 9:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -780,6 +781,9 @@ public class HopitalFantastique {
         }
     }
 
+    /**
+     * Méthode permettant de gérer le menu du mode de jeu rp médecin.
+     */
     public void menuRpMedecin(){
         System.out.println("Bienvenue dans le RP de médecin");
         Scanner scanner = new Scanner(System.in);
@@ -809,24 +813,13 @@ public class HopitalFantastique {
             System.out.println("|_________________________________________________|");
             System.out.println("|5. Quitter                                       |");
             System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 5) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 5.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 5.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     System.out.println("Soigner les créatures d'un service");
@@ -889,16 +882,166 @@ public class HopitalFantastique {
                 case 5:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
             }
         }
     }
+
+    /**
+     * Méthode permettant de gérer le menu de gestion des maladies.
+     */
+    public void menuMaladie(){
+        Scanner scanner = new Scanner(System.in);
+        int choix = 0;
+        while(choix != 4) {
+            System.out.println("___________________________________________________");
+            System.out.println("|Que voulez vous faire ?                          |");
+            System.out.println("|_________________________________________________|");
+            System.out.println("|1. Augmenter le niveau d'une maladies            |");
+            System.out.println("|_________________________________________________|");
+            System.out.println("|2. Diminuer le niveau d'une maladie              |");
+            System.out.println("|_________________________________________________|");
+            System.out.println("|3. Changer le niveau d'une maladie               |");
+            System.out.println("|_________________________________________________|");
+            System.out.println("|4. Quitter                                       |");
+            System.out.println("|_________________________________________________|");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
+            }
+            else {
+                choix = Integer.parseInt(input);
+            }
+            switch (choix) {
+                case 1:
+                    System.out.println("Augmentation du niveau d'une maladie");
+                    System.out.println("Quelle maladie voulez-vous augmenter ?");
+                    for (int i = 0; i < maladiesDisponibles.size(); i++) {
+                        System.out.println(i + 1 + ". " + maladiesDisponibles.get(i).getNom());
+                    }
+                    int index = scanner.nextInt();
+                    maladiesDisponibles.get(index).augmenterNiveau();
+                    break;
+                case 2:
+                    System.out.println("Diminution du niveau d'une maladie");
+                    System.out.println("Quelle maladie voulez-vous diminuer ?");
+                    for (int i = 0; i < maladiesDisponibles.size(); i++) {
+                        System.out.println(i + 1 + ". " + maladiesDisponibles.get(i).getNom());
+                    }
+                    int index2 = scanner.nextInt();
+                    maladiesDisponibles.get(index2).diminuerNiveau();
+                    break;
+                case 3:
+                    System.out.println("Changement du niveau d'une maladie");
+                    System.out.println("Quelle maladie voulez-vous changer ?");
+                    for (int i = 0; i < maladiesDisponibles.size(); i++) {
+                        System.out.println(i + 1 + ". " + maladiesDisponibles.get(i).getNom());
+                    }
+                    int index3 = scanner.nextInt();
+                    System.out.println("Quel niveau voulez-vous donner à la maladie ?");
+                    int niveau = scanner.nextInt();
+                    maladiesDisponibles.get(index3).changerNiveau(niveau);
+                    break;
+                case 4:
+                    System.out.println("Retour au menu principal");
+                    break;
+                case 10:
+                        break;
+                default:
+                    System.out.println("Choix invalide");
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Méthode permettant de gérer l'ensemble des menus.
+     */
     public void menu() {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 4) {
+            Thread thread = new Thread(()->{
+                while (true){
+                    try {
+                        trierCreaturesPriorites();
+                        for (Creature creature : creatures) {
+                            creature.attendre();
+                            if (creature.getMoral() == 0){
+                                creature.trepasser(this);
+                            }
+                            if (creature.getMaladies().isEmpty()) {
+                                creatures.remove(creature);
+                            }
+                            for (Maladie maladie : maladiesDisponibles) {
+                                if (maladie.estLetale()) {
+                                    if (creature.getMaladies().contains(maladie)) {
+                                        creature.trepasser(this);
+                                    }
+                                }
+                            }
+                        }
+                        double proba = Math.random();
+                        if (proba < 0.1) {
+                            for (Maladie maladie : maladiesDisponibles) {
+                                maladie.augmenterNiveau();
+                            }
+                        }
+                        else if (proba < 0.2) {
+                            for (Maladie maladie : maladiesDisponibles) {
+                                maladie.diminuerNiveau();
+                            }
+                        }
+
+                        double proba2 = Math.random();
+                        if (proba2 < 0.1) {
+                            for (Creature creature : creatures) {
+                                proba2 = Math.random();
+                                if (proba2 < 0.1) {
+                                    creature.hurler();
+                                }
+                            }
+                        }
+                        else if (proba2 < 0.3) {
+                                for (Creature creature : creatures) {
+                                    proba2 = Math.random();
+                                    if (proba2 < 0.1) {
+                                        Maladie maladie = maladiesDisponibles.get((int) (Math.random() * maladiesDisponibles.size()));
+                                        creature.tomberMalade(maladie,this);
+                                    }
+                                }
+                        }
+                        double proba3 = Math.random();
+                        if (proba3 < 0.1) {
+                            for (ServiceMedical service : services) {
+                                proba3 = Math.random();
+                                if (proba3 < 0.1) {
+                                    service.revisionBudget();
+                                }
+                                else if (proba3 < 0.2) {
+                                    if (service.isIsole()){
+                                        service.setIsole(false);
+                                    }
+                                }
+                            }
+                        }
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        System.out.println("Thread interrompu.");
+                        break;
+                    }
+                }
+            });
+            if (creatures.isEmpty()){
+                genererCreaturesAleatoires(50);
+            }
+            if (services.isEmpty()){
+                genererServicesAleatoires(10);
+            }
             System.out.println("_________________________________________________________________");
             System.out.println("|Que voulez vous faire ?                                        |");
             System.out.println("|_______________________________________________________________|");
@@ -908,32 +1051,24 @@ public class HopitalFantastique {
             System.out.println("|_______________________________________________________________|");
             System.out.println("|3. Gérer les médecins                                          |");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|4. Afficher les créatures présentes dans l'hôpital             |");
+            System.out.println("|4. Gérer les maladies                                          |");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|5. Afficher l'ensemble des services médicaux et leurs créatures|");
+            System.out.println("|5. Afficher l'ensemble des créatures présentes dans l'hôpital  |");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|6. Incarner un médecin                                         |");
+            System.out.println("|6. Afficher l'ensemble des services médicaux et leurs créatures|");
             System.out.println("|_______________________________________________________________|");
-            System.out.println("|7. Quitter                                                     |");
+            System.out.println("|7. Incarner un médecin                                         |");
             System.out.println("|_______________________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 7) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 7.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 7.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            System.out.println("|8. Quitter                                                     |");
+            System.out.println("|_______________________________________________________________|");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
+            else {
+                choix = Integer.parseInt(input);
+            }
+            thread.start();
             switch (choix) {
                 case 1:
                     System.out.println("Gestion des créatures");
@@ -949,10 +1084,14 @@ public class HopitalFantastique {
                     break;
 
                 case 4 :
+                    System.out.println("Gestion des maladies");
+                    menuMaladie();
+                    break;
+                case 5 :
                     System.out.println("Affichage des créatures présentes dans l'hôpital");
                     afficherCreaturesDansServices();
                     break;
-                case 5 :
+                case 6:
                     System.out.println("Affichage des services médicaux et de leurs créatures");
                     for (ServiceMedical service : services) {
                         service.afficherDetails();
@@ -961,13 +1100,16 @@ public class HopitalFantastique {
                         }
                     }
                     break;
-                case 6:
-                        System.out.println("Fin de la simulation");
-                        break;
-                case 7 :
+                case 7:
+                    System.out.println("Fin de la simulation");
+                    break;
+                case 8 :
                     menuRpMedecin();
-                case 8:
+                    break;
+                case 9:
                     System.out.println("Au revoir");
+                    break;
+                case 10:
                     break;
                 default:
                     System.out.println("Choix invalide");
@@ -975,21 +1117,37 @@ public class HopitalFantastique {
             }
         }
     }
-    private void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                // Pour Windows, imprimer plusieurs lignes vides
-                for (int i = 0; i <= 50; i++) {
-                    System.out.println();
-                }
-            } else {
-                // Pour Unix/Linux/MacOS, utiliser les séquences d'échappement ANSI
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception ex) {
-            System.out.println("Erreur lors de l'effacement de la console.");
 
-        }
+    /**
+     * Méthode permettant de générer des services aléatoires
+     * @param i le nombre de services à générer
+     */
+    private void genererServicesAleatoires(int i) {
+        Random rd = new Random();
+        int chx = rd.nextInt(4);
+        String[] type = {"Elfe", "HommeBete", "Lycanthrope", "Nain", "Orque", "Reptilien", "Vampire", "Zombie"};
+        int chx2 = rd.nextInt(type.length);
+         switch (chx){
+             case 1 :
+                CentreDeQuarantaine service = new CentreDeQuarantaine(rd.nextDouble() * 1000, rd.nextInt(100), "moyen", true, type[chx2]);
+                ajouterService(service);
+                break;
+            case 2 :
+                Crypte service2 = new Crypte(rd.nextDouble() * 1000, rd.nextInt(100), "moyen", rd.nextInt(100), rd.nextInt(100), type[chx2]);
+                ajouterService(service2);
+                break;
+            case 3 :
+                ServiceMedical service3 = new ServiceMedical(rd.nextDouble() * 1000, rd.nextInt(100), "moyen", type[chx2]);
+                ajouterService(service3);
+                break;
+         }
+    }
+
+    /**
+     * méthode permettant de lancer la simulation
+     */
+    public void simulation(){
+        System.out.println("Bienvenue dans " + this.nom);
+        menu();
     }
 }

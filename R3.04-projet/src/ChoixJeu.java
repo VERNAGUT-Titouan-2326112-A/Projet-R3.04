@@ -1,17 +1,20 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import TD3.Menu;
-import TD4.main;
 
+import TD3.Hopital.HopitalFantastique;
+import TD4.Colonie;
+
+/**
+ * Classe pour choisir le jeu à jouer
+ */
 public class ChoixJeu {
 
-    public static void main(String[] args) {
-        ChoixJeu main = new ChoixJeu();
-        main.afficheMenu();
-        main.gererSelection();
-    }
-
-    public void afficheMenu() {
+    /**
+     * Méthode pour gérer le menu de choix du jeu
+     */
+    public void choixJeu() {
+        clearConsole();
+        Scanner scanner = new Scanner(System.in);
+        int choix = 0;
         System.out.println("___________________________________");
         System.out.println("|      Bienvenue dans le menu!    |");
         System.out.println("|_________________________________|");
@@ -23,55 +26,41 @@ public class ChoixJeu {
         System.out.println("|_________________________________|");
         System.out.println("|3. Quitter                       |");
         System.out.println("|_________________________________|");
-    }
-
-    public void gererSelection() {
-        Scanner scanner = new Scanner(System.in);
-        int choix = -1;
-
-        try {
-            choix = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Erreur: Veuillez entrer un chiffre valide.");
-            scanner.nextLine(); // Consommer l'entrée incorrecte
-            clearConsole();
-        }
-
+        choix = scanner.nextInt();
         switch (choix) {
-            case 1:
+            case 1 :
                 clearConsole();
-                lancerMenuHopital();
+                HopitalFantastique hopital = new HopitalFantastique("Νοσοκομείο Φαντασίας", 1000);
+                hopital.simulation();
                 break;
-            case 2:
+            case 2 :
                 clearConsole();
-                lancerMenuLycanthrope();
+                Colonie colonie = new Colonie();
+                colonie.simulation();
                 break;
-            case 3:
+                case 3 :
                 quitter();
                 break;
             default:
-                System.out.println("Choix invalide. Veuillez réessayer.");
-                afficheMenu();
-                gererSelection();
+                System.out.println("Choix invalide. Veuillez choisir un nombre entre 1 et 3.");
+                choixJeu();
                 break;
         }
+        choixJeu();
     }
 
-    public void lancerMenuHopital() {
-        Menu menu = new Menu();
-        menu.afficherMenu();
-        menu.gererSelection();
-    }
 
-    public void lancerMenuLycanthrope() {
-        main.main(new String[]{});
-    }
-
+    /**
+     * Méthode pour fermer le programme
+     */
     private void quitter() {
         System.out.println("Au revoir!");
         System.exit(0);
     }
 
+    /**
+     * Méthode pour effacer la console
+     */
     private void clearConsole() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -89,4 +78,5 @@ public class ChoixJeu {
 
         }
     }
+
 }

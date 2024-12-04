@@ -1,9 +1,14 @@
-package TD3;
+/**
+ * Méthode principale pour lancer l'application
+ */
+public class Main {
 
-public class td3Main {
+    /**
+     * Méthode principale pour lancer l'application
+     * @param args arguments de la ligne de commande
+     */
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.afficherMenu();
-        menu.gererSelection();
+        ChoixJeu choixJeu = new ChoixJeu();
+        choixJeu.choixJeu();
     }
 }

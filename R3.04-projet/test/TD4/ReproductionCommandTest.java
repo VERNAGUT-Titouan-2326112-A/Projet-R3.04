@@ -23,7 +23,7 @@ class ReproductionCommandTest {
         femelleAlpha = new Lycanthrope("Femelle","Adulte",58, 1.7);
         betaMember = new Lycanthrope("Mâle","Adulte",60, 1.75);
 
-        // Ajout des lycanthropes alpha à la meute
+        // Ajout des Lycanthropes alpha à la meute
         meute.setMaleAlpha(maleAlpha);
         meute.setFemelleAlpha(femelleAlpha);
 

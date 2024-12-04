@@ -1,7 +1,7 @@
 package TD4;
 
 /**
- * Interface permettant de créer des lycanthropes
+ * Interface permettant de créer des Lycanthropes
  */
 public interface LycanthropeFactory {
     /**

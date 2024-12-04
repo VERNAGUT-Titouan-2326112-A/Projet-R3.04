@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 
 /**
- * Classe de commande de conflit entre deux lycanthropes
+ * Classe de commande de conflit entre deux Lycanthropes
  */
 public class ConflitCommand implements Command {
     private final Lycanthrope agresseur;
@@ -28,7 +28,7 @@ public class ConflitCommand implements Command {
     }
 
     /**
-     * Méthode d'exécution de la commande servant ici à gérer un conflit entre deux lycanthropes et à le simuler.
+     * Méthode d'exécution de la commande servant ici à gérer un conflit entre deux Lycanthropes et à le simuler.
      */
     @Override
     public void execute() {

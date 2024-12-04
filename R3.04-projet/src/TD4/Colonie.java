@@ -42,11 +42,11 @@ public class Colonie {
     }
 
     /**
-     *Méthode permettant d'afficher les groupes de lycanthropes solitaires de la colonie
+     *Méthode permettant d'afficher les groupes de Lycanthropes solitaires de la colonie
      *
      */
     public void afficherGroupesDeSolitaires(){
-        System.out.println("Groupes de lycanthropes solitaires (" +groupeDeSolitaires.size()+":");
+        System.out.println("Groupes de Lycanthropes solitaires (" +groupeDeSolitaires.size()+":");
         for (int i = 0; i < groupeDeSolitaires.size(); i++){
             System.out.println("Groupe " + (i+1) + " :");
         }
@@ -55,7 +55,7 @@ public class Colonie {
     /**
      *
      *
-     * @param lycanthrope : Lycanthrope à ajouter à un groupe de lycanthropes solitaires
+     * @param lycanthrope : Lycanthrope à ajouter à un groupe de Lycanthropes solitaires
      */
     public void ajouterSolitaire(Lycanthrope lycanthrope){
         solitaires.add(lycanthrope);
@@ -69,41 +69,21 @@ public class Colonie {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 7) {
-            System.out.println("___________________________________________________");
-            System.out.println("|            Que voulez-vous faire ?              |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|1. Créer une meute                               |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|2. Afficher les meutes                           |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|3. Afficher les caractéristiques d'une meute     |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|4. Regénérer la hiérarchie d'une meute           |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|5. Ajouter des lycanthropes ω à une meute        |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|6. Ajouter ou supprimer un/des lycanthrope(s)    |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|7. Quitter                                       |");
-            System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 7) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 7.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 7.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Créer une meute");
+            System.out.println("2. Afficher les meutes");
+            System.out.println("3. Afficher les caractéristiques d'une meute");
+            System.out.println("4. Regénérer la hiérarchie d'une meutes");
+            System.out.println("5. Ajouter des Lycanthropes ω à une meute");
+            System.out.println("6. Ajouter ou Supprimer un/des lycanthrope(s) d'une meute");
+            System.out.println("7. Quitter");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     Meute meute = new Meute(this);
@@ -161,14 +141,14 @@ public class Colonie {
                     break;
                 case 5:
                     if (meutes.isEmpty()) {
-                        System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir ajouter des lycanthropes ω.");
+                        System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir ajouter des Lycanthropes ω.");
                         break;
                     }
-                    System.out.println("Choisissez la meute à laquelle vous voulez générer des lycanthropes ω :");
+                    System.out.println("Choisissez la meute à laquelle vous voulez générer des Lycanthropes ω :");
                     afficherMeutes();
                     int idx4 = scanner.nextInt();
                     Meute meute3 = meutes.get(idx4 - 1);
-                    System.out.println("Combien de lycanthropes ω voulez vous ajouter ?");
+                    System.out.println("Combien de Lycanthropes ω voulez vous ajouter ?");
                     int nbr = scanner.nextInt();
                     Lycanthrope plusfaible = meute3.getMembres().getFirst();
                     for (int i = 0; i < nbr; i++) {
@@ -195,8 +175,8 @@ public class Colonie {
                     int chx2 = scanner.nextInt();
                     switch (chx2) {
                         case 1:
-                            System.out.println("Ajout de lycanthropes");
-                            System.out.println("Combien de lycanthropes voulez vous ajouter ?");
+                            System.out.println("Ajout de Lycanthropes");
+                            System.out.println("Combien de Lycanthropes voulez vous ajouter ?");
                             int nbr2 = scanner.nextInt();
                             for (int i = 0; i < nbr2; i++) {
                                 String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
@@ -214,8 +194,8 @@ public class Colonie {
                             break;
 
                         case 2:
-                            System.out.println("Suppression de lycanthropes");
-                            System.out.println("Combien de lycanthropes voulez vous supprimer ?");
+                            System.out.println("Suppression de Lycanthropes");
+                            System.out.println("Combien de Lycanthropes voulez vous supprimer ?");
                             int nbr3 = scanner.nextInt();
                             for (int i = 0; i < nbr3; i++) {
                                 System.out.println("Lequel parmi " + meute4.getMembres().size() + " (son numéro)");
@@ -232,6 +212,8 @@ public class Colonie {
                 case 7:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                        break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -240,45 +222,28 @@ public class Colonie {
     }
 
     /**
-     *Méthode de gestion des lycanthropes solitaires via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
+     *Méthode de gestion des Lycanthropes solitaires via un menu qui s'affiche dans un terminal dans lequel on navigue avec des commandes au clavier
      *
      */
     public void menuSolitaire(){
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 4) {
-            System.out.println("___________________________________________________");
-            System.out.println("|            Que voulez-vous faire ?              |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|1. Afficher le nombre de lycanthropes solitaires |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|2. Réunir les lycanthropes solitaires ensemble   |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|3. Afficher les groupes de lycanthropes réunis   |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|4. Quitter                                       |");
-            System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 4) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 4.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 4.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Afficher le nombre de Lycanthropes solitaires");
+            System.out.println("2. Réunir les Lycanthropes solitaires ensemble");
+            System.out.println("3. Afficher les groupes de Lycanthropes solitaires réunis");
+            System.out.println("4. Quitter");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
-                    System.out.println("Il y a " + solitaires.size() + " lycanthropes solitaires.");
+                    System.out.println("Il y a " + solitaires.size() + " Lycanthropes solitaires.");
                     System.out.println("Voulez vous afficher leurs caractéristiques ? \n 1. Oui \n 2. Non");
                     int chx2 = scanner.nextInt();
                     if (chx2 == 1) {
@@ -289,10 +254,10 @@ public class Colonie {
                     break;
                 case 2:
                     if (solitaires.isEmpty()) {
-                        System.out.println("Il n'y a pas de lycanthropes solitaires à réunir.");
+                        System.out.println("Il n'y a pas de Lycanthropes solitaires à réunir.");
                         break;
                     }
-                    System.out.println("Réunir les lycanthropes solitaires ensemble");
+                    System.out.println("Réunir les Lycanthropes solitaires ensemble");
                     boolean verif1male = false;
                     boolean verif1femelle = false;
                     for (Lycanthrope lycanthrope : solitaires) {
@@ -317,12 +282,12 @@ public class Colonie {
                     break;
                 case 3:
                     if (groupeDeSolitaires.isEmpty()) {
-                        System.out.println("Il n'y a pas de groupe de lycanthropes solitaires réunis.");
+                        System.out.println("Il n'y a pas de groupe de Lycanthropes solitaires réunis.");
                         break;
                     }
-                    System.out.println("Groupes de lycanthropes solitaires réunis :");
+                    System.out.println("Groupes de Lycanthropes solitaires réunis :");
                     afficherGroupesDeSolitaires();
-                    System.out.println("Voulez vous afficher les caractéristiques d'un groupe de lycanthropes solitaires réunis ? \n 1. Oui \n 2. Non");
+                    System.out.println("Voulez vous afficher les caractéristiques d'un groupe de Lycanthropes solitaires réunis ? \n 1. Oui \n 2. Non");
                     int chx3 = scanner.nextInt();
                     if (chx3 == 1) {
                         System.out.println("Lequel parmi " + groupeDeSolitaires.size() + " (son numéro)");
@@ -335,6 +300,8 @@ public class Colonie {
                     break;
                 case 4:
                     System.out.println("Retour au menu principal");
+                    break;
+                case 10:
                     break;
                 default:
                     System.out.println("Choix invalide");
@@ -351,34 +318,17 @@ public class Colonie {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 3) {
-            System.out.println("___________________________________________________");
-            System.out.println("|            Que voulez-vous faire ?              |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|1. Planifier un conflit                         |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|2. Planifier une reproduction                    |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|3. Quitter                                       |");
-            System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 3) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 3.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 3.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Planifier un conflit");
+            System.out.println("2. Planifier une reproduction");
+            System.out.println("3. Quitter");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
-            switch (choix) {
+            else {
+                choix = Integer.parseInt(input);
+            }            switch (choix) {
                 case 1:
                     if (meutes.isEmpty()){
                         System.out.println("Vous devez d'abord créer au moins une meute avant de pouvoir organiser un conflit.");
@@ -423,6 +373,8 @@ public class Colonie {
                 case 3:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10 :
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -438,37 +390,19 @@ public class Colonie {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 5) {
-            System.out.println("___________________________________________________");
-            System.out.println("|            Que voulez-vous faire ?              |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|1. Lancer l'avancement automatique des saisons   |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|2. Avancer d'une saison                          |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|3. Mettre en pause l'avancement des saisons      |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|4. Changer la durée d'une saison                 |");
-            System.out.println("|_________________________________________________|");
-            System.out.println("|5. Quitter                                       |");
-            System.out.println("|_________________________________________________|");
-
-            boolean entreeValide = false;
-            while (!entreeValide) {
-                try {
-                    System.out.print("Votre choix : ");
-                    choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                    if (choix >= 1 && choix <= 5) {  // Vérification de la plage des valeurs
-                        entreeValide = true;
-                    } else {
-                        System.out.println("Veuillez entrer un chiffre entre 1 et 5.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 5.");
-                    scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
-                }
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Lancer l'avancement automatique des saisons");
+            System.out.println("2. Avancer d'une saison");
+            System.out.println("3. Mettre en pause l'avancement des saisons");
+            System.out.println("4. Changer la durée d'une saison");
+            System.out.println("5. Quitter");
+            String input = scanner.nextLine();
+            if (input.isEmpty()) {
+                choix = 10;
             }
-            choix = scanner.nextInt();
+            else {
+                choix = Integer.parseInt(input);
+            }
             switch (choix) {
                 case 1:
                     System.out.println("Lancement de l'avancement automatique des saisons");
@@ -493,6 +427,8 @@ public class Colonie {
                 case 5:
                     System.out.println("Retour au menu principal");
                     break;
+                case 10:
+                    break;
                 default:
                     System.out.println("Choix invalide");
                     break;
@@ -509,7 +445,6 @@ public class Colonie {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
         while (choix != 6) {
-            if (!meutes.isEmpty()){
                 Thread thread = new Thread(() -> {
                     while (true) {
                         try {
@@ -547,7 +482,7 @@ public class Colonie {
                                     }
                                 }
                             }
-                            // pour les lycanthropes trop faibles qui quittent la meute
+                            // pour les Lycanthropes trop faibles qui quittent la meute
                             double proba2 = Math.random();
                             if (proba2 < 0.05) {
                                 for (Meute meute2 : meutes){
@@ -561,7 +496,7 @@ public class Colonie {
                                     }
                                 }
                             }
-                            //pour les lycanthropes qui deviennent humains
+                            //pour les Lycanthropes qui deviennent humains
                             double proba3 = Math.random();
                             if (proba3 < 0.05) {
                                 for (Meute meute1 : meutes) {
@@ -586,63 +521,36 @@ public class Colonie {
                         }
                     }
                 });
-                thread.start();
-            }
-            else {
-                Meute meute = new Meute(this);
-                Random random1 = new Random();
-                int randomNumber = random1.nextInt(101);
-                for (int i = 0; i < randomNumber; i++) {
-                    String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
-                    double proba = Math.random();
-                    String categorieAge;
-                    if (proba < 0.3) {
-                        categorieAge = "Jeune";
-                    } else if (proba < 0.6) {
-                        categorieAge = "Adulte";
-                    } else {
-                        categorieAge = "Vieux";
-                    }
-                    meute.ajouterMembre(new LycanthropeFactoryImpl().creerLycanthrope(sexe, categorieAge));
-                }
-                meute.creerHierarchie();
-                ajouterMeute(meute);
-            }
-            while (choix != 6) {
-                System.out.println("___________________________________________________");
-                System.out.println("|            Que voulez-vous faire ?              |");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|1. Afficher le contenu de la colonie             |");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|2. Gérer les meutes                              |");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|3. Gérer les lycanthropes solitaires et leurs groupes|");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|4. Gérer les évènements                         |");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|5. Gérer les saisons                            |");
-                System.out.println("|_________________________________________________|");
-                System.out.println("|6. Quitter                                      |");
-                System.out.println("|_________________________________________________|");
 
-                boolean entreeValide = false;
-                while (!entreeValide) {
-                    try {
-                        System.out.print("Votre choix : ");
-                        choix = scanner.nextInt();  // Lecture de l'entrée utilisateur
-
-                        if (choix >= 1 && choix <= 6) {  // Vérification de la plage des valeurs
-                            entreeValide = true;
+            if (meutes.isEmpty()) {
+                    Meute meute = new Meute(this);
+                    Random random1 = new Random();
+                    int randomNumber = random1.nextInt(101);
+                    for (int i = 0; i < randomNumber; i++) {
+                        String sexe = Math.random() < 0.5 ? "Mâle" : "Femelle";
+                        double proba = Math.random();
+                        String categorieAge;
+                        if (proba < 0.3) {
+                            categorieAge = "Jeune";
+                        } else if (proba < 0.6) {
+                            categorieAge = "Adulte";
                         } else {
-                            System.out.println("Veuillez entrer un chiffre entre 1 et 6.");
+                            categorieAge = "Vieux";
                         }
-                    } catch (Exception e) {
-                        System.out.println("Entrée invalide. Veuillez entrer un chiffre entre 1 et 6.");
-                        scanner.next();  // Efface l'entrée incorrecte pour éviter une boucle infinie
+                        meute.ajouterMembre(new LycanthropeFactoryImpl().creerLycanthrope(sexe, categorieAge));
                     }
+                    meute.creerHierarchie();
+                    ajouterMeute(meute);
                 }
-            }
+            System.out.println("Que voulez vous faire ?");
+            System.out.println("1. Afficher le contenu de la colonie");
+            System.out.println("2. Gérer les meutes :");
+            System.out.println("3. Gérer les Lycanthropes solitaires et leurs groupes");
+            System.out.println("4. gérer les évènements");
+            System.out.println("5. gérer les saisons");
+            System.out.println("6. Quitter");
             choix = scanner.nextInt();
+            thread.start();
             switch (choix) {
                 case 1:
                     System.out.println("Contenu de la colonie :");
@@ -652,19 +560,15 @@ public class Colonie {
                     afficherGroupesDeSolitaires();
                     break;
                 case 2:
-                    clearConsole();
                     menuMeute();
                     break;
                 case 3:
-                    clearConsole();
                     menuSolitaire();
                     break;
                 case 4:
-                    clearConsole();
                     menuEvent();
                     break;
                 case 5:
-                    clearConsole();
                     menuSaison();
                     break;
                 case 6:
@@ -681,32 +585,16 @@ public class Colonie {
      *Méthode principale de la classe colonie permettant de lancer une simulation
      */
     public void simulation(){
-        System.out.println("Bienvenue dans le zoo des lycanthropes !");
+        System.out.println("Bienvenue dans le zoo des Lycanthropes !");
         menu();
-        System.out.println("Fin de la simulation.");
-        exit(0);
     }
 
+    /**
+     *Méthode permettant de récupérer les lycanthropes solitaires de la colonie
+     *
+     * @return : Liste des lycanthropes solitaires de la colonie
+     */
     public List<Lycanthrope> getSolitaires() {
         return solitaires;
     }
-
-    private void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                // Pour Windows, imprimer plusieurs lignes vides
-                for (int i = 0; i <= 50; i++) {
-                    System.out.println();
-                }
-            } else {
-                // Pour Unix/Linux/MacOS, utiliser les séquences d'échappement ANSI
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception ex) {
-            System.out.println("Erreur lors de l'effacement de la console.");
-
-        }
-    }
-
 }

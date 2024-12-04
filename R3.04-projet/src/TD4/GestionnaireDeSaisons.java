@@ -69,7 +69,7 @@ public class GestionnaireDeSaisons {
 
             }
             case "Été" -> {
-                System.out.println("C'est l'été, les lycanthropes deviennent plus agressifs.");
+                System.out.println("C'est l'été, les Lycanthropes deviennent plus agressifs.");
                 double proba = Math.random();
                 if (proba < 0.25) {
                     for (Meute meute : meutes) {
@@ -83,7 +83,7 @@ public class GestionnaireDeSaisons {
                 }
             }
             case "Automne" -> {
-                System.out.println("En automne les lycanthropes ont plus de chances de devenir humain");
+                System.out.println("En automne les Lycanthropes ont plus de chances de devenir humain");
                 for (Meute meute : meutes) {
                     List<Lycanthrope> membres = new ArrayList<>(meute.getMembres());
                     for (Lycanthrope lycanthrope : membres) {
@@ -120,7 +120,7 @@ public class GestionnaireDeSaisons {
                         }
 
                     }
-                    System.out.println(compteurMorts + " lycanthropes sont morts cette année dans la meute " + meute.getNom() + ".");
+                    System.out.println(compteurMorts + " Lycanthropes sont morts cette année dans la meute " + meute.getNom() + ".");
                 }
             }
         }

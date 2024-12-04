@@ -37,7 +37,7 @@ public class ReproductionCommand implements Command {
                     meute.getMembres().getLast().setRang("γ");
                 }
             }
-            System.out.println(nbNouveaux + " jeunes lycanthropes ont été ajoutés à la meute.");
+            System.out.println(nbNouveaux + " jeunes Lycanthropes ont été ajoutés à la meute.");
         } else {
             System.out.println("Pas de couple α disponible pour la reproduction.");
         }

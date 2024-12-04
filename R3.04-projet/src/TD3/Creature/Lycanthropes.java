@@ -6,31 +6,31 @@ import TD3.Hopital.Maladie;
 import java.util.List;
 
 /**
- * Classe HommeBete sous-classe de Creature
+ * Classe Lycanthropes sous-classe de Creature
  */
-public class HommeBete extends Creature{
+public class Lycanthropes extends Creature{
     private int id;
     private static int DERNIER_ID = 0;
 
     /**
-     * Constructeur de la classe HommeBete
-     * @param nom Nom de l'HommeBete
-     * @param moral Moral de l'HommeBete
-     * @param sexe Sexe de l'HommeBete
-     * @param poids Poids de l'HommeBete
-     * @param taille Taille de l'HommeBete
-     * @param age Age de l'HommeBete
-     * @param maladies Liste des maladies de l'HommeBete
+     * Constructeur de la classe Lycanthropes
+     * @param nom Nom de l'Lycanthropes
+     * @param moral Moral de l'Lycanthropes
+     * @param sexe Sexe de l'Lycanthropes
+     * @param poids Poids du Lycanthropes
+     * @param taille Taille du Lycanthropes
+     * @param age Age de l'Lycanthropes
+     * @param maladies Liste des maladies de l'Lycanthropes
      */
-    public HommeBete(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
+    public Lycanthropes(String nom, int moral, String sexe, double poids, double taille, int age, List<Maladie> maladies) {
         super(nom, moral, sexe, poids, taille, age, true, true, maladies);
         this.id = ++DERNIER_ID;
-        setNom("HommeBete" + id);
+        setNom("Lycanthropes" + id);
         setTriage(true);
     }
 
     /**
-     * Méthode pour faire trepasser un HommeBete en respectant ses caractéristiques
+     * Méthode pour faire trepasser un Lycanthropes en respectant ses caractéristiques
      * @param hopital : hôpital fantastique auquel appartient la créature
      */
     @Override
@@ -38,7 +38,6 @@ public class HommeBete extends Creature{
         super.trepasser(hopital);
         contaminer(hopital);
     }
-
     /**
      * Méthode pour contaminer les autres créatures de l'hôpital
      * @param hopital : hôpital fantastique avec lequel la créature interagit
@@ -46,8 +45,6 @@ public class HommeBete extends Creature{
     @Override
     protected void contaminer(HopitalFantastique hopital) {
         super.contaminer(hopital);
-    }
-    public void Triage(){
 
     }
 }

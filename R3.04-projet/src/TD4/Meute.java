@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Classe représentant une meute de lycanthropes
+ * Classe représentant une meute de Lycanthropes
  */
 public class Meute implements HurlementListener {
     private Lycanthrope maleAlpha;

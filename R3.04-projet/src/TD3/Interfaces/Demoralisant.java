@@ -1,10 +1,11 @@
 package TD3.Interfaces;
 
-import TD3.Creature.Creature;
+
 import TD3.Hopital.HopitalFantastique;
 
-import java.util.List;
-
+/**
+ * interface servant à définir les méthodes que doit implémenter une créature qui peut en démoraliser d'autres
+ */
 public interface Demoralisant {
     void demoraliser(HopitalFantastique hopital);
 }
