@@ -10,6 +10,7 @@ Pour pouvoir utiliser sans problèmes ce projet et exécuter son contenu, vous d
 - Posséder l'IDE Eclipse (il est gratuit à l'installation en OpenSource)
 - Le configurer au moins une fois pour avoir un répertoire **eclipse-workspace**
 - Cloner via SSH dans un terminal le projet dans ce dossier
+- Retirer le dossier **javadoc** et le **fichier pdf** du dossier et placez les dans un autre répertoire en dehors de **eclipse-workspace**
 - Ouvrir, Eclipse
 - Dans **File**, cliquez sur l'option **Open Projects from File System**
 - Cliquer sur **Directory..** et séléctionner le dosser de votre projet
