@@ -15,3 +15,8 @@ Pour pouvoir utiliser sans problèmes ce projet et exécuter son contenu, vous d
 - Cliquer sur **Directory..** et séléctionner le dosser de votre projet
 - Allez dans le package **Jeu**
 - Lancer le fichier **Main.Java**
+- Dans le cas où une erreur se présenterai dans les fichiers de tests faite un clic droit sur celle-ci et cliquez sur **fix project** et ajoutez junit5 comme bibliothèque du projet
+
+-------------
+## Javadoc
+Pour accéder à la Javadoc, rendez vous dans le dossier **javadoc** et exécuter le fichier **index.html**
